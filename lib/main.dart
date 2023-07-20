@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:restaurant_talks/screens/login.dart';
 import 'package:restaurant_talks/view_model/main.dart';
 
 void main() {
@@ -25,20 +26,7 @@ class MyApp extends ConsumerWidget {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(main.helloWorld),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '${main.number}',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
-          ),
-        ),
+        body: const LoginScreen(),
         floatingActionButton: FloatingActionButton(
           onPressed: () => ref.read(mainProvider.notifier).incrementCounter(main.number),
           tooltip: 'Increment',
