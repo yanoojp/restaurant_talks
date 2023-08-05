@@ -1,20 +1,31 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../models/users/login_model.dart';
 
-import 'model/auth_state.dart';
+part 'login_view_model.freezed.dart';
 
-final loginViewModelProvider = StateNotifierProvider<LoginViewModel, AuthState>((ref) => LoginViewModel());
+@freezed
+class LoginState with _$LoginState {
+  const factory LoginState({
+    required bool isProcessing,
+    required User user,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
+  }) = _LoginState;
+}
 
-class LoginViewModel extends StateNotifier<AuthState> {
-  LoginViewModel() : super(AuthState(status: Status.idle));
+class LoginStateManager extends StateNotifier<LoginState> {
+  LoginStateManager() : super(_LoginState(
+    isProcessing: false,
+    user: User(email: '', password: ''),
+    emailController: TextEditingController(),
+    passwordController: TextEditingController(),
+  ));
 
-  Future<void> login(String email, String password) async {
-    state = state.copyWith(status: Status.loading);
-    try {
-      // Implement your authentication logic here.
-      // Upon successful login, update the state.
-      // state = state.copyWith(user: User(email: email, password: password), status: Status.success);
-    } catch (e) {
-      state = state.copyWith(status: Status.error, errorMessage: e.toString());
-    }
+  Future<void> login() async {
+    //... your code here
   }
 }
+
+final loginStateManager = StateNotifierProvider<LoginStateManager, LoginState>((ref) => LoginStateManager());

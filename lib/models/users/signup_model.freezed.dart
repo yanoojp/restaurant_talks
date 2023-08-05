@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-SignupRequest _$SignupRequestFromJson(Map<String, dynamic> json) {
-  return _SignupRequest.fromJson(json);
+Signup _$SignupFromJson(Map<String, dynamic> json) {
+  return _Signup.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SignupRequest {
+mixin _$Signup {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get managerName => throw _privateConstructorUsedError;
@@ -28,15 +28,13 @@ mixin _$SignupRequest {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SignupRequestCopyWith<SignupRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SignupCopyWith<Signup> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SignupRequestCopyWith<$Res> {
-  factory $SignupRequestCopyWith(
-          SignupRequest value, $Res Function(SignupRequest) then) =
-      _$SignupRequestCopyWithImpl<$Res, SignupRequest>;
+abstract class $SignupCopyWith<$Res> {
+  factory $SignupCopyWith(Signup value, $Res Function(Signup) then) =
+      _$SignupCopyWithImpl<$Res, Signup>;
   @useResult
   $Res call(
       {String email,
@@ -47,9 +45,9 @@ abstract class $SignupRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SignupRequestCopyWithImpl<$Res, $Val extends SignupRequest>
-    implements $SignupRequestCopyWith<$Res> {
-  _$SignupRequestCopyWithImpl(this._value, this._then);
+class _$SignupCopyWithImpl<$Res, $Val extends Signup>
+    implements $SignupCopyWith<$Res> {
+  _$SignupCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -91,11 +89,9 @@ class _$SignupRequestCopyWithImpl<$Res, $Val extends SignupRequest>
 }
 
 /// @nodoc
-abstract class _$$_SignupRequestCopyWith<$Res>
-    implements $SignupRequestCopyWith<$Res> {
-  factory _$$_SignupRequestCopyWith(
-          _$_SignupRequest value, $Res Function(_$_SignupRequest) then) =
-      __$$_SignupRequestCopyWithImpl<$Res>;
+abstract class _$$_SignupCopyWith<$Res> implements $SignupCopyWith<$Res> {
+  factory _$$_SignupCopyWith(_$_Signup value, $Res Function(_$_Signup) then) =
+      __$$_SignupCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +103,10 @@ abstract class _$$_SignupRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SignupRequestCopyWithImpl<$Res>
-    extends _$SignupRequestCopyWithImpl<$Res, _$_SignupRequest>
-    implements _$$_SignupRequestCopyWith<$Res> {
-  __$$_SignupRequestCopyWithImpl(
-      _$_SignupRequest _value, $Res Function(_$_SignupRequest) _then)
+class __$$_SignupCopyWithImpl<$Res>
+    extends _$SignupCopyWithImpl<$Res, _$_Signup>
+    implements _$$_SignupCopyWith<$Res> {
+  __$$_SignupCopyWithImpl(_$_Signup _value, $Res Function(_$_Signup) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +118,7 @@ class __$$_SignupRequestCopyWithImpl<$Res>
     Object? restaurantName = null,
     Object? prefecture = null,
   }) {
-    return _then(_$_SignupRequest(
+    return _then(_$_Signup(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -150,16 +145,16 @@ class __$$_SignupRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SignupRequest implements _SignupRequest {
-  _$_SignupRequest(
+class _$_Signup implements _Signup {
+  _$_Signup(
       {required this.email,
       required this.password,
       required this.managerName,
       required this.restaurantName,
       required this.prefecture});
 
-  factory _$_SignupRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_SignupRequestFromJson(json);
+  factory _$_Signup.fromJson(Map<String, dynamic> json) =>
+      _$$_SignupFromJson(json);
 
   @override
   final String email;
@@ -174,14 +169,14 @@ class _$_SignupRequest implements _SignupRequest {
 
   @override
   String toString() {
-    return 'SignupRequest(email: $email, password: $password, managerName: $managerName, restaurantName: $restaurantName, prefecture: $prefecture)';
+    return 'Signup(email: $email, password: $password, managerName: $managerName, restaurantName: $restaurantName, prefecture: $prefecture)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SignupRequest &&
+            other is _$_Signup &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
@@ -201,27 +196,26 @@ class _$_SignupRequest implements _SignupRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignupRequestCopyWith<_$_SignupRequest> get copyWith =>
-      __$$_SignupRequestCopyWithImpl<_$_SignupRequest>(this, _$identity);
+  _$$_SignupCopyWith<_$_Signup> get copyWith =>
+      __$$_SignupCopyWithImpl<_$_Signup>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SignupRequestToJson(
+    return _$$_SignupToJson(
       this,
     );
   }
 }
 
-abstract class _SignupRequest implements SignupRequest {
-  factory _SignupRequest(
+abstract class _Signup implements Signup {
+  factory _Signup(
       {required final String email,
       required final String password,
       required final String managerName,
       required final String restaurantName,
-      required final String prefecture}) = _$_SignupRequest;
+      required final String prefecture}) = _$_Signup;
 
-  factory _SignupRequest.fromJson(Map<String, dynamic> json) =
-      _$_SignupRequest.fromJson;
+  factory _Signup.fromJson(Map<String, dynamic> json) = _$_Signup.fromJson;
 
   @override
   String get email;
@@ -235,6 +229,6 @@ abstract class _SignupRequest implements SignupRequest {
   String get prefecture;
   @override
   @JsonKey(ignore: true)
-  _$$_SignupRequestCopyWith<_$_SignupRequest> get copyWith =>
+  _$$_SignupCopyWith<_$_Signup> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,20 +1,38 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../models/users/signup_model.dart';
-import 'model/auth_state.dart';
 
-final signupViewModelProvider = StateNotifierProvider<SignupViewModel, AuthState>((ref) => SignupViewModel());
+part 'signup_view_model.freezed.dart';
 
-class SignupViewModel extends StateNotifier<AuthState> {
-  SignupViewModel() : super(AuthState(status: Status.idle));
+@freezed
+class SignupState with _$SignupState {
+  const factory SignupState({
+    required bool isProcessing,
+    required Signup signupRequest,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
+    required TextEditingController managerNameController,
+    required TextEditingController restaurantNameController,
+    required TextEditingController prefectureController,
+  }) = _SignupState;
+}
 
-  Future<void> signup(SignupRequest request) async {
-    state = state.copyWith(status: Status.loading);
-    try {
-      // Implement your signup logic here.
-      // Upon successful signup, update the state.
-      // state = state.copyWith(user: User(email: request.email, password: request.password), status: Status.success);
-    } catch (e) {
-      state = state.copyWith(status: Status.error, errorMessage: e.toString());
-    }
+class SignupStateManager extends StateNotifier<SignupState> {
+  SignupStateManager() : super(_SignupState(
+    isProcessing: false,
+    signupRequest: Signup(
+      email: '', password: '', managerName: '', restaurantName: '', prefecture: ''),
+    emailController: TextEditingController(),
+    passwordController: TextEditingController(),
+    managerNameController: TextEditingController(),
+    restaurantNameController: TextEditingController(),
+    prefectureController: TextEditingController(),
+  ));
+
+  Future<void> signup() async {
+    //... your code here
   }
 }
+
+final signupStateManager = StateNotifierProvider<SignupStateManager, SignupState>((ref) => SignupStateManager());

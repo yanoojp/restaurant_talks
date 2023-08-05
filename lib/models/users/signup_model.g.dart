@@ -6,8 +6,7 @@ part of 'signup_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SignupRequest _$$_SignupRequestFromJson(Map<String, dynamic> json) =>
-    _$_SignupRequest(
+_$_Signup _$$_SignupFromJson(Map<String, dynamic> json) => _$_Signup(
       email: json['email'] as String,
       password: json['password'] as String,
       managerName: json['managerName'] as String,
@@ -15,8 +14,7 @@ _$_SignupRequest _$$_SignupRequestFromJson(Map<String, dynamic> json) =>
       prefecture: json['prefecture'] as String,
     );
 
-Map<String, dynamic> _$$_SignupRequestToJson(_$_SignupRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_SignupToJson(_$_Signup instance) => <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
       'managerName': instance.managerName,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant_talks/screens/login.dart';
+import 'package:restaurant_talks/views/users/login_screen.dart';
 
 void main() {
   runApp(const ProviderScope(
