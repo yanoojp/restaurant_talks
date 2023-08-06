@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
 import '../../../constants/variables.dart';
 import '../../../view_model/users/login_view_model.dart';
@@ -20,7 +19,7 @@ class LoginScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Logo(),
+            const Logo(fontSize: appTitleFontSize,),
             const SizedBox(
               height: 100,
             ),
@@ -49,8 +48,13 @@ class LoginScreen extends ConsumerWidget {
             const SizedBox(
               height: 80,
             ),
-            const Button(),
-            const ButtonWithUnderline()
+            const Button(
+              text: loginButton,
+            ),
+            const ButtonWithUnderline(
+              path: signupScreenPath,
+              text: toSignupScreenButton,
+            )
           ],
         ),
       ),

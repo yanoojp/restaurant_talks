@@ -11,6 +11,7 @@ const String loginScreenPath = '/';
 const String loginButton = 'Login';
 const String toSignupScreenButton = 'Create an account';
 const String signupButton = 'Sign Up';
+const String toLoginScreenButton = 'Already have an account?';
 
 // Hint Texts
 const String emailHintText = 'Email';

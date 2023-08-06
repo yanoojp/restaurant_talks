@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
 import '../../../constants/variables.dart';
 import '../../../view_model/users/signup_view_model.dart';
@@ -20,7 +19,7 @@ class SignupScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Logo(),
+            const Logo(fontSize: appTitleFontSize,),
             const SizedBox(
               height: 70,
             ),
@@ -40,7 +39,7 @@ class SignupScreen extends ConsumerWidget {
                 hintText: passwordHintText,
                 hintStyle: TextStyle(color: Colors.white),
               ),
-                obscureText: true,
+              obscureText: true,
             ),
             const SizedBox(
               height: 20,
@@ -75,8 +74,13 @@ class SignupScreen extends ConsumerWidget {
             const SizedBox(
               height: 50,
             ),
-            const Button(),
-            const ButtonWithUnderline()
+            const Button(
+              text: signupButton,
+            ),
+            const ButtonWithUnderline(
+              path: loginScreenPath,
+              text: toLoginScreenButton,
+            )
           ],
         ),
       ),
