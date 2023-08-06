@@ -29,14 +29,13 @@ class LoginScreen extends ConsumerWidget {
               height: 100,
             ),
             TextField(
-              controller: loginState.passwordController,
+              controller: loginState.emailController,
               decoration: const InputDecoration(
                 hintText: emailHintText,
                 hintStyle: TextStyle(
                   color: whiteColor,
                 ),
               ),
-              obscureText: true,
             ),
             const SizedBox(
               height: 30,

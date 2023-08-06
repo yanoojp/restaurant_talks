@@ -5,14 +5,19 @@ const String appTitle = 'Restaurant Talks';
 
 // Paths
 const String signupScreenPath = '/signup';
+const String loginScreenPath = '/';
 
 // Buttons
 const String loginButton = 'Login';
 const String toSignupScreenButton = 'Create an account';
+const String signupButton = 'Sign Up';
 
 // Hint Texts
 const String emailHintText = 'Email';
 const String passwordHintText = 'Password';
+const String managerNameHintText = "Manager's Name";
+const String restaurantNameHintText = "Restaurant's Name";
+const String prefectureHintText = 'Prefecture';
 
 // Colors
 const Color darkBlue = Color(0xFF28527a);

@@ -16,7 +16,15 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       theme: ThemeData(
-        scaffoldBackgroundColor: darkBlue
+        scaffoldBackgroundColor: darkBlue,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: blackColor, // Set global cursor color here
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: blackColor), // Red color when focused
+          ),
+        ),
       ),
       routerConfig: goRouter,
     );
