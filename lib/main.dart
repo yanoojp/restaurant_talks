@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant_talks/utils/variables.dart';
-import 'package:restaurant_talks/views/screens/users/login_screen.dart';
+import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 
 void main() {
   runApp(const ProviderScope(
@@ -14,13 +14,11 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: ThemeData(
         scaffoldBackgroundColor: darkBlue
       ),
-      home: const Scaffold(
-        body: LoginScreen(),
-      ),
+      routerConfig: goRouter,
     );
   }
 }
