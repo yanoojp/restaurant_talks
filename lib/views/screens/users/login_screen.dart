@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../utils/variables.dart';
+import '../../../constants/variables.dart';
 import '../../../view_model/users/login_view_model.dart';
 
 class LoginScreen extends ConsumerWidget {
@@ -24,20 +25,52 @@ class LoginScreen extends ConsumerWidget {
                 fontSize: appTitleFontSize,
               ),
             ),
-            TextField(
-              controller: loginState.emailController,
-              decoration: const InputDecoration(hintText: 'Email'),
+            const SizedBox(
+              height: 100,
             ),
             TextField(
               controller: loginState.passwordController,
-              decoration: const InputDecoration(hintText: 'Password'),
+              decoration: const InputDecoration(
+                hintText: emailHintText,
+                hintStyle: TextStyle(
+                  color: whiteColor,
+                ),
+              ),
               obscureText: true,
             ),
+            const SizedBox(
+              height: 30,
+            ),
+            TextField(
+              controller: loginState.passwordController,
+              decoration: const InputDecoration(
+                hintText: passwordHintText,
+                hintStyle: TextStyle(
+                  color: whiteColor,
+                ),
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(
+              height: 80,
+            ),
             ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(backgroundColor: darkYellow),
+              child: const Text(
+                loginButton,
+              ),
+            ),
+            TextButton(
               onPressed: () {
-                // Call login function in LoginStateManager
+                final goRouter = GoRouter.of(context);
+                goRouter.go(signupScreenPath);
               },
-              child: const Text('Login'),
+              child: const Text(
+                toSignupScreenButton,
+                style: TextStyle(
+                    decoration: TextDecoration.underline, color: whiteColor),
+              ),
             ),
           ],
         ),
