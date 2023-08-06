@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
 import '../../../constants/variables.dart';
 import '../../../view_model/users/login_view_model.dart';
+import '../../widgets/base/button.dart';
+import '../../widgets/base/logo.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -18,13 +20,7 @@ class LoginScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              appTitle,
-              style: GoogleFonts.pacifico(
-                color: whiteColor,
-                fontSize: appTitleFontSize,
-              ),
-            ),
+            const Logo(),
             const SizedBox(
               height: 100,
             ),
@@ -53,25 +49,8 @@ class LoginScreen extends ConsumerWidget {
             const SizedBox(
               height: 80,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(backgroundColor: darkYellow),
-              child: const Text(
-                loginButton,
-                style: TextStyle(color: blackColor),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                final goRouter = GoRouter.of(context);
-                goRouter.go(signupScreenPath);
-              },
-              child: const Text(
-                toSignupScreenButton,
-                style: TextStyle(
-                    decoration: TextDecoration.underline, color: whiteColor),
-              ),
-            ),
+            const Button(),
+            const ButtonWithUnderline()
           ],
         ),
       ),
