@@ -19,6 +19,9 @@ class LoginScreen extends ConsumerWidget {
           children: [
             Text(
               appTitle,
+              style: GoogleFonts.pacifico(
+                color: whiteColor,
+                fontSize: appTitleFontSize,
               ),
             ),
             TextField(
