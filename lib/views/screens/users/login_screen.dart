@@ -59,6 +59,7 @@ class LoginScreen extends ConsumerWidget {
               style: ElevatedButton.styleFrom(backgroundColor: darkYellow),
               child: const Text(
                 loginButton,
+                style: TextStyle(color: blackColor),
               ),
             ),
             TextButton(
