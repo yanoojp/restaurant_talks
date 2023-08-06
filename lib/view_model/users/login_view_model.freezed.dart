@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginState {
-  bool get isProcessing => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
   TextEditingController get emailController =>
       throw _privateConstructorUsedError;
@@ -35,8 +34,7 @@ abstract class $LoginStateCopyWith<$Res> {
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call(
-      {bool isProcessing,
-      User user,
+      {User user,
       TextEditingController emailController,
       TextEditingController passwordController});
 
@@ -56,16 +54,11 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isProcessing = null,
     Object? user = null,
     Object? emailController = null,
     Object? passwordController = null,
   }) {
     return _then(_value.copyWith(
-      isProcessing: null == isProcessing
-          ? _value.isProcessing
-          : isProcessing // ignore: cast_nullable_to_non_nullable
-              as bool,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -99,8 +92,7 @@ abstract class _$$_LoginStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isProcessing,
-      User user,
+      {User user,
       TextEditingController emailController,
       TextEditingController passwordController});
 
@@ -119,16 +111,11 @@ class __$$_LoginStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isProcessing = null,
     Object? user = null,
     Object? emailController = null,
     Object? passwordController = null,
   }) {
     return _then(_$_LoginState(
-      isProcessing: null == isProcessing
-          ? _value.isProcessing
-          : isProcessing // ignore: cast_nullable_to_non_nullable
-              as bool,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -149,13 +136,10 @@ class __$$_LoginStateCopyWithImpl<$Res>
 
 class _$_LoginState implements _LoginState {
   const _$_LoginState(
-      {required this.isProcessing,
-      required this.user,
+      {required this.user,
       required this.emailController,
       required this.passwordController});
 
-  @override
-  final bool isProcessing;
   @override
   final User user;
   @override
@@ -165,7 +149,7 @@ class _$_LoginState implements _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(isProcessing: $isProcessing, user: $user, emailController: $emailController, passwordController: $passwordController)';
+    return 'LoginState(user: $user, emailController: $emailController, passwordController: $passwordController)';
   }
 
   @override
@@ -173,8 +157,6 @@ class _$_LoginState implements _LoginState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginState &&
-            (identical(other.isProcessing, isProcessing) ||
-                other.isProcessing == isProcessing) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.emailController, emailController) ||
                 other.emailController == emailController) &&
@@ -183,8 +165,8 @@ class _$_LoginState implements _LoginState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isProcessing, user, emailController, passwordController);
+  int get hashCode =>
+      Object.hash(runtimeType, user, emailController, passwordController);
 
   @JsonKey(ignore: true)
   @override
@@ -195,13 +177,10 @@ class _$_LoginState implements _LoginState {
 
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
-      {required final bool isProcessing,
-      required final User user,
+      {required final User user,
       required final TextEditingController emailController,
       required final TextEditingController passwordController}) = _$_LoginState;
 
-  @override
-  bool get isProcessing;
   @override
   User get user;
   @override

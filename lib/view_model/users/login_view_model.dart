@@ -8,7 +8,6 @@ part 'login_view_model.freezed.dart';
 @freezed
 class LoginState with _$LoginState {
   const factory LoginState({
-    required bool isProcessing,
     required User user,
     required TextEditingController emailController,
     required TextEditingController passwordController,
@@ -17,7 +16,6 @@ class LoginState with _$LoginState {
 
 class LoginStateManager extends StateNotifier<LoginState> {
   LoginStateManager() : super(_LoginState(
-    isProcessing: false,
     user: User(email: '', password: ''),
     emailController: TextEditingController(),
     passwordController: TextEditingController(),
