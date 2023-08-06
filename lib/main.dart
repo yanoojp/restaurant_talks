@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant_talks/views/users/login_screen.dart';
+import 'package:restaurant_talks/utils/variables.dart';
+import 'package:restaurant_talks/views/screens/users/login_screen.dart';
 
 void main() {
   runApp(const ProviderScope(
@@ -14,17 +15,11 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        scaffoldBackgroundColor: darkBlue
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          // title: Text(main.helloWorld),
-        ),
-        body: const LoginScreen(),
+      home: const Scaffold(
+        body: LoginScreen(),
       ),
     );
   }

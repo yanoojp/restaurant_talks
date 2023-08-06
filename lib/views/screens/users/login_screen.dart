@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../view_model/users/login_view_model.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../../utils/variables.dart';
+import '../../../view_model/users/login_view_model.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,13 +12,15 @@ class LoginScreen extends ConsumerWidget {
     final loginState = ref.watch(loginStateManager);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(50.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              appTitle,
+              ),
+            ),
             TextField(
               controller: loginState.emailController,
               decoration: const InputDecoration(hintText: 'Email'),
