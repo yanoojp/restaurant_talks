@@ -19,11 +19,15 @@ class LoginScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Logo(fontSize: appTitleFontSize,),
+            const Logo(
+              fontSize: appTitleFontSize,
+            ),
             const SizedBox(
               height: 100,
             ),
             TextField(
+              cursorColor: whiteColor,
+              style: const TextStyle(color: whiteColor),
               controller: loginState.emailController,
               decoration: const InputDecoration(
                 hintText: emailHintText,
@@ -36,6 +40,8 @@ class LoginScreen extends ConsumerWidget {
               height: 30,
             ),
             TextField(
+              cursorColor: whiteColor,
+              style: const TextStyle(color: whiteColor),
               controller: loginState.passwordController,
               decoration: const InputDecoration(
                 hintText: passwordHintText,
@@ -48,8 +54,20 @@ class LoginScreen extends ConsumerWidget {
             const SizedBox(
               height: 80,
             ),
-            const Button(
+            Button(
               text: loginButton,
+              func: () {
+                final validationResult = ref
+                    .read(loginStateManager.notifier)
+                    .validateLoginForm(loginState);
+                if (validationResult == null) {
+                  ref.read(loginStateManager.notifier).login();
+                } else {
+                  ref
+                      .read(loginStateManager.notifier)
+                      .showErrorDialog(context, validationResult);
+                }
+              },
             ),
             const ButtonWithUnderline(
               path: signupScreenPath,

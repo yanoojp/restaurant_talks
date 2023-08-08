@@ -5,6 +5,7 @@ import '../../../constants/variables.dart';
 import '../../../view_model/users/signup_view_model.dart';
 import '../../widgets/base/button.dart';
 import '../../widgets/base/logo.dart';
+import '../../widgets/base/prefecture_dropdown.dart';
 
 class SignupScreen extends ConsumerWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -19,11 +20,15 @@ class SignupScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Logo(fontSize: appTitleFontSize,),
+            const Logo(
+              fontSize: appTitleFontSize,
+            ),
             const SizedBox(
               height: 70,
             ),
             TextField(
+              cursorColor: whiteColor,
+              style: const TextStyle(color: whiteColor),
               controller: signupState.emailController,
               decoration: const InputDecoration(
                 hintText: emailHintText,
@@ -34,6 +39,8 @@ class SignupScreen extends ConsumerWidget {
               height: 20,
             ),
             TextField(
+              cursorColor: whiteColor,
+              style: const TextStyle(color: whiteColor),
               controller: signupState.passwordController,
               decoration: const InputDecoration(
                 hintText: passwordHintText,
@@ -45,6 +52,8 @@ class SignupScreen extends ConsumerWidget {
               height: 20,
             ),
             TextField(
+              cursorColor: whiteColor,
+              style: const TextStyle(color: whiteColor),
               controller: signupState.managerNameController,
               decoration: const InputDecoration(
                 hintText: managerNameHintText,
@@ -55,6 +64,8 @@ class SignupScreen extends ConsumerWidget {
               height: 20,
             ),
             TextField(
+              cursorColor: whiteColor,
+              style: const TextStyle(color: whiteColor),
               controller: signupState.restaurantNameController,
               decoration: const InputDecoration(
                 hintText: restaurantNameHintText,
@@ -64,18 +75,24 @@ class SignupScreen extends ConsumerWidget {
             const SizedBox(
               height: 20,
             ),
-            TextField(
-              controller: signupState.prefectureController,
-              decoration: const InputDecoration(
-                hintText: prefectureHintText,
-                hintStyle: TextStyle(color: Colors.white),
-              ),
-            ),
+            PrefectureDropdown(controller: signupState.prefectureController),
             const SizedBox(
               height: 50,
             ),
-            const Button(
+            Button(
               text: signupButton,
+              func: () {
+                final validationResult = ref
+                    .read(signupStateManager.notifier)
+                    .validateSignupForm(signupState);
+                if (validationResult == null) {
+                  ref.read(signupStateManager.notifier).signup();
+                } else {
+                  ref
+                      .read(signupStateManager.notifier)
+                      .showErrorDialog(context, validationResult);
+                }
+              },
             ),
             const ButtonWithUnderline(
               path: loginScreenPath,
