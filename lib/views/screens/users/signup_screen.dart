@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:restaurant_talks/views/screens/users/login_screen.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
 import '../../../constants/variables.dart';
 import '../../../view_model/users/signup_view_model.dart';
@@ -86,7 +87,7 @@ class SignupScreen extends ConsumerWidget {
                     .read(signupStateManager.notifier)
                     .validateSignupForm(signupState);
                 if (validationResult == null) {
-                  ref.read(signupStateManager.notifier).signup();
+                  ref.read(signupStateManager.notifier).signup(context);
                 } else {
                   ref
                       .read(signupStateManager.notifier)
@@ -95,7 +96,7 @@ class SignupScreen extends ConsumerWidget {
               },
             ),
             const ButtonWithUnderline(
-              path: loginScreenPath,
+              screenName: LoginScreen(),
               text: toLoginScreenButton,
             )
           ],
