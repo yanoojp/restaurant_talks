@@ -5,7 +5,8 @@ import '../../../constants/variables.dart';
 class PrefectureDropdown extends ConsumerWidget {
   final TextEditingController controller;
 
-  const PrefectureDropdown({Key? key, required this.controller}) : super(key: key);
+  const PrefectureDropdown({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,7 +16,10 @@ class PrefectureDropdown extends ConsumerWidget {
       items: prefectures.map((prefecture) {
         return DropdownMenuItem<String>(
           value: prefecture,
-          child: Text(prefecture),
+          child: Text(
+            prefecture,
+            style: const TextStyle(fontSize: 16),
+          ),
         );
       }).toList(),
       decoration: const InputDecoration(
