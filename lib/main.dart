@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant_talks/view_model/main.dart';
+import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 
 void main() {
   runApp(const ProviderScope(
@@ -13,38 +14,19 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final main = ref.watch(mainProvider);
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp.router(
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(main.helloWorld),
+        scaffoldBackgroundColor: darkBlue,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: blackColor, // Set global cursor color here
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '${main.number}',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
+        inputDecorationTheme: const InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: blackColor), // Red color when focused
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => ref.read(mainProvider.notifier).incrementCounter(main.number),
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ),
       ),
+      routerConfig: goRouter,
     );
   }
 }
