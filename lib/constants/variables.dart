@@ -14,8 +14,10 @@ const String invalidRestaurantNameMessage = 'Restaurant name cannot be empty!';
 const String invalidPrefectureMessage = 'Prefecture cannot be empty!';
 
 // Paths
-const String signupScreenPath = '/signup';
+const String signupScreenPath = 'signup';
 const String loginScreenPath = '/';
+const String itemIndexScreenPath = '/items';
+const String itemFormScreenPath = 'form';
 
 // Buttons
 const String loginButton = 'Login';

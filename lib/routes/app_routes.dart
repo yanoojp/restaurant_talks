@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/views/screens/users/login_screen.dart';
 import 'package:restaurant_talks/views/screens/users/signup_screen.dart';
 import '../views/screens/items/item_index_screen.dart';
@@ -8,19 +8,23 @@ import '../views/screens/items/item_index_screen.dart';
 final goRouter = GoRouter(
   routes: [
     GoRoute(
-      path: '/',
+      path: loginScreenPath,
       builder: (context, state) => const LoginScreen(),
       routes: [
         GoRoute(
-          path: 'signup',
+          path: signupScreenPath,
           builder: (context, state) => const SignupScreen(),
         ),
       ],
     ),
     GoRoute(
-      path: '/items',
+      path: itemIndexScreenPath,
       builder: (context, state) => ItemIndexScreen(),
-      routes: const [
+      routes: [
+        GoRoute(
+          path: itemFormScreenPath,
+          builder: (context, state) => const SignupScreen(),
+        ),
         // You can continue adding nested routes here, for example:
         // GoRoute(
         //   path: 'details',
