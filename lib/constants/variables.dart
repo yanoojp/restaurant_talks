@@ -41,6 +41,7 @@ const Color blackColor = Color.fromARGB(243, 52, 52, 52);
 
 // Integers
 const double appTitleFontSize = 30;
+const double normalFontSize = 15;
 
 // Prefectures
 const List<String> prefectures = [
