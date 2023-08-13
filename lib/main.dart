@@ -19,7 +19,7 @@ class MyApp extends ConsumerWidget {
         textTheme: const TextTheme(
           bodyMedium: TextStyle(fontSize: normalFontSize),
         ),
-        scaffoldBackgroundColor: darkBlue,
+        scaffoldBackgroundColor: whiteColor,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: blackColor,
         ),
