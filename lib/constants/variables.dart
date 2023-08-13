@@ -13,6 +13,13 @@ const String invalidManagerNameMessage = 'Manager name cannot be empty!';
 const String invalidRestaurantNameMessage = 'Restaurant name cannot be empty!';
 const String invalidPrefectureMessage = 'Prefecture cannot be empty!';
 
+// Items Label
+const String itemNameLabel = 'Name';
+const String itemStockCountLabel = 'Stock Count';
+const String itemCategoryLabel = 'Category';
+const String itemdescriptionLabel = 'Description';
+const String defaultItemCategoryLabel = 'All Categories';
+
 // Paths
 const String signupScreenPath = 'signup';
 const String loginScreenPath = '/';
@@ -25,6 +32,9 @@ const String toSignupScreenButton = 'Create an account';
 const String signupButton = 'Sign Up';
 const String toLoginScreenButton = 'Already have an account?';
 const String okButton = 'OK';
+const String saveButton = 'Save';
+const String addCountButton = '+';
+const String subtractCounbtButton = '-';
 
 // Hint Texts
 const String emailHintText = 'Email';
@@ -94,4 +104,13 @@ const List<String> prefectures = [
   'Miyazaki',
   'Kagoshima',
   'Okinawa'
+];
+
+// Item Categories
+const List<String> itemCategories = [
+  'All Categories',
+  'Foods',
+  'Beverages',
+  'Desserts',
+  'Other',
 ];
