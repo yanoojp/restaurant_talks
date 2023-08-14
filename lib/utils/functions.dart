@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-void screenTransitionFunction(context, screenName) {
+void screenNavigationFunction(context, screenName) {
   Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (_, __, ___) => screenName,
-        transitionDuration: const Duration(seconds: 0),
-      ),
-    );
+    context,
+    PageRouteBuilder(
+      pageBuilder: (_, __, ___) => screenName,
+      transitionDuration: const Duration(seconds: 0),
+    ),
+  );
 }
