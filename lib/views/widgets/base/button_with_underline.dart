@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:restaurant_talks/utils/functions.dart';
 import '../../../constants/variables.dart';
 
@@ -13,7 +12,7 @@ class ButtonWithUnderline extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        screenTransitionFunction(context, screenName);
+        screenNavigationFunction(context, screenName);
       },
       child: Text(
         text,

@@ -10,7 +10,7 @@ class ItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: whiteColor,
+        color: darkBlue,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Center(
@@ -18,8 +18,14 @@ class ItemTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Item Name $index"),
-            const Text("Item Stock"),
+            Text(
+              "Item Name $index",
+              style: const TextStyle(color: whiteColor),
+            ),
+            const Text(
+              "Item Stock",
+              style: TextStyle(color: whiteColor),
+            ),
           ],
         ),
       ),
