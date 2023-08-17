@@ -10,6 +10,8 @@ class Item with _$Item {
     required int stockCount,
     required String category,
     required String description,
+    required DateTime createdAt,
+    required DateTime updatedAt,
   }) = _Item;
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

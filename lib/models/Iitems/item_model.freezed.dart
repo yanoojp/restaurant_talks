@@ -24,6 +24,8 @@ mixin _$Item {
   int get stockCount => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +37,13 @@ abstract class $ItemCopyWith<$Res> {
   factory $ItemCopyWith(Item value, $Res Function(Item) then) =
       _$ItemCopyWithImpl<$Res, Item>;
   @useResult
-  $Res call({String name, int stockCount, String category, String description});
+  $Res call(
+      {String name,
+      int stockCount,
+      String category,
+      String description,
+      DateTime createdAt,
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -55,6 +63,8 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
     Object? stockCount = null,
     Object? category = null,
     Object? description = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -73,6 +83,14 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -83,7 +101,13 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       __$$_ItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, int stockCount, String category, String description});
+  $Res call(
+      {String name,
+      int stockCount,
+      String category,
+      String description,
+      DateTime createdAt,
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -99,6 +123,8 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
     Object? stockCount = null,
     Object? category = null,
     Object? description = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_$_Item(
       name: null == name
@@ -117,6 +143,14 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -128,7 +162,9 @@ class _$_Item implements _Item {
       {required this.name,
       required this.stockCount,
       required this.category,
-      required this.description});
+      required this.description,
+      required this.createdAt,
+      required this.updatedAt});
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
@@ -140,10 +176,14 @@ class _$_Item implements _Item {
   final String category;
   @override
   final String description;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
 
   @override
   String toString() {
-    return 'Item(name: $name, stockCount: $stockCount, category: $category, description: $description)';
+    return 'Item(name: $name, stockCount: $stockCount, category: $category, description: $description, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -157,13 +197,17 @@ class _$_Item implements _Item {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, stockCount, category, description);
+  int get hashCode => Object.hash(runtimeType, name, stockCount, category,
+      description, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +228,9 @@ abstract class _Item implements Item {
       {required final String name,
       required final int stockCount,
       required final String category,
-      required final String description}) = _$_Item;
+      required final String description,
+      required final DateTime createdAt,
+      required final DateTime updatedAt}) = _$_Item;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
@@ -196,6 +242,10 @@ abstract class _Item implements Item {
   String get category;
   @override
   String get description;
+  @override
+  DateTime get createdAt;
+  @override
+  DateTime get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;
