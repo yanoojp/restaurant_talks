@@ -114,3 +114,4 @@ const List<String> itemCategories = [
   'Desserts',
   'Other',
 ];
+const String notSelected = 'Not Selected';
