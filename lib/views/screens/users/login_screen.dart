@@ -15,8 +15,9 @@ class LoginScreen extends ConsumerWidget {
     final loginState = ref.watch(loginStateManager);
 
     return Scaffold(
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.all(50.0),
+        color: darkBlue,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

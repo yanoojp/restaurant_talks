@@ -16,8 +16,9 @@ class SignupScreen extends ConsumerWidget {
     final signupState = ref.watch(signupStateManager);
 
     return Scaffold(
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.all(50.0),
+        color: darkBlue,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -76,7 +77,7 @@ class SignupScreen extends ConsumerWidget {
             const SizedBox(
               height: 20,
             ),
-            PrefectureDropdown(controller: signupState.prefectureController),
+            // PrefectureDropdown(controller: signupState.prefectureController),
             const SizedBox(
               height: 50,
             ),
