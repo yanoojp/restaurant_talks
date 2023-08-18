@@ -26,8 +26,6 @@ mixin _$SignupState {
       throw _privateConstructorUsedError;
   TextEditingController get restaurantNameController =>
       throw _privateConstructorUsedError;
-  TextEditingController get prefectureController =>
-      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignupStateCopyWith<SignupState> get copyWith =>
@@ -46,8 +44,7 @@ abstract class $SignupStateCopyWith<$Res> {
       TextEditingController emailController,
       TextEditingController passwordController,
       TextEditingController managerNameController,
-      TextEditingController restaurantNameController,
-      TextEditingController prefectureController});
+      TextEditingController restaurantNameController});
 
   $SignupCopyWith<$Res> get signupRequest;
 }
@@ -71,7 +68,6 @@ class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
     Object? passwordController = null,
     Object? managerNameController = null,
     Object? restaurantNameController = null,
-    Object? prefectureController = null,
   }) {
     return _then(_value.copyWith(
       isProcessing: null == isProcessing
@@ -97,10 +93,6 @@ class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
       restaurantNameController: null == restaurantNameController
           ? _value.restaurantNameController
           : restaurantNameController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      prefectureController: null == prefectureController
-          ? _value.prefectureController
-          : prefectureController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
     ) as $Val);
   }
@@ -128,8 +120,7 @@ abstract class _$$_SignupStateCopyWith<$Res>
       TextEditingController emailController,
       TextEditingController passwordController,
       TextEditingController managerNameController,
-      TextEditingController restaurantNameController,
-      TextEditingController prefectureController});
+      TextEditingController restaurantNameController});
 
   @override
   $SignupCopyWith<$Res> get signupRequest;
@@ -152,7 +143,6 @@ class __$$_SignupStateCopyWithImpl<$Res>
     Object? passwordController = null,
     Object? managerNameController = null,
     Object? restaurantNameController = null,
-    Object? prefectureController = null,
   }) {
     return _then(_$_SignupState(
       isProcessing: null == isProcessing
@@ -179,10 +169,6 @@ class __$$_SignupStateCopyWithImpl<$Res>
           ? _value.restaurantNameController
           : restaurantNameController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
-      prefectureController: null == prefectureController
-          ? _value.prefectureController
-          : prefectureController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
     ));
   }
 }
@@ -196,8 +182,7 @@ class _$_SignupState implements _SignupState {
       required this.emailController,
       required this.passwordController,
       required this.managerNameController,
-      required this.restaurantNameController,
-      required this.prefectureController});
+      required this.restaurantNameController});
 
   @override
   final bool isProcessing;
@@ -211,12 +196,10 @@ class _$_SignupState implements _SignupState {
   final TextEditingController managerNameController;
   @override
   final TextEditingController restaurantNameController;
-  @override
-  final TextEditingController prefectureController;
 
   @override
   String toString() {
-    return 'SignupState(isProcessing: $isProcessing, signupRequest: $signupRequest, emailController: $emailController, passwordController: $passwordController, managerNameController: $managerNameController, restaurantNameController: $restaurantNameController, prefectureController: $prefectureController)';
+    return 'SignupState(isProcessing: $isProcessing, signupRequest: $signupRequest, emailController: $emailController, passwordController: $passwordController, managerNameController: $managerNameController, restaurantNameController: $restaurantNameController)';
   }
 
   @override
@@ -236,9 +219,7 @@ class _$_SignupState implements _SignupState {
                 other.managerNameController == managerNameController) &&
             (identical(
                     other.restaurantNameController, restaurantNameController) ||
-                other.restaurantNameController == restaurantNameController) &&
-            (identical(other.prefectureController, prefectureController) ||
-                other.prefectureController == prefectureController));
+                other.restaurantNameController == restaurantNameController));
   }
 
   @override
@@ -249,8 +230,7 @@ class _$_SignupState implements _SignupState {
       emailController,
       passwordController,
       managerNameController,
-      restaurantNameController,
-      prefectureController);
+      restaurantNameController);
 
   @JsonKey(ignore: true)
   @override
@@ -266,8 +246,7 @@ abstract class _SignupState implements SignupState {
           required final TextEditingController emailController,
           required final TextEditingController passwordController,
           required final TextEditingController managerNameController,
-          required final TextEditingController restaurantNameController,
-          required final TextEditingController prefectureController}) =
+          required final TextEditingController restaurantNameController}) =
       _$_SignupState;
 
   @override
@@ -282,8 +261,6 @@ abstract class _SignupState implements SignupState {
   TextEditingController get managerNameController;
   @override
   TextEditingController get restaurantNameController;
-  @override
-  TextEditingController get prefectureController;
   @override
   @JsonKey(ignore: true)
   _$$_SignupStateCopyWith<_$_SignupState> get copyWith =>

@@ -18,7 +18,7 @@ class SignupState with _$SignupState {
     required TextEditingController passwordController,
     required TextEditingController managerNameController,
     required TextEditingController restaurantNameController,
-    required TextEditingController prefectureController,
+    // required TextEditingController prefectureController,
   }) = _SignupState;
 }
 
@@ -31,12 +31,13 @@ class SignupStateManager extends StateNotifier<SignupState> {
               password: '',
               managerName: '',
               restaurantName: '',
-              prefecture: ''),
+              // prefecture: ''
+              ),
           emailController: TextEditingController(),
           passwordController: TextEditingController(),
           managerNameController: TextEditingController(),
           restaurantNameController: TextEditingController(),
-          prefectureController: TextEditingController(),
+          // prefectureController: TextEditingController(),
         ));
 
   String? validateSignupForm(state) {
@@ -44,7 +45,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
     String password = state.passwordController.text;
     String managerName = state.managerNameController.text;
     String restaurantName = state.restaurantNameController.text;
-    String prefecture = state.prefectureController.text;
+    // String prefecture = state.prefectureController.text;
 
     final emailRegex = RegExp(emailRegexString);
 
@@ -64,9 +65,9 @@ class SignupStateManager extends StateNotifier<SignupState> {
       return invalidRestaurantNameMessage;
     }
 
-    if (prefecture.isEmpty) {
-      return invalidPrefectureMessage;
-    }
+    // if (prefecture.isEmpty) {
+    //   return invalidPrefectureMessage;
+    // }
 
     return null;
   }

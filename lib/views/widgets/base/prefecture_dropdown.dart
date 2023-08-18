@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../constants/simulation_datas.dart';
 import '../../../constants/variables.dart';
 
 class PrefectureDropdown extends ConsumerWidget {

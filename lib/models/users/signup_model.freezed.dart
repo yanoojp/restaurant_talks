@@ -24,7 +24,6 @@ mixin _$Signup {
   String get password => throw _privateConstructorUsedError;
   String get managerName => throw _privateConstructorUsedError;
   String get restaurantName => throw _privateConstructorUsedError;
-  String get prefecture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,8 +39,7 @@ abstract class $SignupCopyWith<$Res> {
       {String email,
       String password,
       String managerName,
-      String restaurantName,
-      String prefecture});
+      String restaurantName});
 }
 
 /// @nodoc
@@ -61,7 +59,6 @@ class _$SignupCopyWithImpl<$Res, $Val extends Signup>
     Object? password = null,
     Object? managerName = null,
     Object? restaurantName = null,
-    Object? prefecture = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -80,10 +77,6 @@ class _$SignupCopyWithImpl<$Res, $Val extends Signup>
           ? _value.restaurantName
           : restaurantName // ignore: cast_nullable_to_non_nullable
               as String,
-      prefecture: null == prefecture
-          ? _value.prefecture
-          : prefecture // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -98,8 +91,7 @@ abstract class _$$_SignupCopyWith<$Res> implements $SignupCopyWith<$Res> {
       {String email,
       String password,
       String managerName,
-      String restaurantName,
-      String prefecture});
+      String restaurantName});
 }
 
 /// @nodoc
@@ -116,7 +108,6 @@ class __$$_SignupCopyWithImpl<$Res>
     Object? password = null,
     Object? managerName = null,
     Object? restaurantName = null,
-    Object? prefecture = null,
   }) {
     return _then(_$_Signup(
       email: null == email
@@ -135,10 +126,6 @@ class __$$_SignupCopyWithImpl<$Res>
           ? _value.restaurantName
           : restaurantName // ignore: cast_nullable_to_non_nullable
               as String,
-      prefecture: null == prefecture
-          ? _value.prefecture
-          : prefecture // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -150,8 +137,7 @@ class _$_Signup implements _Signup {
       {required this.email,
       required this.password,
       required this.managerName,
-      required this.restaurantName,
-      required this.prefecture});
+      required this.restaurantName});
 
   factory _$_Signup.fromJson(Map<String, dynamic> json) =>
       _$$_SignupFromJson(json);
@@ -164,12 +150,10 @@ class _$_Signup implements _Signup {
   final String managerName;
   @override
   final String restaurantName;
-  @override
-  final String prefecture;
 
   @override
   String toString() {
-    return 'Signup(email: $email, password: $password, managerName: $managerName, restaurantName: $restaurantName, prefecture: $prefecture)';
+    return 'Signup(email: $email, password: $password, managerName: $managerName, restaurantName: $restaurantName)';
   }
 
   @override
@@ -183,15 +167,13 @@ class _$_Signup implements _Signup {
             (identical(other.managerName, managerName) ||
                 other.managerName == managerName) &&
             (identical(other.restaurantName, restaurantName) ||
-                other.restaurantName == restaurantName) &&
-            (identical(other.prefecture, prefecture) ||
-                other.prefecture == prefecture));
+                other.restaurantName == restaurantName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, managerName, restaurantName, prefecture);
+  int get hashCode =>
+      Object.hash(runtimeType, email, password, managerName, restaurantName);
 
   @JsonKey(ignore: true)
   @override
@@ -212,8 +194,7 @@ abstract class _Signup implements Signup {
       {required final String email,
       required final String password,
       required final String managerName,
-      required final String restaurantName,
-      required final String prefecture}) = _$_Signup;
+      required final String restaurantName}) = _$_Signup;
 
   factory _Signup.fromJson(Map<String, dynamic> json) = _$_Signup.fromJson;
 
@@ -225,8 +206,6 @@ abstract class _Signup implements Signup {
   String get managerName;
   @override
   String get restaurantName;
-  @override
-  String get prefecture;
   @override
   @JsonKey(ignore: true)
   _$$_SignupCopyWith<_$_Signup> get copyWith =>
