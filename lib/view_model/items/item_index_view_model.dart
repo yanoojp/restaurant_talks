@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/simulation_datas.dart';
@@ -11,14 +12,16 @@ class ItemIndexState with _$ItemIndexState {
   const factory ItemIndexState({
     required List<Item> items,
     required String selectedCategory,
+    required TextEditingController searchController,
   }) = _ItemIndexState;
 }
 
 class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
   ItemIndexViewModel()
-      : super(const ItemIndexState(
+      : super(ItemIndexState(
           items: [],
           selectedCategory: notSelected,
+          searchController: TextEditingController()
         )) {
     loadInitialData();
   }
@@ -27,7 +30,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
     return sampleItems;
   }
 
-  List<String> getItemCategories(){
+  List<String> getItemCategories() {
     return itemCategories;
   }
 
@@ -35,8 +38,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
     final categories = getItemCategories();
     final items = getItems();
 
-    state =
-        state.copyWith(items: items, selectedCategory: categories.first);
+    state = state.copyWith(items: items, selectedCategory: categories.first);
     _sortItemsByUpdatedAt();
   }
 
@@ -67,6 +69,20 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
       state = state.copyWith(selectedCategory: newCategory);
       _filterItemsByCategory();
     }
+  }
+
+  void searchItems(String? searchTerm) {
+    if (searchTerm == null || searchTerm == '') {
+      _filterItemsByCategory();
+    } else {
+      state = state.copyWith(
+        items: state.items
+            .where((item) =>
+                item.name.toLowerCase().contains(searchTerm.toLowerCase()))
+            .toList(),
+      );
+    }
+    _sortItemsByUpdatedAt();
   }
 }
 
