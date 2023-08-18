@@ -1,26 +1,127 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:restaurant_talks/utils/functions.dart';
 import 'package:restaurant_talks/views/widgets/base/app_bar.dart';
+import '../../../constants/simulation_datas.dart';
+import '../../../constants/variables.dart';
+import '../../../view_model/items/item_index_view_model.dart';
 import '../../widgets/items/item_tile.dart';
+import 'item_form_screen.dart';
 
-class ItemIndexScreen extends StatelessWidget {
-  const ItemIndexScreen({super.key});
+class ItemIndexScreen extends ConsumerWidget {
+  const ItemIndexScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 15.0,
-            mainAxisSpacing: 15.0,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final itemState = ref.watch(itemIndexViewModelProvider);
+
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: const CustomAppBar(),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Theme(
+                      data: ThemeData(
+                        inputDecorationTheme: const InputDecorationTheme(
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: darkBlue),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: lightBlue),
+                          ),
+                        ),
+                      ),
+                      child: TextField(
+                        controller: itemState.searchController,
+                        decoration: InputDecoration(
+                          hintText: "Search...",
+                          hintStyle: TextStyle(fontSize: 17),
+                          suffixIcon: IconButton(
+                            icon: const Icon(Icons.clear, color: lightBlue),
+                            onPressed: () {
+                              itemState.searchController.clear();
+                              ref
+                                  .read(itemIndexViewModelProvider.notifier)
+                                  .searchItems(null);
+                            },
+                          ),
+                        ),
+                        onChanged: (value) {
+                          ref
+                              .read(itemIndexViewModelProvider.notifier)
+                              .searchItems(value);
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      height: 63,
+                      child: DropdownButton<String>(
+                        value: itemState.selectedCategory,
+                        items: itemCategories.map((String category) {
+                          return DropdownMenuItem<String>(
+                            value: category,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5.0),
+                              child: Text(category),
+                            ),
+                          );
+                        }).toList(),
+                        icon: const Icon(Icons.arrow_drop_down, color: lightBlue),
+                        underline: Container(
+                          height: 1.5,
+                          color: lightBlue,
+                        ),
+                        onChanged: (String? newValue) {
+                          if (newValue != null) {
+                            ref
+                                .read(itemIndexViewModelProvider.notifier)
+                                .updateSelectedCategory(newValue);
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 15.0,
+                    mainAxisSpacing: 15.0,
+                  ),
+                  itemBuilder: (context, index) {
+                    final item = itemState.items[index];
+                    return InkWell(
+                      onTap: () {
+                        screenNavigationFunction(
+                            context, ItemEditScreen(item: item));
+                      },
+                      child: ItemTile(item: item),
+                    );
+                  },
+                  itemCount: itemState.items.length,
+                ),
+              ),
+            ],
           ),
-          itemBuilder: (context, index) {
-            return ItemTile(index: index);
-          },
-          itemCount: 30,
         ),
       ),
     );
