@@ -11,7 +11,6 @@ _$_Signup _$$_SignupFromJson(Map<String, dynamic> json) => _$_Signup(
       password: json['password'] as String,
       managerName: json['managerName'] as String,
       restaurantName: json['restaurantName'] as String,
-      prefecture: json['prefecture'] as String,
     );
 
 Map<String, dynamic> _$$_SignupToJson(_$_Signup instance) => <String, dynamic>{
@@ -19,5 +18,4 @@ Map<String, dynamic> _$$_SignupToJson(_$_Signup instance) => <String, dynamic>{
       'password': instance.password,
       'managerName': instance.managerName,
       'restaurantName': instance.restaurantName,
-      'prefecture': instance.prefecture,
     };

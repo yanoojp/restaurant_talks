@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:restaurant_talks/utils/functions.dart';
+import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
 import '../../constants/variables.dart';
 import '../../models/users/signup_model.dart';
 import '../../views/widgets/base/error_dialog.dart';
@@ -16,7 +18,7 @@ class SignupState with _$SignupState {
     required TextEditingController passwordController,
     required TextEditingController managerNameController,
     required TextEditingController restaurantNameController,
-    required TextEditingController prefectureController,
+    // required TextEditingController prefectureController,
   }) = _SignupState;
 }
 
@@ -29,12 +31,13 @@ class SignupStateManager extends StateNotifier<SignupState> {
               password: '',
               managerName: '',
               restaurantName: '',
-              prefecture: ''),
+              // prefecture: ''
+              ),
           emailController: TextEditingController(),
           passwordController: TextEditingController(),
           managerNameController: TextEditingController(),
           restaurantNameController: TextEditingController(),
-          prefectureController: TextEditingController(),
+          // prefectureController: TextEditingController(),
         ));
 
   String? validateSignupForm(state) {
@@ -42,7 +45,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
     String password = state.passwordController.text;
     String managerName = state.managerNameController.text;
     String restaurantName = state.restaurantNameController.text;
-    String prefecture = state.prefectureController.text;
+    // String prefecture = state.prefectureController.text;
 
     final emailRegex = RegExp(emailRegexString);
 
@@ -62,9 +65,9 @@ class SignupStateManager extends StateNotifier<SignupState> {
       return invalidRestaurantNameMessage;
     }
 
-    if (prefecture.isEmpty) {
-      return invalidPrefectureMessage;
-    }
+    // if (prefecture.isEmpty) {
+    //   return invalidPrefectureMessage;
+    // }
 
     return null;
   }
@@ -80,8 +83,8 @@ class SignupStateManager extends StateNotifier<SignupState> {
     );
   }
 
-  Future<void> signup() async {
-    //... your code here
+  Future<void> signup(context) async {
+    screenNavigationFunction(context, ItemIndexScreen());
   }
 }
 

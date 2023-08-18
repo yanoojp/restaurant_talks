@@ -6,6 +6,8 @@ class Button extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
   final Function() func;
+  final double? width;
+  final double? height;
 
   const Button({
     Key? key,
@@ -13,6 +15,8 @@ class Button extends StatelessWidget {
     this.backgroundColor = darkYellow,
     this.textColor = blackColor,
     required this.func,
+    this.width = 150,
+    this.height = 40,
   }) : super(key: key);
 
   @override
@@ -20,9 +24,14 @@ class Button extends StatelessWidget {
     return ElevatedButton(
       onPressed: func,
       style: ElevatedButton.styleFrom(backgroundColor: backgroundColor),
-      child: Text(
-        text,
-        style: TextStyle(color: textColor),
+      child: Container(
+        width: width,
+        height: height,
+        alignment: Alignment.center,
+        child: Text(
+          text,
+          style: TextStyle(color: textColor),
+        ),
       ),
     );
   }

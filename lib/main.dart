@@ -15,14 +15,18 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: darkBlue,
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(fontSize: normalFontSize),
+        ),
+        scaffoldBackgroundColor: whiteColor,
         textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: blackColor, // Set global cursor color here
+          cursorColor: blackColor,
         ),
         inputDecorationTheme: const InputDecorationTheme(
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: blackColor), // Red color when focused
+            borderSide: BorderSide(color: blackColor),
           ),
         ),
       ),

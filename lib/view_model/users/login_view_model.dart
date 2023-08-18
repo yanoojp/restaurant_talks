@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/utils/functions.dart';
+import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
 import 'package:restaurant_talks/views/widgets/base/error_dialog.dart';
 import '../../models/users/login_model.dart';
 
@@ -41,8 +43,8 @@ class LoginStateManager extends StateNotifier<LoginState> {
     return null;
   }
 
-  Future<void> login() async {
-    //... your code here
+  Future<void> login(context) async {
+    screenNavigationFunction(context, ItemIndexScreen());
   }
 
   Future<void> showErrorDialog(context, errorMessage) async {
