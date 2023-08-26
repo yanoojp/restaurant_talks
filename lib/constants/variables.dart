@@ -51,7 +51,8 @@ const String emailHintText = 'Email';
 const String passwordHintText = 'Password';
 const String managerNameHintText = "Manager's Name";
 const String restaurantNameHintText = "Restaurant's Name";
-const String guestNumberHintText = "'Guest Number'";
+const String guestNumberHintText = "Guest Number";
+const String guestNumberAppBarHintText = "Guests: ";
 // const String prefectureHintText = 'Prefecture';
 
 // Screen Indexes
