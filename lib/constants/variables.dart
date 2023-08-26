@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Screen Titles
 const String appTitle = 'Restaurant Talks';
 const String editProfileScreen = 'Edit Profile';
+const String guestNumberScreen = 'Guest Number';
 
 // Regexes
 const String emailRegexString = r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -50,6 +51,7 @@ const String emailHintText = 'Email';
 const String passwordHintText = 'Password';
 const String managerNameHintText = "Manager's Name";
 const String restaurantNameHintText = "Restaurant's Name";
+const String guestNumberHintText = "'Guest Number'";
 // const String prefectureHintText = 'Prefecture';
 
 // Screen Indexes
