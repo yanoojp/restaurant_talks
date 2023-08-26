@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../constants/variables.dart';
-import 'logo.dart';
+import '../../constants/variables.dart';
+import 'base/logo.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 

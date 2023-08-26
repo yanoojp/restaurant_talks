@@ -3,17 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/views/screens/users/login_screen.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
 import '../../../constants/variables.dart';
-import '../../../view_model/users/signup_view_model.dart';
+import '../../../view_model/users/profile_view_model.dart';
 import '../../widgets/base/button.dart';
 import '../../widgets/base/logo.dart';
-import '../../widgets/base/prefecture_dropdown.dart';
 
 class SignupScreen extends ConsumerWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final signupState = ref.watch(signupStateManager);
+    final profileState = ref.watch(profileStateManager);
 
     return Scaffold(
       body: Container(
@@ -31,7 +30,7 @@ class SignupScreen extends ConsumerWidget {
             TextField(
               cursorColor: whiteColor,
               style: const TextStyle(color: whiteColor),
-              controller: signupState.emailController,
+              controller: profileState.emailController,
               decoration: const InputDecoration(
                 hintText: emailHintText,
                 hintStyle: TextStyle(color: Colors.white),
@@ -43,7 +42,7 @@ class SignupScreen extends ConsumerWidget {
             TextField(
               cursorColor: whiteColor,
               style: const TextStyle(color: whiteColor),
-              controller: signupState.passwordController,
+              controller: profileState.passwordController,
               decoration: const InputDecoration(
                 hintText: passwordHintText,
                 hintStyle: TextStyle(color: Colors.white),
@@ -56,7 +55,7 @@ class SignupScreen extends ConsumerWidget {
             TextField(
               cursorColor: whiteColor,
               style: const TextStyle(color: whiteColor),
-              controller: signupState.managerNameController,
+              controller: profileState.managerNameController,
               decoration: const InputDecoration(
                 hintText: managerNameHintText,
                 hintStyle: TextStyle(color: Colors.white),
@@ -68,7 +67,7 @@ class SignupScreen extends ConsumerWidget {
             TextField(
               cursorColor: whiteColor,
               style: const TextStyle(color: whiteColor),
-              controller: signupState.restaurantNameController,
+              controller: profileState.restaurantNameController,
               decoration: const InputDecoration(
                 hintText: restaurantNameHintText,
                 hintStyle: TextStyle(color: Colors.white),
@@ -77,7 +76,7 @@ class SignupScreen extends ConsumerWidget {
             const SizedBox(
               height: 20,
             ),
-            // PrefectureDropdown(controller: signupState.prefectureController),
+            // PrefectureDropdown(controller: profileState.prefectureController),
             const SizedBox(
               height: 50,
             ),
@@ -85,13 +84,13 @@ class SignupScreen extends ConsumerWidget {
               text: signupButton,
               func: () {
                 final validationResult = ref
-                    .read(signupStateManager.notifier)
-                    .validateSignupForm(signupState);
+                    .read(profileStateManager.notifier)
+                    .validateProfileForm(profileState);
                 if (validationResult == null) {
-                  ref.read(signupStateManager.notifier).signup(context);
+                  ref.read(profileStateManager.notifier).signup(context);
                 } else {
                   ref
-                      .read(signupStateManager.notifier)
+                      .read(profileStateManager.notifier)
                       .showErrorDialog(context, validationResult);
                 }
               },

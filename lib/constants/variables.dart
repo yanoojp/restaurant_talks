@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Screen Titles
 const String appTitle = 'Restaurant Talks';
+const String editProfileScreen = 'Edit Profile';
 
 // Regexes
 const String emailRegexString = r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -35,13 +36,25 @@ const String okButton = 'OK';
 const String saveButton = 'Save';
 const String addCountButton = '+';
 const String subtractCounbtButton = '-';
+const String logoutButton = 'Logout';
+
+// Nav Bar
+const String homeNavBar = 'Home';
+const String profileNavBar = 'Profile';
+
+// Search Text Fields
+const String searchItemHintText = 'Search...';
 
 // Hint Texts
 const String emailHintText = 'Email';
 const String passwordHintText = 'Password';
 const String managerNameHintText = "Manager's Name";
 const String restaurantNameHintText = "Restaurant's Name";
-const String prefectureHintText = 'Prefecture';
+// const String prefectureHintText = 'Prefecture';
+
+// Screen Indexes
+const int itemIndexScreenIndex = 0;
+const int profileScreenIndex = 1;
 
 // Colors
 const Color darkBlue = Color(0xFF28527a);
