@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:restaurant_talks/constants/simulation_datas.dart';
+import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/utils/functions.dart';
-import 'package:restaurant_talks/views/widgets/base/app_bar.dart';
-import '../../../constants/simulation_datas.dart';
-import '../../../constants/variables.dart';
-import '../../../view_model/items/item_index_view_model.dart';
-import '../../widgets/items/item_tile.dart';
+import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
+import 'package:restaurant_talks/views/widgets/custom_app_bar.dart';
+import 'package:restaurant_talks/views/widgets/custom_bottom_nav_bar.dart';
+import 'package:restaurant_talks/views/widgets/items/item_tile.dart';
 import 'item_form_screen.dart';
 
 class ItemIndexScreen extends ConsumerWidget {
@@ -21,8 +22,11 @@ class ItemIndexScreen extends ConsumerWidget {
       },
       child: Scaffold(
         appBar: const CustomAppBar(),
+        bottomNavigationBar: const CustomBottomNavBar(
+          currentIndex: itemIndexScreenIndex,
+        ),
         body: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: Column(
             children: [
               Row(
@@ -43,8 +47,8 @@ class ItemIndexScreen extends ConsumerWidget {
                       child: TextField(
                         controller: itemState.searchController,
                         decoration: InputDecoration(
-                          hintText: "Search...",
-                          hintStyle: TextStyle(fontSize: 17),
+                          hintText: searchItemHintText,
+                          hintStyle: const TextStyle(fontSize: 17),
                           suffixIcon: IconButton(
                             icon: const Icon(Icons.clear, color: lightBlue),
                             onPressed: () {
@@ -80,7 +84,8 @@ class ItemIndexScreen extends ConsumerWidget {
                             ),
                           );
                         }).toList(),
-                        icon: const Icon(Icons.arrow_drop_down, color: lightBlue),
+                        icon:
+                            const Icon(Icons.arrow_drop_down, color: lightBlue),
                         underline: Container(
                           height: 1.5,
                           color: lightBlue,

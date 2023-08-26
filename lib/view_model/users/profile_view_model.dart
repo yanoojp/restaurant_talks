@@ -4,29 +4,29 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/utils/functions.dart';
 import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
 import '../../constants/variables.dart';
-import '../../models/users/signup_model.dart';
+import '../../models/users/profile_model.dart';
 import '../../views/widgets/base/error_dialog.dart';
 
-part 'signup_view_model.freezed.dart';
+part 'profile_view_model.freezed.dart';
 
 @freezed
-class SignupState with _$SignupState {
-  const factory SignupState({
+class ProfileState with _$ProfileState {
+  const factory ProfileState({
     required bool isProcessing,
-    required Signup signupRequest,
+    required Profile profileRequest,
     required TextEditingController emailController,
     required TextEditingController passwordController,
     required TextEditingController managerNameController,
     required TextEditingController restaurantNameController,
     // required TextEditingController prefectureController,
-  }) = _SignupState;
+  }) = _ProfileState;
 }
 
-class SignupStateManager extends StateNotifier<SignupState> {
-  SignupStateManager()
-      : super(_SignupState(
+class ProfileStateManager extends StateNotifier<ProfileState> {
+  ProfileStateManager()
+      : super(_ProfileState(
           isProcessing: false,
-          signupRequest: Signup(
+          profileRequest: Profile(
               email: '',
               password: '',
               managerName: '',
@@ -40,7 +40,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
           // prefectureController: TextEditingController(),
         ));
 
-  String? validateSignupForm(state) {
+  String? validateProfileForm(state) {
     String email = state.emailController.text;
     String password = state.passwordController.text;
     String managerName = state.managerNameController.text;
@@ -84,10 +84,10 @@ class SignupStateManager extends StateNotifier<SignupState> {
   }
 
   Future<void> signup(context) async {
-    screenNavigationFunction(context, ItemIndexScreen());
+    screenNavigationFunction(context, const ItemIndexScreen());
   }
 }
 
-final signupStateManager =
-    StateNotifierProvider<SignupStateManager, SignupState>(
-        (ref) => SignupStateManager());
+final profileStateManager =
+    StateNotifierProvider<ProfileStateManager, ProfileState>(
+        (ref) => ProfileStateManager());

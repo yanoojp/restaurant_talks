@@ -5,19 +5,23 @@ import '../../../constants/variables.dart';
 class ButtonWithUnderline extends StatelessWidget {
   final String text;
   final Widget screenName;
+  final Color? color;
+  final Function()? func;
+
   const ButtonWithUnderline(
-      {super.key, required this.text, required this.screenName});
+      {super.key, required this.text, required this.screenName, this.func, this.color});
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
+        func;
         screenNavigationFunction(context, screenName);
       },
       child: Text(
         text,
-        style: const TextStyle(
-            decoration: TextDecoration.underline, color: whiteColor),
+        style: TextStyle(
+            decoration: TextDecoration.underline, color: color ?? whiteColor),
       ),
     );
   }
