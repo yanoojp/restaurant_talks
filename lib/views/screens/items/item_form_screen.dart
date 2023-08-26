@@ -143,7 +143,7 @@ class ItemEditScreen extends ConsumerWidget {
                 textColor: whiteColor,
                 func: () {
                   ref.read(itemEditStateManager.notifier).saveItem();
-                  screenNavigationFunction(context, ItemIndexScreen());
+                  screenNavigationFunction(context, const ItemIndexScreen());
                 },
               ),
             ],

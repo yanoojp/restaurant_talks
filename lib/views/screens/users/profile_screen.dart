@@ -18,7 +18,7 @@ class ProfileScreen extends ConsumerWidget {
     final profileState = ref.watch(profileStateManager);
 
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: CustomAppBar(),
       bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: profileScreenIndex,
       ),
