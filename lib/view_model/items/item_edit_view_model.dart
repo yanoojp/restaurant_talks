@@ -20,14 +20,29 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
   ItemEditStateManager()
       : super(_ItemEditState(
           item: Item(
-              name: '', stockCount: 0, category: '', description: '', createdAt: DateTime.now(), updatedAt: DateTime.now()),
+              name: '',
+              stockCount: 0,
+              category: '',
+              description: '',
+              createdAt: DateTime.now(),
+              updatedAt: DateTime.now(),
+              id: null),
           nameController: TextEditingController(),
           stockCountController: TextEditingController(),
           categoryController: TextEditingController(),
           descriptionController: TextEditingController(),
         ));
 
-  void initializeItem(Item item) {
+  void initializeItem(String id) async {
+    final item = Item(
+        name: 'name',
+        id: id,
+        stockCount: 1,
+        category: 'category',
+        description: 'description',
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now());
+    // final item = await getItemById(id);
     state.nameController.text = item.name;
     state.descriptionController.text = item.description;
     state.categoryController.text = item.category;
@@ -49,9 +64,9 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
     }
   }
 
-  Future<void> saveItem() async {
-  }
+  Future<void> saveItem() async {}
 }
 
-final itemEditStateManager = StateNotifierProvider<ItemEditStateManager, ItemEditState>(
-    (ref) => ItemEditStateManager());
+final itemEditStateManager =
+    StateNotifierProvider<ItemEditStateManager, ItemEditState>(
+        (ref) => ItemEditStateManager());

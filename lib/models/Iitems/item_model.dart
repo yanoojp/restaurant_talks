@@ -6,6 +6,7 @@ part 'item_model.freezed.dart';
 class Item with _$Item {
   const factory Item({
     required String name,
+    required String? id,
     required int stockCount,
     required String category,
     required String description,

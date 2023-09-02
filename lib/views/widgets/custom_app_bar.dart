@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/utils/functions.dart';
 import 'package:restaurant_talks/view_model/guest_number/guest_number_view_model.dart';
 import 'package:restaurant_talks/views/screens/guest_number/guest_number_screen.dart';
@@ -23,7 +24,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
             children: [
               InkWell(
                 onTap: () {
-                  screenNavigationFunction(context, GuestNumberScreen());
+                  goRouter.go(guestNumberScreenPath);
                 },
                 child: Column(
                   children: [

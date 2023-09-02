@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/simulation_datas.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/utils/functions.dart';
-import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
-import '../../../models/Iitems/item_model.dart';
 import '../../../view_model/items/item_edit_view_model.dart';
 
 bool _isInitialized = false;
 
 class ItemEditScreen extends ConsumerWidget {
-  final Item item;
-  const ItemEditScreen({Key? key, required this.item}) : super(key: key);
+  final String id;
+  const ItemEditScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +18,7 @@ class ItemEditScreen extends ConsumerWidget {
 
     if (!_isInitialized) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(itemEditStateManager.notifier).initializeItem(item);
+        ref.read(itemEditStateManager.notifier).initializeItem(id);
       });
       _isInitialized = true;
     }
@@ -143,7 +141,7 @@ class ItemEditScreen extends ConsumerWidget {
                 textColor: whiteColor,
                 func: () {
                   ref.read(itemEditStateManager.notifier).saveItem();
-                  screenNavigationFunction(context, const ItemIndexScreen());
+                  goRouter.go(itemIndexScreenPath);
                 },
               ),
             ],

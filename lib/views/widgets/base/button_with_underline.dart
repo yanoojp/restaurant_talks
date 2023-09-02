@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/utils/functions.dart';
 import '../../../constants/variables.dart';
 
 class ButtonWithUnderline extends StatelessWidget {
   final String text;
-  final Widget screenName;
+  final String screenPath;
   final Color? color;
   final Function()? func;
 
   const ButtonWithUnderline(
-      {super.key, required this.text, required this.screenName, this.func, this.color});
+      {super.key,
+      required this.text,
+      this.func,
+      this.color,
+      required this.screenPath});
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         func;
-        screenNavigationFunction(context, screenName);
+        goRouter.go(screenPath);
       },
       child: Text(
         text,
