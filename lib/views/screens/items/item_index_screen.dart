@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/simulation_datas.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/utils/functions.dart';
 import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 import 'package:restaurant_talks/views/widgets/custom_app_bar.dart';
@@ -116,8 +117,7 @@ class ItemIndexScreen extends ConsumerWidget {
                     final item = itemState.items[index];
                     return InkWell(
                       onTap: () {
-                        screenNavigationFunction(
-                            context, ItemEditScreen(item: item));
+                        goRouter.go('$itemEditScreenPath/${item.id}');
                       },
                       child: ItemTile(item: item),
                     );

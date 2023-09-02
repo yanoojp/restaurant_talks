@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Item {
   String get name => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   int get stockCount => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -34,6 +35,7 @@ abstract class $ItemCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
+      String? id,
       int stockCount,
       String category,
       String description,
@@ -55,6 +57,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
   @override
   $Res call({
     Object? name = null,
+    Object? id = freezed,
     Object? stockCount = null,
     Object? category = null,
     Object? description = null,
@@ -66,6 +69,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       stockCount: null == stockCount
           ? _value.stockCount
           : stockCount // ignore: cast_nullable_to_non_nullable
@@ -98,6 +105,7 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
+      String? id,
       int stockCount,
       String category,
       String description,
@@ -115,6 +123,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
   @override
   $Res call({
     Object? name = null,
+    Object? id = freezed,
     Object? stockCount = null,
     Object? category = null,
     Object? description = null,
@@ -126,6 +135,10 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       stockCount: null == stockCount
           ? _value.stockCount
           : stockCount // ignore: cast_nullable_to_non_nullable
@@ -155,6 +168,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
 class _$_Item implements _Item {
   const _$_Item(
       {required this.name,
+      required this.id,
       required this.stockCount,
       required this.category,
       required this.description,
@@ -163,6 +177,8 @@ class _$_Item implements _Item {
 
   @override
   final String name;
+  @override
+  final String? id;
   @override
   final int stockCount;
   @override
@@ -176,7 +192,7 @@ class _$_Item implements _Item {
 
   @override
   String toString() {
-    return 'Item(name: $name, stockCount: $stockCount, category: $category, description: $description, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Item(name: $name, id: $id, stockCount: $stockCount, category: $category, description: $description, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -185,6 +201,7 @@ class _$_Item implements _Item {
         (other.runtimeType == runtimeType &&
             other is _$_Item &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.stockCount, stockCount) ||
                 other.stockCount == stockCount) &&
             (identical(other.category, category) ||
@@ -198,7 +215,7 @@ class _$_Item implements _Item {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, stockCount, category,
+  int get hashCode => Object.hash(runtimeType, name, id, stockCount, category,
       description, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
@@ -211,6 +228,7 @@ class _$_Item implements _Item {
 abstract class _Item implements Item {
   const factory _Item(
       {required final String name,
+      required final String? id,
       required final int stockCount,
       required final String category,
       required final String description,
@@ -219,6 +237,8 @@ abstract class _Item implements Item {
 
   @override
   String get name;
+  @override
+  String? get id;
   @override
   int get stockCount;
   @override

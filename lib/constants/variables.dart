@@ -27,6 +27,9 @@ const String signupScreenPath = 'signup';
 const String loginScreenPath = '/';
 const String itemIndexScreenPath = '/items';
 const String itemFormScreenPath = 'form';
+const String profileScreenPath = '/profile';
+const String guestNumberScreenPath = '/guest_number';
+const String itemEditScreenPath = 'edit';
 
 // Buttons
 const String loginButton = 'Login';

@@ -72,7 +72,7 @@ class LoginScreen extends ConsumerWidget {
               },
             ),
             const ButtonWithUnderline(
-              screenName: SignupScreen(),
+              screenPath: signupScreenPath,
               text: toSignupScreenButton,
             )
           ],

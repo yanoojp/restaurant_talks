@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/utils/functions.dart';
 import 'package:restaurant_talks/view_model/users/profile_view_model.dart';
 import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
@@ -54,13 +55,13 @@ class ProfileScreen extends ConsumerWidget {
               Button(
                 text: saveButton,
                 func: () {
-                  screenNavigationFunction(context, const ItemIndexScreen());
+                  goRouter.go(itemIndexScreenPath);
                 },
               ),
               const SizedBox(height: 10),
               const ButtonWithUnderline(
                 text: logoutButton,
-                screenName: LoginScreen(),
+                screenPath: loginScreenPath,
                 func: null,
                 color: darkBlue,
               )

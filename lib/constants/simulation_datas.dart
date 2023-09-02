@@ -8,6 +8,7 @@ final List<Item> sampleItems = [
     description: 'Crispy bread slices with garlic and butter spread.',
     createdAt: DateTime.now().subtract(const Duration(days: 4)),
     updatedAt: DateTime.now().subtract(const Duration(days: 2)),
+    id: '30',
   ),
   Item(
     name: 'Chicken Wings',
@@ -16,9 +17,8 @@ final List<Item> sampleItems = [
     description: 'Fried chicken wings with spicy sauce.',
     createdAt: DateTime.now().subtract(const Duration(days: 6)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
+    id: '29',
   ),
-
-  // Main Dishes
   Item(
     name: 'Spaghetti Carbonara',
     stockCount: 15,
@@ -26,6 +26,7 @@ final List<Item> sampleItems = [
     description: 'Pasta with creamy egg sauce and bacon bits.',
     createdAt: DateTime.now().subtract(const Duration(days: 7)),
     updatedAt: DateTime.now().subtract(const Duration(days: 5)),
+    id: '28',
   ),
   Item(
     name: 'Vegetable Stir Fry',
@@ -34,9 +35,8 @@ final List<Item> sampleItems = [
     description: 'Assorted veggies stir-fried in savory sauce.',
     createdAt: DateTime.now().subtract(const Duration(days: 9)),
     updatedAt: DateTime.now().subtract(const Duration(days: 6)),
+    id: '27',
   ),
-
-  // Desserts
   Item(
     name: 'Blueberry Cheesecake',
     stockCount: 20,
@@ -44,6 +44,7 @@ final List<Item> sampleItems = [
     description: 'Creamy cheesecake with blueberry topping.',
     createdAt: DateTime.now().subtract(const Duration(days: 10)),
     updatedAt: DateTime.now().subtract(const Duration(days: 7)),
+    id: '26',
   ),
   Item(
     name: 'Chocolate Mousse',
@@ -52,9 +53,8 @@ final List<Item> sampleItems = [
     description: 'Rich and creamy chocolate dessert.',
     createdAt: DateTime.now().subtract(const Duration(days: 12)),
     updatedAt: DateTime.now().subtract(const Duration(days: 8)),
+    id: '25',
   ),
-
-  // Beverages
   Item(
     name: 'Iced Tea',
     stockCount: 35,
@@ -62,6 +62,7 @@ final List<Item> sampleItems = [
     description: 'Chilled tea with a slice of lemon.',
     createdAt: DateTime.now().subtract(const Duration(days: 3)),
     updatedAt: DateTime.now().subtract(const Duration(days: 1)),
+    id: '24',
   ),
   Item(
     name: 'Espresso',
@@ -70,9 +71,8 @@ final List<Item> sampleItems = [
     description: 'Strong coffee served in small amounts.',
     createdAt: DateTime.now().subtract(const Duration(days: 5)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
+    id: '23',
   ),
-
-  // Other
   Item(
     name: 'Bread Basket',
     stockCount: 30,
@@ -80,6 +80,7 @@ final List<Item> sampleItems = [
     description: 'A basket of freshly baked assorted bread.',
     createdAt: DateTime.now().subtract(const Duration(days: 2)),
     updatedAt: DateTime.now().subtract(const Duration(days: 1)),
+    id: '22',
   ),
   Item(
     name: 'Dipping Sauce Trio',
@@ -88,8 +89,8 @@ final List<Item> sampleItems = [
     description: 'Three different sauces for dipping.',
     createdAt: DateTime.now().subtract(const Duration(days: 4)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
+    id: '21',
   ),
-
   Item(
     name: 'Garlic Bread',
     stockCount: 30,
@@ -97,6 +98,7 @@ final List<Item> sampleItems = [
     description: 'Crispy bread slices with garlic and butter spread.',
     createdAt: DateTime.now().subtract(const Duration(days: 4)),
     updatedAt: DateTime.now().subtract(const Duration(days: 2)),
+    id: '20',
   ),
   Item(
     name: 'Chicken Wings',
@@ -105,9 +107,8 @@ final List<Item> sampleItems = [
     description: 'Fried chicken wings with spicy sauce.',
     createdAt: DateTime.now().subtract(const Duration(days: 6)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
+    id: '19',
   ),
-
-  // Main Dishes
   Item(
     name: 'Spaghetti Carbonara',
     stockCount: 15,
@@ -115,6 +116,7 @@ final List<Item> sampleItems = [
     description: 'Pasta with creamy egg sauce and bacon bits.',
     createdAt: DateTime.now().subtract(const Duration(days: 7)),
     updatedAt: DateTime.now().subtract(const Duration(days: 5)),
+    id: '18',
   ),
   Item(
     name: 'Vegetable Stir Fry',
@@ -123,9 +125,8 @@ final List<Item> sampleItems = [
     description: 'Assorted veggies stir-fried in savory sauce.',
     createdAt: DateTime.now().subtract(const Duration(days: 9)),
     updatedAt: DateTime.now().subtract(const Duration(days: 6)),
+    id: '17',
   ),
-
-  // Desserts
   Item(
     name: 'Blueberry Cheesecake',
     stockCount: 20,
@@ -133,6 +134,7 @@ final List<Item> sampleItems = [
     description: 'Creamy cheesecake with blueberry topping.',
     createdAt: DateTime.now().subtract(const Duration(days: 10)),
     updatedAt: DateTime.now().subtract(const Duration(days: 7)),
+    id: '16',
   ),
   Item(
     name: 'Chocolate Mousse',
@@ -141,9 +143,8 @@ final List<Item> sampleItems = [
     description: 'Rich and creamy chocolate dessert.',
     createdAt: DateTime.now().subtract(const Duration(days: 12)),
     updatedAt: DateTime.now().subtract(const Duration(days: 8)),
+    id: '15',
   ),
-
-  // Beverages
   Item(
     name: 'Iced Tea',
     stockCount: 35,
@@ -151,6 +152,7 @@ final List<Item> sampleItems = [
     description: 'Chilled tea with a slice of lemon.',
     createdAt: DateTime.now().subtract(const Duration(days: 3)),
     updatedAt: DateTime.now().subtract(const Duration(days: 1)),
+    id: '14',
   ),
   Item(
     name: 'Espresso',
@@ -159,113 +161,7 @@ final List<Item> sampleItems = [
     description: 'Strong coffee served in small amounts.',
     createdAt: DateTime.now().subtract(const Duration(days: 5)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
-  ),
-
-  // Other
-  Item(
-    name: 'Bread Basket',
-    stockCount: 30,
-    category: 'Other',
-    description: 'A basket of freshly baked assorted bread.',
-    createdAt: DateTime.now().subtract(const Duration(days: 2)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 1)),
-  ),
-  Item(
-    name: 'Dipping Sauce Trio',
-    stockCount: 25,
-    category: 'Other',
-    description: 'Three different sauces for dipping.',
-    createdAt: DateTime.now().subtract(const Duration(days: 4)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 3)),
-  ),
-
-  Item(
-    name: 'Garlic Bread',
-    stockCount: 30,
-    category: 'Appetizers',
-    description: 'Crispy bread slices with garlic and butter spread.',
-    createdAt: DateTime.now().subtract(const Duration(days: 4)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 2)),
-  ),
-  Item(
-    name: 'Chicken Wings',
-    stockCount: 25,
-    category: 'Appetizers',
-    description: 'Fried chicken wings with spicy sauce.',
-    createdAt: DateTime.now().subtract(const Duration(days: 6)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 3)),
-  ),
-
-  // Main Dishes
-  Item(
-    name: 'Spaghetti Carbonara',
-    stockCount: 15,
-    category: 'Main Dishes',
-    description: 'Pasta with creamy egg sauce and bacon bits.',
-    createdAt: DateTime.now().subtract(const Duration(days: 7)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 5)),
-  ),
-  Item(
-    name: 'Vegetable Stir Fry',
-    stockCount: 20,
-    category: 'Main Dishes',
-    description: 'Assorted veggies stir-fried in savory sauce.',
-    createdAt: DateTime.now().subtract(const Duration(days: 9)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 6)),
-  ),
-
-  // Desserts
-  Item(
-    name: 'Blueberry Cheesecake',
-    stockCount: 20,
-    category: 'Desserts',
-    description: 'Creamy cheesecake with blueberry topping.',
-    createdAt: DateTime.now().subtract(const Duration(days: 10)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 7)),
-  ),
-  Item(
-    name: 'Chocolate Mousse',
-    stockCount: 25,
-    category: 'Desserts',
-    description: 'Rich and creamy chocolate dessert.',
-    createdAt: DateTime.now().subtract(const Duration(days: 12)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 8)),
-  ),
-
-  // Beverages
-  Item(
-    name: 'Iced Tea',
-    stockCount: 35,
-    category: 'Beverages',
-    description: 'Chilled tea with a slice of lemon.',
-    createdAt: DateTime.now().subtract(const Duration(days: 3)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 1)),
-  ),
-  Item(
-    name: 'Espresso',
-    stockCount: 40,
-    category: 'Beverages',
-    description: 'Strong coffee served in small amounts.',
-    createdAt: DateTime.now().subtract(const Duration(days: 5)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 3)),
-  ),
-
-  // Other
-  Item(
-    name: 'Bread Basket',
-    stockCount: 30,
-    category: 'Other',
-    description: 'A basket of freshly baked assorted bread.',
-    createdAt: DateTime.now().subtract(const Duration(days: 2)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 1)),
-  ),
-  Item(
-    name: 'Dipping Sauce Trio',
-    stockCount: 25,
-    category: 'Other',
-    description: 'Three different sauces for dipping.',
-    createdAt: DateTime.now().subtract(const Duration(days: 4)),
-    updatedAt: DateTime.now().subtract(const Duration(days: 3)),
+    id: '13',
   ),
 ];
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/utils/functions.dart';
 import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
 import 'package:restaurant_talks/views/screens/users/profile_screen.dart';
@@ -36,9 +37,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         ],
         onTap: (index) {
           if (index == 0) {
-            screenNavigationFunction(context, const ItemIndexScreen());
+            goRouter.go(itemIndexScreenPath);
           } else if (index == 1) {
-            screenNavigationFunction(context, const ProfileScreen());
+            goRouter.go(profileScreenPath);
           }
         });
   }

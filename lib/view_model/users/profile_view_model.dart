@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:restaurant_talks/utils/functions.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
 import '../../constants/variables.dart';
 import '../../models/users/profile_model.dart';
@@ -27,12 +27,12 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
       : super(_ProfileState(
           isProcessing: false,
           profileRequest: Profile(
-              email: '',
-              password: '',
-              managerName: '',
-              restaurantName: '',
-              // prefecture: ''
-              ),
+            email: '',
+            password: '',
+            managerName: '',
+            restaurantName: '',
+            // prefecture: ''
+          ),
           emailController: TextEditingController(),
           passwordController: TextEditingController(),
           managerNameController: TextEditingController(),
@@ -84,7 +84,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
   }
 
   Future<void> signup(context) async {
-    screenNavigationFunction(context, const ItemIndexScreen());
+    goRouter.go(itemIndexScreenPath);
   }
 }
 
