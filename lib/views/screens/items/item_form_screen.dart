@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/simulation_datas.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/models/Iitems/category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 import '../../../view_model/items/item_edit_view_model.dart';
@@ -97,18 +98,24 @@ class ItemEditScreen extends ConsumerWidget {
                   const Text('$itemCategoryLabel:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: DropdownButtonFormField<String>(
+                    child: DropdownButton<Category>(
                       value: itemEditState.categoryController.text.isEmpty
-                          ? defaultItemCategoryLabel
-                          : itemEditState.categoryController.text,
-                      items: itemCategories.map((category) {
-                        return DropdownMenuItem(
+                          ? itemCategories[0]
+                          : itemCategories.firstWhere((element) =>
+                              element.value ==
+                              itemEditState.categoryController.text),
+                      items: itemCategories.map((Category category) {
+                        return DropdownMenuItem<Category>(
                           value: category,
-                          child: Text(category),
+                          child: Text(category.value),
                         );
                       }).toList(),
-                      onChanged: (value) {
-                        itemEditState.categoryController.text = value ?? '';
+                      onChanged: (Category? category) {
+                        if (category != null) {
+                          // Null safety check
+                          itemEditState.categoryController.text =
+                              category.value;
+                        }
                       },
                     ),
                   ),

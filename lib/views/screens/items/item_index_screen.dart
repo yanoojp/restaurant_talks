@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/simulation_datas.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/models/Iitems/category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
-import 'package:restaurant_talks/utils/functions.dart';
 import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 import 'package:restaurant_talks/views/widgets/custom_app_bar.dart';
 import 'package:restaurant_talks/views/widgets/custom_bottom_nav_bar.dart';
 import 'package:restaurant_talks/views/widgets/items/item_tile.dart';
-import 'item_form_screen.dart';
 
 class ItemIndexScreen extends ConsumerWidget {
   const ItemIndexScreen({Key? key}) : super(key: key);
@@ -74,33 +73,34 @@ class ItemIndexScreen extends ConsumerWidget {
                   Expanded(
                     child: SizedBox(
                       height: 63,
-                      child: DropdownButton<String>(
+                      child: DropdownButton<Category>(
                         value: itemState.selectedCategory,
-                        items: itemCategories.map((String category) {
-                          return DropdownMenuItem<String>(
+                        items: itemCategories.map((Category category) {
+                          return DropdownMenuItem<Category>(
                             value: category,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 5.0),
-                              child: Text(category),
+                              child: Text(category
+                                  .value), // Access the Freezed property with .value
                             ),
                           );
-                        }).toList(),
+                        }).toList(), // This toList() should be part of the map, not part of DropdownButton
                         icon:
                             const Icon(Icons.arrow_drop_down, color: lightBlue),
                         underline: Container(
                           height: 1.5,
                           color: lightBlue,
                         ),
-                        onChanged: (String? newValue) {
-                          if (newValue != null) {
+                        onChanged: (Category? newCategory) {
+                          if (newCategory != null) {
                             ref
                                 .read(itemIndexViewModelProvider.notifier)
-                                .updateSelectedCategory(newValue);
+                                .updateSelectedCategory(newCategory);
                           }
                         },
                       ),
                     ),
-                  ),
+                  )
                 ],
               ),
               const SizedBox(

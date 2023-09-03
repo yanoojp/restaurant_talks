@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
-import 'package:restaurant_talks/utils/functions.dart';
-import '../../../constants/variables.dart';
 
 class ButtonWithUnderline extends StatelessWidget {
   final String text;

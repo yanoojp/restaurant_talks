@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ItemIndexState {
   List<Item> get items => throw _privateConstructorUsedError;
-  String get selectedCategory => throw _privateConstructorUsedError;
+  Category get selectedCategory => throw _privateConstructorUsedError;
   TextEditingController get searchController =>
       throw _privateConstructorUsedError;
 
@@ -34,8 +34,10 @@ abstract class $ItemIndexStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<Item> items,
-      String selectedCategory,
+      Category selectedCategory,
       TextEditingController searchController});
+
+  $CategoryCopyWith<$Res> get selectedCategory;
 }
 
 /// @nodoc
@@ -63,12 +65,20 @@ class _$ItemIndexStateCopyWithImpl<$Res, $Val extends ItemIndexState>
       selectedCategory: null == selectedCategory
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Category,
       searchController: null == searchController
           ? _value.searchController
           : searchController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryCopyWith<$Res> get selectedCategory {
+    return $CategoryCopyWith<$Res>(_value.selectedCategory, (value) {
+      return _then(_value.copyWith(selectedCategory: value) as $Val);
+    });
   }
 }
 
@@ -82,8 +92,11 @@ abstract class _$$_ItemIndexStateCopyWith<$Res>
   @useResult
   $Res call(
       {List<Item> items,
-      String selectedCategory,
+      Category selectedCategory,
       TextEditingController searchController});
+
+  @override
+  $CategoryCopyWith<$Res> get selectedCategory;
 }
 
 /// @nodoc
@@ -109,7 +122,7 @@ class __$$_ItemIndexStateCopyWithImpl<$Res>
       selectedCategory: null == selectedCategory
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Category,
       searchController: null == searchController
           ? _value.searchController
           : searchController // ignore: cast_nullable_to_non_nullable
@@ -136,7 +149,7 @@ class _$_ItemIndexState implements _ItemIndexState {
   }
 
   @override
-  final String selectedCategory;
+  final Category selectedCategory;
   @override
   final TextEditingController searchController;
 
@@ -174,14 +187,14 @@ class _$_ItemIndexState implements _ItemIndexState {
 abstract class _ItemIndexState implements ItemIndexState {
   const factory _ItemIndexState(
           {required final List<Item> items,
-          required final String selectedCategory,
+          required final Category selectedCategory,
           required final TextEditingController searchController}) =
       _$_ItemIndexState;
 
   @override
   List<Item> get items;
   @override
-  String get selectedCategory;
+  Category get selectedCategory;
   @override
   TextEditingController get searchController;
   @override

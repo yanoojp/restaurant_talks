@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/simulation_datas.dart';
+import 'package:restaurant_talks/models/Iitems/category_model.dart';
 import '../../../models/Iitems/item_model.dart';
 
 part 'item_index_view_model.freezed.dart';
@@ -10,7 +11,7 @@ part 'item_index_view_model.freezed.dart';
 class ItemIndexState with _$ItemIndexState {
   const factory ItemIndexState({
     required List<Item> items,
-    required String selectedCategory,
+    required Category selectedCategory,
     required TextEditingController searchController,
   }) = _ItemIndexState;
 }
@@ -19,7 +20,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
   ItemIndexViewModel()
       : super(ItemIndexState(
           items: [],
-          selectedCategory: notSelected,
+          selectedCategory: itemCategories[0],
           searchController: TextEditingController()
         )) {
     loadInitialData();
@@ -29,7 +30,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
     return sampleItems;
   }
 
-  List<String> getItemCategories() {
+  List<Category> getItemCategories() {
     return itemCategories;
   }
 
@@ -50,7 +51,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
     } else {
       state = state.copyWith(
         items: items
-            .where((item) => item.category == state.selectedCategory)
+            .where((item) => item.categoryId == state.selectedCategory)
             .toList(),
       );
     }
@@ -63,9 +64,9 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
     state = state.copyWith(items: sortedItems);
   }
 
-  void updateSelectedCategory(String newCategory) {
+  void updateSelectedCategory(Category newCategory) {
     if (state.selectedCategory != newCategory) {
-      state = state.copyWith(selectedCategory: newCategory);
+      state = state.copyWith(selectedCategory: itemCategories[0]);
       _filterItemsByCategory();
     }
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant_talks/views/screens/users/login_screen.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
 import '../../../constants/variables.dart';
 import '../../../view_model/users/profile_view_model.dart';

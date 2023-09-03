@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Profile {
+  int? get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get managerName => throw _privateConstructorUsedError;
@@ -31,7 +32,8 @@ abstract class $ProfileCopyWith<$Res> {
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
-      {String email,
+      {int? id,
+      String email,
       String password,
       String managerName,
       String restaurantName});
@@ -50,12 +52,17 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? email = null,
     Object? password = null,
     Object? managerName = null,
     Object? restaurantName = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -84,7 +91,8 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String email,
+      {int? id,
+      String email,
       String password,
       String managerName,
       String restaurantName});
@@ -100,12 +108,17 @@ class __$$_ProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? email = null,
     Object? password = null,
     Object? managerName = null,
     Object? restaurantName = null,
   }) {
     return _then(_$_Profile(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -130,11 +143,14 @@ class __$$_ProfileCopyWithImpl<$Res>
 
 class _$_Profile implements _Profile {
   _$_Profile(
-      {required this.email,
+      {this.id,
+      required this.email,
       required this.password,
       required this.managerName,
       required this.restaurantName});
 
+  @override
+  final int? id;
   @override
   final String email;
   @override
@@ -146,7 +162,7 @@ class _$_Profile implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(email: $email, password: $password, managerName: $managerName, restaurantName: $restaurantName)';
+    return 'Profile(id: $id, email: $email, password: $password, managerName: $managerName, restaurantName: $restaurantName)';
   }
 
   @override
@@ -154,6 +170,7 @@ class _$_Profile implements _Profile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Profile &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
@@ -164,8 +181,8 @@ class _$_Profile implements _Profile {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, managerName, restaurantName);
+  int get hashCode => Object.hash(
+      runtimeType, id, email, password, managerName, restaurantName);
 
   @JsonKey(ignore: true)
   @override
@@ -176,11 +193,14 @@ class _$_Profile implements _Profile {
 
 abstract class _Profile implements Profile {
   factory _Profile(
-      {required final String email,
+      {final int? id,
+      required final String email,
       required final String password,
       required final String managerName,
       required final String restaurantName}) = _$_Profile;
 
+  @override
+  int? get id;
   @override
   String get email;
   @override

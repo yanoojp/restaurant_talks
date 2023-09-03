@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:restaurant_talks/constants/simulation_datas.dart';
 import '../../models/Iitems/item_model.dart';
 
 part 'item_edit_view_model.freezed.dart';
@@ -22,7 +23,7 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
           item: Item(
               name: '',
               stockCount: 0,
-              category: '',
+              categoryId: 0,
               description: '',
               createdAt: DateTime.now(),
               updatedAt: DateTime.now(),
@@ -38,14 +39,20 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
         name: 'name',
         id: id,
         stockCount: 1,
-        category: 'category',
+        categoryId: 1,
         description: 'description',
         createdAt: DateTime.now(),
         updatedAt: DateTime.now());
     // final item = await getItemById(id);
+
+    final matchingCategory = itemCategories.firstWhere(
+      (category) => category.id == item.categoryId,
+      orElse: () => itemCategories[0],
+    );
+
     state.nameController.text = item.name;
     state.descriptionController.text = item.description;
-    state.categoryController.text = item.category;
+    state.categoryController.text = matchingCategory.value;
     state.stockCountController.text = item.stockCount.toString();
     state = state.copyWith(item: item);
   }
