@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "994432209140",
+    "project_id": "restaurant-talks",
+    "storage_bucket": "restaurant-talks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994432209140:android:81739176570f7f56a80ea1",
+        "android_client_info": {
+          "package_name": "com.example.restaurant_talks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994432209140-f74oe93efr7hqmfp7175fvb8iop33l8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX_973WRqT028Q2jbEB9HNoTTQlqfT2SE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994432209140-f74oe93efr7hqmfp7175fvb8iop33l8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
