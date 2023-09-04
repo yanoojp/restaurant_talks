@@ -21,7 +21,7 @@ class ItemIndexScreen extends ConsumerWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         bottomNavigationBar: const CustomBottomNavBar(
           currentIndex: itemIndexScreenIndex,
         ),

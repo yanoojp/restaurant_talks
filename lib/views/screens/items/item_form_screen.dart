@@ -112,7 +112,6 @@ class ItemEditScreen extends ConsumerWidget {
                       }).toList(),
                       onChanged: (Category? category) {
                         if (category != null) {
-                          // Null safety check
                           itemEditState.categoryController.text =
                               category.value;
                         }

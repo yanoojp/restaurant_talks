@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/simulation_datas.dart';
 import 'package:restaurant_talks/models/Iitems/category_model.dart';
-import '../../../models/Iitems/item_model.dart';
+import 'package:restaurant_talks/models/Iitems/item_model.dart';
 
 part 'item_index_view_model.freezed.dart';
 
@@ -19,32 +20,33 @@ class ItemIndexState with _$ItemIndexState {
 class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
   ItemIndexViewModel()
       : super(ItemIndexState(
-          items: [],
-          selectedCategory: itemCategories[0],
-          searchController: TextEditingController()
-        )) {
+            items: [],
+            selectedCategory: itemCategories[0],
+            searchController: TextEditingController())) {
     loadInitialData();
   }
 
-  List<Item> getItems() {
-    return sampleItems;
+  Future<List<Item>> getItems() async {
+    final QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('items').get();
+    return snapshot.docs.map((doc) => Item.fromDocument(doc)).toList();
   }
 
   List<Category> getItemCategories() {
     return itemCategories;
   }
 
-  void loadInitialData() {
+  void loadInitialData() async {
     final categories = getItemCategories();
-    final items = getItems();
+    final items = await getItems();
 
     state = state.copyWith(items: items, selectedCategory: categories.first);
     _sortItemsByUpdatedAt();
   }
 
-  void _filterItemsByCategory() {
+  void _filterItemsByCategory() async {
     final categories = getItemCategories();
-    final items = getItems();
+    final items = await getItems();
 
     if (state.selectedCategory == categories.first) {
       state = state.copyWith(items: items);

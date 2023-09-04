@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'item_model.freezed.dart';
@@ -13,4 +14,29 @@ class Item with _$Item {
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _Item;
+
+  factory Item.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Item(
+      id: doc.id,
+      name: data['name'] as String,
+      stockCount: data['stockCount'] as int,
+      categoryId: data['categoryId'] as int,
+      description: data['description'] as String,
+      createdAt: (data['createdAt'] as Timestamp).toDate(),
+      updatedAt: (data['updatedAt'] as Timestamp).toDate(),
+    );
+  }
+}
+
+extension ItemX on Item {
+  Map<String, dynamic> toDocument() => {
+        'id': id,
+        'name': name,
+        'stockCount': stockCount,
+        'categoryId': categoryId,
+        'description': description,
+        'createdAt': Timestamp.fromDate(createdAt),
+        'updatedAt': Timestamp.fromDate(updatedAt),
+      };
 }
