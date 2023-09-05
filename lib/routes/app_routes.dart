@@ -23,19 +23,19 @@ final goRouter = GoRouter(
     ),
     GoRoute(
       path: itemIndexScreenPath,
-      builder: (context, state) => ItemIndexScreen(),
+      builder: (context, state) => const ItemIndexScreen(),
       routes: [
         GoRoute(
           path: itemFormScreenPath,
           builder: (context, state) => const SignupScreen(),
         ),
         GoRoute(
-      path: '$itemEditScreenPath/:id',
-      pageBuilder: (context, state) {
-        final id = state.pathParameters['id'];
-        return MaterialPage(child: ItemEditScreen(id: id!));
-      },
-    ),
+          path: '$itemEditScreenPath/:id',
+          pageBuilder: (context, state) {
+            final id = state.pathParameters['id'];
+            return MaterialPage(child: ItemEditScreen(id: id!));
+          },
+        ),
         // You can continue adding nested routes here, for example:
         // GoRoute(
         //   path: 'details',
@@ -49,7 +49,19 @@ final goRouter = GoRouter(
     ),
     GoRoute(
       path: guestNumberScreenPath,
-      builder: (context, state) => GuestNumberScreen(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const GuestNumberScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const Offset begin = Offset(1.0, 0.0);
+            const Offset end = Offset.zero;
+            var tween = Tween(begin: begin, end: end);
+            var slideAnimation = animation.drive(tween);
+            return SlideTransition(position: slideAnimation, child: child);
+          },
+        );
+      },
     ),
   ],
 );
