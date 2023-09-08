@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/firebase/userAuthentication.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/views/widgets/base/error_dialog.dart';
@@ -82,8 +83,23 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     );
   }
 
-  Future<void> signup(context) async {
-    goRouter.go(itemIndexScreenPath);
+  Future<void> signup(
+      BuildContext context) async {
+    final authService = FirebaseAuthService();
+    final profile = Profile(
+        email: state.emailController.text,
+        password: state.passwordController.text,
+        managerName: state.managerNameController.text,
+        restaurantName: state.restaurantNameController.text);
+
+    final userCredential = await authService.register(profile);
+
+    if (userCredential != null) {
+      goRouter.go(itemIndexScreenPath);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Signup failed! Please check your input.")));
+    }
   }
 }
 

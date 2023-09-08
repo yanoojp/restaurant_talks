@@ -14,12 +14,10 @@ final goRouter = GoRouter(
     GoRoute(
       path: loginScreenPath,
       builder: (context, state) => const LoginScreen(),
-      routes: [
-        GoRoute(
-          path: signupScreenPath,
-          builder: (context, state) => const SignupScreen(),
-        ),
-      ],
+    ),
+    GoRoute(
+      path: signupScreenPath,
+      builder: (context, state) => const SignupScreen(),
     ),
     GoRoute(
       path: itemIndexScreenPath,

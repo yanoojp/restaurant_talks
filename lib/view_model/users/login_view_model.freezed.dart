@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginState {
-  User get user => throw _privateConstructorUsedError;
+  CustomisedUser get user => throw _privateConstructorUsedError;
   TextEditingController get emailController =>
       throw _privateConstructorUsedError;
   TextEditingController get passwordController =>
@@ -34,11 +34,9 @@ abstract class $LoginStateCopyWith<$Res> {
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call(
-      {User user,
+      {CustomisedUser user,
       TextEditingController emailController,
       TextEditingController passwordController});
-
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -54,15 +52,15 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
     Object? emailController = null,
     Object? passwordController = null,
   }) {
     return _then(_value.copyWith(
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as CustomisedUser,
       emailController: null == emailController
           ? _value.emailController
           : emailController // ignore: cast_nullable_to_non_nullable
@@ -72,14 +70,6 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           : passwordController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 }
 
@@ -92,12 +82,9 @@ abstract class _$$_LoginStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {User user,
+      {CustomisedUser user,
       TextEditingController emailController,
       TextEditingController passwordController});
-
-  @override
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -111,15 +98,15 @@ class __$$_LoginStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
     Object? emailController = null,
     Object? passwordController = null,
   }) {
     return _then(_$_LoginState(
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as CustomisedUser,
       emailController: null == emailController
           ? _value.emailController
           : emailController // ignore: cast_nullable_to_non_nullable
@@ -141,7 +128,7 @@ class _$_LoginState implements _LoginState {
       required this.passwordController});
 
   @override
-  final User user;
+  final CustomisedUser user;
   @override
   final TextEditingController emailController;
   @override
@@ -157,7 +144,7 @@ class _$_LoginState implements _LoginState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginState &&
-            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
             (identical(other.emailController, emailController) ||
                 other.emailController == emailController) &&
             (identical(other.passwordController, passwordController) ||
@@ -165,8 +152,11 @@ class _$_LoginState implements _LoginState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, user, emailController, passwordController);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      emailController,
+      passwordController);
 
   @JsonKey(ignore: true)
   @override
@@ -177,12 +167,12 @@ class _$_LoginState implements _LoginState {
 
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
-      {required final User user,
+      {required final CustomisedUser user,
       required final TextEditingController emailController,
       required final TextEditingController passwordController}) = _$_LoginState;
 
   @override
-  User get user;
+  CustomisedUser get user;
   @override
   TextEditingController get emailController;
   @override

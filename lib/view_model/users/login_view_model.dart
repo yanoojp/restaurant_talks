@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/firebase/userAuthentication.dart';
+import 'package:restaurant_talks/models/users/login_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/views/widgets/base/error_dialog.dart';
-import '../../models/users/login_model.dart';
 
 part 'login_view_model.freezed.dart';
 
 @freezed
 class LoginState with _$LoginState {
   const factory LoginState({
-    required User user,
+    required CustomisedUser user,
     required TextEditingController emailController,
     required TextEditingController passwordController,
   }) = _LoginState;
@@ -20,7 +21,7 @@ class LoginState with _$LoginState {
 class LoginStateManager extends StateNotifier<LoginState> {
   LoginStateManager()
       : super(_LoginState(
-          user: User(email: '', password: ''),
+          user: CustomisedUser(email: '', password: ''),
           emailController: TextEditingController(),
           passwordController: TextEditingController(),
         ));
@@ -42,8 +43,19 @@ class LoginStateManager extends StateNotifier<LoginState> {
     return null;
   }
 
-  Future<void> login(context) async {
-    goRouter.go(itemIndexScreenPath);
+  Future<void> login(BuildContext context) async {
+    final authService = FirebaseAuthService();
+    final user =
+        CustomisedUser(email: state.user.email, password: state.user.password);
+
+    final userCredential = await authService.login(user);
+
+    if (userCredential != null) {
+      goRouter.go(itemIndexScreenPath);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Login failed! Please check your credentials.")));
+    }
   }
 
   Future<void> showErrorDialog(context, errorMessage) async {
