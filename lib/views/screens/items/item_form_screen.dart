@@ -9,9 +9,9 @@ import '../../../view_model/items/item_edit_view_model.dart';
 
 bool _isInitialized = false;
 
-class ItemEditScreen extends ConsumerWidget {
+class ItemFormScreen extends ConsumerWidget {
   final String id;
-  const ItemEditScreen({Key? key, required this.id}) : super(key: key);
+  const ItemFormScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
