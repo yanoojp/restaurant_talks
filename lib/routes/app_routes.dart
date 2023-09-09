@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/views/screens/guest_number/guest_number_screen.dart';
@@ -11,32 +12,32 @@ final goRouter = GoRouter(
   routes: [
     GoRoute(
       path: loginScreenPath,
-      builder: (context, state) => const LoginScreen(),
+      pageBuilder: (context, state) => const MaterialPage(child: LoginScreen()),
     ),
     GoRoute(
       path: signupScreenPath,
-      builder: (context, state) => const SignupScreen(),
+      pageBuilder: (context, state) => const MaterialPage(child: SignupScreen()),
     ),
     GoRoute(
       path: itemIndexScreenPath,
-      builder: (context, state) => const ItemIndexScreen(),
+      pageBuilder: (context, state) => const MaterialPage(child: ItemIndexScreen()),
       routes: [
         GoRoute(
           path: '$itemEditScreenPath/:id',
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final id = state.pathParameters['id'];
-            return ItemFormScreen(id: id!);
+            return MaterialPage(child: ItemFormScreen(id: id!));
           },
         ),
       ],
     ),
     GoRoute(
       path: profileScreenPath,
-      builder: (context, state) => const ProfileScreen(),
+      pageBuilder: (context, state) => const MaterialPage(child: ProfileScreen()),
     ),
     GoRoute(
       path: guestNumberScreenPath,
-      builder: (context, state) => const GuestNumberScreen(),
+      pageBuilder: (context, state) => const MaterialPage(child: GuestNumberScreen()),
     ),
   ],
 );
