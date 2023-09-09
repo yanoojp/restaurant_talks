@@ -23,7 +23,7 @@ const String itemdescriptionLabel = 'Description';
 const String defaultItemCategoryLabel = 'All Categories';
 
 // Paths
-const String signupScreenPath = 'signup';
+const String signupScreenPath = '/signup';
 const String loginScreenPath = '/';
 const String itemIndexScreenPath = '/items';
 const String itemFormScreenPath = 'form';

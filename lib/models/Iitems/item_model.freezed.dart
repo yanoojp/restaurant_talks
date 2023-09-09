@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Item {
-  String get name => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   int get stockCount => throw _privateConstructorUsedError;
-  String get category => throw _privateConstructorUsedError;
+  int get categoryId => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
@@ -34,10 +34,10 @@ abstract class $ItemCopyWith<$Res> {
       _$ItemCopyWithImpl<$Res, Item>;
   @useResult
   $Res call(
-      {String name,
-      String? id,
+      {String? id,
+      String name,
       int stockCount,
-      String category,
+      int categoryId,
       String description,
       DateTime createdAt,
       DateTime updatedAt});
@@ -56,31 +56,31 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
     Object? id = freezed,
+    Object? name = null,
     Object? stockCount = null,
-    Object? category = null,
+    Object? categoryId = null,
     Object? description = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       stockCount: null == stockCount
           ? _value.stockCount
           : stockCount // ignore: cast_nullable_to_non_nullable
               as int,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as int,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -104,10 +104,10 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
-      String? id,
+      {String? id,
+      String name,
       int stockCount,
-      String category,
+      int categoryId,
       String description,
       DateTime createdAt,
       DateTime updatedAt});
@@ -122,31 +122,31 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
     Object? id = freezed,
+    Object? name = null,
     Object? stockCount = null,
-    Object? category = null,
+    Object? categoryId = null,
     Object? description = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
     return _then(_$_Item(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       stockCount: null == stockCount
           ? _value.stockCount
           : stockCount // ignore: cast_nullable_to_non_nullable
               as int,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as int,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -167,22 +167,22 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
 
 class _$_Item implements _Item {
   const _$_Item(
-      {required this.name,
-      required this.id,
+      {required this.id,
+      required this.name,
       required this.stockCount,
-      required this.category,
+      required this.categoryId,
       required this.description,
       required this.createdAt,
       required this.updatedAt});
 
   @override
-  final String name;
-  @override
   final String? id;
+  @override
+  final String name;
   @override
   final int stockCount;
   @override
-  final String category;
+  final int categoryId;
   @override
   final String description;
   @override
@@ -192,7 +192,7 @@ class _$_Item implements _Item {
 
   @override
   String toString() {
-    return 'Item(name: $name, id: $id, stockCount: $stockCount, category: $category, description: $description, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Item(id: $id, name: $name, stockCount: $stockCount, categoryId: $categoryId, description: $description, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -200,12 +200,12 @@ class _$_Item implements _Item {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Item &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.stockCount, stockCount) ||
                 other.stockCount == stockCount) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.createdAt, createdAt) ||
@@ -215,7 +215,7 @@ class _$_Item implements _Item {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, id, stockCount, category,
+  int get hashCode => Object.hash(runtimeType, id, name, stockCount, categoryId,
       description, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
@@ -227,22 +227,22 @@ class _$_Item implements _Item {
 
 abstract class _Item implements Item {
   const factory _Item(
-      {required final String name,
-      required final String? id,
+      {required final String? id,
+      required final String name,
       required final int stockCount,
-      required final String category,
+      required final int categoryId,
       required final String description,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$_Item;
 
   @override
-  String get name;
-  @override
   String? get id;
+  @override
+  String get name;
   @override
   int get stockCount;
   @override
-  String get category;
+  int get categoryId;
   @override
   String get description;
   @override

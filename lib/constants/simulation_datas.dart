@@ -1,10 +1,12 @@
+import 'package:restaurant_talks/models/Iitems/category_model.dart';
+
 import '../models/Iitems/item_model.dart';
 
 final List<Item> sampleItems = [
   Item(
     name: 'Garlic Bread',
     stockCount: 30,
-    category: 'Appetizers',
+    categoryId: 1,
     description: 'Crispy bread slices with garlic and butter spread.',
     createdAt: DateTime.now().subtract(const Duration(days: 4)),
     updatedAt: DateTime.now().subtract(const Duration(days: 2)),
@@ -13,7 +15,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Chicken Wings',
     stockCount: 25,
-    category: 'Appetizers',
+    categoryId: 1,
     description: 'Fried chicken wings with spicy sauce.',
     createdAt: DateTime.now().subtract(const Duration(days: 6)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
@@ -22,7 +24,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Spaghetti Carbonara',
     stockCount: 15,
-    category: 'Main Dishes',
+    categoryId: 2,
     description: 'Pasta with creamy egg sauce and bacon bits.',
     createdAt: DateTime.now().subtract(const Duration(days: 7)),
     updatedAt: DateTime.now().subtract(const Duration(days: 5)),
@@ -31,7 +33,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Vegetable Stir Fry',
     stockCount: 20,
-    category: 'Main Dishes',
+    categoryId: 2,
     description: 'Assorted veggies stir-fried in savory sauce.',
     createdAt: DateTime.now().subtract(const Duration(days: 9)),
     updatedAt: DateTime.now().subtract(const Duration(days: 6)),
@@ -40,7 +42,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Blueberry Cheesecake',
     stockCount: 20,
-    category: 'Desserts',
+    categoryId: 3,
     description: 'Creamy cheesecake with blueberry topping.',
     createdAt: DateTime.now().subtract(const Duration(days: 10)),
     updatedAt: DateTime.now().subtract(const Duration(days: 7)),
@@ -49,7 +51,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Chocolate Mousse',
     stockCount: 25,
-    category: 'Desserts',
+    categoryId: 3,
     description: 'Rich and creamy chocolate dessert.',
     createdAt: DateTime.now().subtract(const Duration(days: 12)),
     updatedAt: DateTime.now().subtract(const Duration(days: 8)),
@@ -58,7 +60,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Iced Tea',
     stockCount: 35,
-    category: 'Beverages',
+    categoryId: 4,
     description: 'Chilled tea with a slice of lemon.',
     createdAt: DateTime.now().subtract(const Duration(days: 3)),
     updatedAt: DateTime.now().subtract(const Duration(days: 1)),
@@ -67,7 +69,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Espresso',
     stockCount: 40,
-    category: 'Beverages',
+    categoryId: 4,
     description: 'Strong coffee served in small amounts.',
     createdAt: DateTime.now().subtract(const Duration(days: 5)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
@@ -76,7 +78,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Bread Basket',
     stockCount: 30,
-    category: 'Other',
+    categoryId: 5,
     description: 'A basket of freshly baked assorted bread.',
     createdAt: DateTime.now().subtract(const Duration(days: 2)),
     updatedAt: DateTime.now().subtract(const Duration(days: 1)),
@@ -85,7 +87,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Dipping Sauce Trio',
     stockCount: 25,
-    category: 'Other',
+    categoryId: 5,
     description: 'Three different sauces for dipping.',
     createdAt: DateTime.now().subtract(const Duration(days: 4)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
@@ -94,7 +96,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Garlic Bread',
     stockCount: 30,
-    category: 'Appetizers',
+    categoryId: 1,
     description: 'Crispy bread slices with garlic and butter spread.',
     createdAt: DateTime.now().subtract(const Duration(days: 4)),
     updatedAt: DateTime.now().subtract(const Duration(days: 2)),
@@ -103,7 +105,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Chicken Wings',
     stockCount: 25,
-    category: 'Appetizers',
+    categoryId: 1,
     description: 'Fried chicken wings with spicy sauce.',
     createdAt: DateTime.now().subtract(const Duration(days: 6)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
@@ -112,7 +114,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Spaghetti Carbonara',
     stockCount: 15,
-    category: 'Main Dishes',
+    categoryId: 2,
     description: 'Pasta with creamy egg sauce and bacon bits.',
     createdAt: DateTime.now().subtract(const Duration(days: 7)),
     updatedAt: DateTime.now().subtract(const Duration(days: 5)),
@@ -121,7 +123,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Vegetable Stir Fry',
     stockCount: 20,
-    category: 'Main Dishes',
+    categoryId: 2,
     description: 'Assorted veggies stir-fried in savory sauce.',
     createdAt: DateTime.now().subtract(const Duration(days: 9)),
     updatedAt: DateTime.now().subtract(const Duration(days: 6)),
@@ -130,7 +132,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Blueberry Cheesecake',
     stockCount: 20,
-    category: 'Desserts',
+    categoryId: 3,
     description: 'Creamy cheesecake with blueberry topping.',
     createdAt: DateTime.now().subtract(const Duration(days: 10)),
     updatedAt: DateTime.now().subtract(const Duration(days: 7)),
@@ -139,7 +141,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Chocolate Mousse',
     stockCount: 25,
-    category: 'Desserts',
+    categoryId: 3,
     description: 'Rich and creamy chocolate dessert.',
     createdAt: DateTime.now().subtract(const Duration(days: 12)),
     updatedAt: DateTime.now().subtract(const Duration(days: 8)),
@@ -148,7 +150,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Iced Tea',
     stockCount: 35,
-    category: 'Beverages',
+    categoryId: 4,
     description: 'Chilled tea with a slice of lemon.',
     createdAt: DateTime.now().subtract(const Duration(days: 3)),
     updatedAt: DateTime.now().subtract(const Duration(days: 1)),
@@ -157,7 +159,7 @@ final List<Item> sampleItems = [
   Item(
     name: 'Espresso',
     stockCount: 40,
-    category: 'Beverages',
+    categoryId: 4,
     description: 'Strong coffee served in small amounts.',
     createdAt: DateTime.now().subtract(const Duration(days: 5)),
     updatedAt: DateTime.now().subtract(const Duration(days: 3)),
@@ -166,63 +168,64 @@ final List<Item> sampleItems = [
 ];
 
 // Item Categories
-const List<String> itemCategories = [
-  'All Categories',
-  'Appetizers',
-  'Main Dishes',
-  'Beverages',
-  'Desserts',
-  'Other',
+final List<Category> itemCategories = [
+  const Category(id: 0, value: 'All Category'),
+  const Category(id: 1, value: 'Appetizers'),
+  const Category(id: 2, value: 'Main Dishes'),
+  const Category(id: 3, value: 'Desserts'),
+  const Category(id: 4, value: 'Beverages'),
+  const Category(id: 5, value: 'Others'),
 ];
+
 const String notSelected = 'Not Selected';
 
-// Prefectures
-const List<String> prefectures = [
-  'Hokkaido',
-  'Aomori',
-  'Iwate',
-  'Miyagi',
-  'Akita',
-  'Yamagata',
-  'Fukushima',
-  'Ibaraki',
-  'Tochigi',
-  'Gunma',
-  'Saitama',
-  'Chiba',
-  'Tokyo',
-  'Kanagawa',
-  'Niigata',
-  'Toyama',
-  'Ishikawa',
-  'Fukui',
-  'Yamanashi',
-  'Nagano',
-  'Gifu',
-  'Shizuoka',
-  'Aichi',
-  'Mie',
-  'Shiga',
-  'Kyoto',
-  'Osaka',
-  'Hyogo',
-  'Nara',
-  'Wakayama',
-  'Tottori',
-  'Shimane',
-  'Okayama',
-  'Hiroshima',
-  'Yamaguchi',
-  'Tokushima',
-  'Kagawa',
-  'Ehime',
-  'Kochi',
-  'Fukuoka',
-  'Saga',
-  'Nagasaki',
-  'Kumamoto',
-  'Oita',
-  'Miyazaki',
-  'Kagoshima',
-  'Okinawa'
-];
+// // Prefectures
+// const List<String> prefectures = [
+//   'Hokkaido',
+//   'Aomori',
+//   'Iwate',
+//   'Miyagi',
+//   'Akita',
+//   'Yamagata',
+//   'Fukushima',
+//   'Ibaraki',
+//   'Tochigi',
+//   'Gunma',
+//   'Saitama',
+//   'Chiba',
+//   'Tokyo',
+//   'Kanagawa',
+//   'Niigata',
+//   'Toyama',
+//   'Ishikawa',
+//   'Fukui',
+//   'Yamanashi',
+//   'Nagano',
+//   'Gifu',
+//   'Shizuoka',
+//   'Aichi',
+//   'Mie',
+//   'Shiga',
+//   'Kyoto',
+//   'Osaka',
+//   'Hyogo',
+//   'Nara',
+//   'Wakayama',
+//   'Tottori',
+//   'Shimane',
+//   'Okayama',
+//   'Hiroshima',
+//   'Yamaguchi',
+//   'Tokushima',
+//   'Kagawa',
+//   'Ehime',
+//   'Kochi',
+//   'Fukuoka',
+//   'Saga',
+//   'Nagasaki',
+//   'Kumamoto',
+//   'Oita',
+//   'Miyazaki',
+//   'Kagoshima',
+//   'Okinawa'
+// ];
