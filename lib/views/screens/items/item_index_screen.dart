@@ -128,6 +128,13 @@ class ItemIndexScreen extends ConsumerWidget {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            goRouter.go(itemFormScreenPath);
+          },
+          backgroundColor: darkBlue,
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

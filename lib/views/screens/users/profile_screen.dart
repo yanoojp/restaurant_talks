@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
+import 'package:restaurant_talks/view_model/users/login_view_model.dart';
 import 'package:restaurant_talks/view_model/users/profile_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
@@ -56,10 +57,14 @@ class ProfileScreen extends ConsumerWidget {
                 },
               ),
               const SizedBox(height: 10),
-              const ButtonWithUnderline(
+              ButtonWithUnderline(
                 text: logoutButton,
                 screenPath: loginScreenPath,
-                func: null,
+                func: () {
+                  final _ = ref.refresh(loginStateManager);
+                  // ignore: non_constant_identifier_names
+                  final __ = ref.refresh(profileStateManager);
+                },
                 color: darkBlue,
               )
             ],

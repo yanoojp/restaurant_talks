@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -6,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'guest_number_view_model.freezed.dart';
 
 class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference guestNumbersCollection =
       FirebaseFirestore.instance.collection('guestNumbers');
 
@@ -29,8 +31,17 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
   }
 
   Future<void> saveGuestNumber(BuildContext context) async {
+    final user = auth.currentUser;
+    if (user == null) {
+      showErrorDialog(context, "User is not authenticated.");
+      return;
+    }
+
     if (_isValidNumber(state.guestNumberController.text)) {
-      await guestNumbersCollection.add({'guestNumber': state.guestNumber});
+      await guestNumbersCollection.add({
+        'guestNumber': state.guestNumber,
+        'userId': user.uid
+      });
     } else {
       showErrorDialog(context, "Invalid guest number entered.");
     }

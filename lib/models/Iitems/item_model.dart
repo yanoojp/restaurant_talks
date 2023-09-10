@@ -7,6 +7,7 @@ part 'item_model.freezed.dart';
 class Item with _$Item {
   const factory Item({
     required String? id,
+    required String? userId,
     required String name,
     required int stockCount,
     required int categoryId,
@@ -19,6 +20,7 @@ class Item with _$Item {
     final data = doc.data() as Map<String, dynamic>;
     return Item(
       id: doc.id,
+      userId: data['userId'] as String,
       name: data['name'] as String,
       stockCount: data['stockCount'] as int,
       categoryId: data['categoryId'] as int,
@@ -30,13 +32,16 @@ class Item with _$Item {
 }
 
 extension ItemX on Item {
-  Map<String, dynamic> toDocument() => {
-        'id': id,
-        'name': name,
-        'stockCount': stockCount,
-        'categoryId': categoryId,
-        'description': description,
-        'createdAt': Timestamp.fromDate(createdAt),
-        'updatedAt': Timestamp.fromDate(updatedAt),
-      };
+  Map<String, dynamic> toDocument(String userId) {
+    return {
+      'id': id,
+      'userId': userId,
+      'name': name,
+      'stockCount': stockCount,
+      'categoryId': categoryId,
+      'description': description,
+      'createdAt': Timestamp.fromDate(createdAt),
+      'updatedAt': Timestamp.fromDate(updatedAt),
+    };
+  }
 }
