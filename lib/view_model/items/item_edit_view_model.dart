@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -22,6 +23,7 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
   ItemEditStateManager()
       : super(_ItemEditState(
           item: Item(
+              userId: null,
               name: '',
               stockCount: 0,
               categoryId: 0,
@@ -37,8 +39,9 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
 
   void initializeItem(String id) async {
     final item = Item(
-        name: 'name',
         id: id,
+        userId: null,
+        name: 'name',
         stockCount: 1,
         categoryId: 1,
         description: 'description',
@@ -73,13 +76,19 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
   }
 
   Future<void> saveItem() async {
+    final auth = FirebaseAuth.instance;
+    final user = auth.currentUser;
+    final uid = user?.uid;
+
+    if (uid == null) {
+      throw Exception("User is not authenticated.");
+    }
+
     final collection = FirebaseFirestore.instance.collection('items');
     if (state.item.id == null || state.item.id!.isEmpty) {
-      await collection.add(state.item.toDocument());
-      // final docRef = await collection.add(state.item.toDocument());
-      // item = item.copyWith(id: docRef.id);
+      await collection.add(state.item.toDocument(uid));
     } else {
-      await collection.doc(state.item.id).set(state.item.toDocument());
+      await collection.doc(state.item.id).set(state.item.toDocument(uid));
     }
   }
 }

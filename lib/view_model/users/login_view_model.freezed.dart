@@ -37,6 +37,8 @@ abstract class $LoginStateCopyWith<$Res> {
       {CustomisedUser user,
       TextEditingController emailController,
       TextEditingController passwordController});
+
+  $CustomisedUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -52,12 +54,12 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
+    Object? user = null,
     Object? emailController = null,
     Object? passwordController = null,
   }) {
     return _then(_value.copyWith(
-      user: freezed == user
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as CustomisedUser,
@@ -70,6 +72,14 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           : passwordController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CustomisedUserCopyWith<$Res> get user {
+    return $CustomisedUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -85,6 +95,9 @@ abstract class _$$_LoginStateCopyWith<$Res>
       {CustomisedUser user,
       TextEditingController emailController,
       TextEditingController passwordController});
+
+  @override
+  $CustomisedUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -98,12 +111,12 @@ class __$$_LoginStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
+    Object? user = null,
     Object? emailController = null,
     Object? passwordController = null,
   }) {
     return _then(_$_LoginState(
-      user: freezed == user
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as CustomisedUser,
@@ -144,7 +157,7 @@ class _$_LoginState implements _LoginState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginState &&
-            const DeepCollectionEquality().equals(other.user, user) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.emailController, emailController) ||
                 other.emailController == emailController) &&
             (identical(other.passwordController, passwordController) ||
@@ -152,11 +165,8 @@ class _$_LoginState implements _LoginState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(user),
-      emailController,
-      passwordController);
+  int get hashCode =>
+      Object.hash(runtimeType, user, emailController, passwordController);
 
   @JsonKey(ignore: true)
   @override
