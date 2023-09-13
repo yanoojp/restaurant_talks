@@ -82,25 +82,6 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
       },
     );
   }
-
-  Future<void> signup(
-      BuildContext context) async {
-    final authService = FirebaseAuthService();
-    final profile = Profile(
-        email: state.emailController.text,
-        password: state.passwordController.text,
-        managerName: state.managerNameController.text,
-        restaurantName: state.restaurantNameController.text);
-
-    final userCredential = await authService.register(profile);
-
-    if (userCredential != null) {
-      goRouter.go(itemIndexScreenPath);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Signup failed! Please check your input.")));
-    }
-  }
 }
 
 final profileStateManager =

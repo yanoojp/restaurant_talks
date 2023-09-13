@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/view_model/users/login_view_model.dart';
+import 'package:restaurant_talks/view_model/users/user_authentication_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
 import 'package:restaurant_talks/views/widgets/base/logo.dart';
@@ -11,7 +11,7 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginState = ref.watch(loginStateManager);
+    final loginState = ref.watch(userAuthenticationStateManager);
 
     return Scaffold(
       body: Container(
@@ -59,13 +59,15 @@ class LoginScreen extends ConsumerWidget {
               text: loginButton,
               func: () {
                 final validationResult = ref
-                    .read(loginStateManager.notifier)
+                    .read(userAuthenticationStateManager.notifier)
                     .validateLoginForm(loginState);
                 if (validationResult == null) {
-                  ref.read(loginStateManager.notifier).login(context);
+                  ref
+                      .read(userAuthenticationStateManager.notifier)
+                      .login(context);
                 } else {
                   ref
-                      .read(loginStateManager.notifier)
+                      .read(userAuthenticationStateManager.notifier)
                       .showErrorDialog(context, validationResult);
                 }
               },

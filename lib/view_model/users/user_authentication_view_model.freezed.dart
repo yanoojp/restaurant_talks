@@ -1,0 +1,244 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'user_authentication_view_model.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$UserAuthenticationState {
+  CustomisedUser get user => throw _privateConstructorUsedError;
+  TextEditingController get emailController =>
+      throw _privateConstructorUsedError;
+  TextEditingController get passwordController =>
+      throw _privateConstructorUsedError;
+  TextEditingController get managerNameController =>
+      throw _privateConstructorUsedError;
+  TextEditingController get restaurantNameController =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UserAuthenticationStateCopyWith<UserAuthenticationState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserAuthenticationStateCopyWith<$Res> {
+  factory $UserAuthenticationStateCopyWith(UserAuthenticationState value,
+          $Res Function(UserAuthenticationState) then) =
+      _$UserAuthenticationStateCopyWithImpl<$Res, UserAuthenticationState>;
+  @useResult
+  $Res call(
+      {CustomisedUser user,
+      TextEditingController emailController,
+      TextEditingController passwordController,
+      TextEditingController managerNameController,
+      TextEditingController restaurantNameController});
+
+  $CustomisedUserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class _$UserAuthenticationStateCopyWithImpl<$Res,
+        $Val extends UserAuthenticationState>
+    implements $UserAuthenticationStateCopyWith<$Res> {
+  _$UserAuthenticationStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+    Object? emailController = null,
+    Object? passwordController = null,
+    Object? managerNameController = null,
+    Object? restaurantNameController = null,
+  }) {
+    return _then(_value.copyWith(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as CustomisedUser,
+      emailController: null == emailController
+          ? _value.emailController
+          : emailController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      passwordController: null == passwordController
+          ? _value.passwordController
+          : passwordController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      managerNameController: null == managerNameController
+          ? _value.managerNameController
+          : managerNameController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      restaurantNameController: null == restaurantNameController
+          ? _value.restaurantNameController
+          : restaurantNameController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CustomisedUserCopyWith<$Res> get user {
+    return $CustomisedUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserAuthenticationStateCopyWith<$Res>
+    implements $UserAuthenticationStateCopyWith<$Res> {
+  factory _$$_UserAuthenticationStateCopyWith(_$_UserAuthenticationState value,
+          $Res Function(_$_UserAuthenticationState) then) =
+      __$$_UserAuthenticationStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {CustomisedUser user,
+      TextEditingController emailController,
+      TextEditingController passwordController,
+      TextEditingController managerNameController,
+      TextEditingController restaurantNameController});
+
+  @override
+  $CustomisedUserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$_UserAuthenticationStateCopyWithImpl<$Res>
+    extends _$UserAuthenticationStateCopyWithImpl<$Res,
+        _$_UserAuthenticationState>
+    implements _$$_UserAuthenticationStateCopyWith<$Res> {
+  __$$_UserAuthenticationStateCopyWithImpl(_$_UserAuthenticationState _value,
+      $Res Function(_$_UserAuthenticationState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+    Object? emailController = null,
+    Object? passwordController = null,
+    Object? managerNameController = null,
+    Object? restaurantNameController = null,
+  }) {
+    return _then(_$_UserAuthenticationState(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as CustomisedUser,
+      emailController: null == emailController
+          ? _value.emailController
+          : emailController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      passwordController: null == passwordController
+          ? _value.passwordController
+          : passwordController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      managerNameController: null == managerNameController
+          ? _value.managerNameController
+          : managerNameController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      restaurantNameController: null == restaurantNameController
+          ? _value.restaurantNameController
+          : restaurantNameController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UserAuthenticationState implements _UserAuthenticationState {
+  const _$_UserAuthenticationState(
+      {required this.user,
+      required this.emailController,
+      required this.passwordController,
+      required this.managerNameController,
+      required this.restaurantNameController});
+
+  @override
+  final CustomisedUser user;
+  @override
+  final TextEditingController emailController;
+  @override
+  final TextEditingController passwordController;
+  @override
+  final TextEditingController managerNameController;
+  @override
+  final TextEditingController restaurantNameController;
+
+  @override
+  String toString() {
+    return 'UserAuthenticationState(user: $user, emailController: $emailController, passwordController: $passwordController, managerNameController: $managerNameController, restaurantNameController: $restaurantNameController)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserAuthenticationState &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.emailController, emailController) ||
+                other.emailController == emailController) &&
+            (identical(other.passwordController, passwordController) ||
+                other.passwordController == passwordController) &&
+            (identical(other.managerNameController, managerNameController) ||
+                other.managerNameController == managerNameController) &&
+            (identical(
+                    other.restaurantNameController, restaurantNameController) ||
+                other.restaurantNameController == restaurantNameController));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user, emailController,
+      passwordController, managerNameController, restaurantNameController);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserAuthenticationStateCopyWith<_$_UserAuthenticationState>
+      get copyWith =>
+          __$$_UserAuthenticationStateCopyWithImpl<_$_UserAuthenticationState>(
+              this, _$identity);
+}
+
+abstract class _UserAuthenticationState implements UserAuthenticationState {
+  const factory _UserAuthenticationState(
+          {required final CustomisedUser user,
+          required final TextEditingController emailController,
+          required final TextEditingController passwordController,
+          required final TextEditingController managerNameController,
+          required final TextEditingController restaurantNameController}) =
+      _$_UserAuthenticationState;
+
+  @override
+  CustomisedUser get user;
+  @override
+  TextEditingController get emailController;
+  @override
+  TextEditingController get passwordController;
+  @override
+  TextEditingController get managerNameController;
+  @override
+  TextEditingController get restaurantNameController;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserAuthenticationStateCopyWith<_$_UserAuthenticationState>
+      get copyWith => throw _privateConstructorUsedError;
+}
