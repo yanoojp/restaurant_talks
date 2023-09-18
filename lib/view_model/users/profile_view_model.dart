@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/firebase/userAuthentication.dart';
+import 'package:restaurant_talks/firebase/user_authentication.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
 import 'package:restaurant_talks/views/widgets/base/error_dialog.dart';
 
@@ -39,7 +39,45 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
           managerNameController: TextEditingController(),
           restaurantNameController: TextEditingController(),
           // prefectureController: TextEditingController(),
-        ));
+        )) {
+    setUserInfo();
+  }
+
+  Future<void> setUserInfo() async {
+    try {
+      state = state.copyWith(isProcessing: true);
+
+      final auth = FirebaseAuth.instance;
+      final firestore = FirebaseFirestore.instance;
+
+      final user = auth.currentUser;
+      if (user != null) {
+        state.emailController.text = user.email ?? '';
+        state.passwordController.text = '';
+
+        DocumentSnapshot userDoc =
+            await firestore.collection('users').doc(user.uid).get();
+
+        if (userDoc.exists) {
+          Map<String, dynamic> userData =
+              userDoc.data() as Map<String, dynamic>;
+
+          state.managerNameController.text = userData['managerName'] ?? '';
+          state.restaurantNameController.text =
+              userData['restaurantName'] ?? '';
+          // state.prefectureController.text = userData['prefecture'] ?? '';
+        } else {
+          print("User data not found in Firestore");
+        }
+      } else {
+        print("No user currently signed in");
+      }
+    } catch (e) {
+      print("Error setting user info: $e");
+    } finally {
+      state = state.copyWith(isProcessing: false);
+    }
+  }
 
   String? validateProfileForm(state) {
     String email = state.emailController.text;
@@ -54,7 +92,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
       return invalidEmailMessage;
     }
 
-    if (password.isEmpty || password.length < 8) {
+    if (password.length < 8) {
       return invalidPasswordMessage;
     }
 
@@ -86,11 +124,13 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
 
   Future<void> updateProfile() async {
     final authService = FirebaseAuthService();
+    String updateEmail = state.emailController.text;
     String updatedManagerName = state.managerNameController.text;
     String updatedRestaurantName = state.restaurantNameController.text;
 
     try {
       await authService.updateUserProfiles(
+        email: updateEmail,
         managerName: updatedManagerName,
         restaurantName: updatedRestaurantName,
       );
@@ -127,7 +167,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
   Future<void> updateUserAuth() async {
     final authService = FirebaseAuthService();
     String updatedEmail = state.emailController.text;
-    String updatedPassword = state.passwordController.text;
+    String? updatedPassword = state.passwordController.text != '' ? state.passwordController.text : null;
 
     try {
       await authService.updateUserAuths(

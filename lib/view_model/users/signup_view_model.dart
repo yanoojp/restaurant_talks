@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/firebase/userAuthentication.dart';
+import 'package:restaurant_talks/firebase/user_authentication.dart';
 import 'package:restaurant_talks/models/users/login_model.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';

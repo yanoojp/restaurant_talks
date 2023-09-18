@@ -45,37 +45,31 @@ class FirebaseAuthService {
     await _firebaseAuth.signOut();
   }
 
-  Future<void> updateUserAuths({
-    required String email,
-    required String password
-  }) async {
+  Future<void> updateUserAuths(
+      {required String email, String? password}) async {
     User? user = _firebaseAuth.currentUser;
 
     if (user != null) {
-      // Update email
       await user.updateEmail(email);
-      // Update password
-      await user.updatePassword(password);
+      if (password != null) await user.updatePassword(password);
     } else {
-      // Handle user not logged in error
       throw Exception('User not logged in');
     }
   }
 
-  Future<void> updateUserProfiles({
-    required String managerName,
-    required String restaurantName
-  }) async {
+  Future<void> updateUserProfiles(
+      {required String email,
+      required String managerName,
+      required String restaurantName}) async {
     User? user = _firebaseAuth.currentUser;
 
     if (user != null) {
-      // Update user's Firestore document
       await _firestore.collection('users').doc(user.uid).update({
+        'email': email,
         'managerName': managerName,
         'restaurantName': restaurantName,
       });
     } else {
-      // Handle user not logged in error
       throw Exception('User not logged in');
     }
   }
