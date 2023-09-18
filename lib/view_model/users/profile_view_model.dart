@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/firebase/userAuthentication.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
-import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/views/widgets/base/error_dialog.dart';
 
 part 'profile_view_model.freezed.dart';
@@ -81,6 +82,62 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
         );
       },
     );
+  }
+
+  Future<void> updateProfile() async {
+    final authService = FirebaseAuthService();
+    String updatedManagerName = state.managerNameController.text;
+    String updatedRestaurantName = state.restaurantNameController.text;
+
+    try {
+      await authService.updateUserProfiles(
+        managerName: updatedManagerName,
+        restaurantName: updatedRestaurantName,
+      );
+    } catch (e) {
+      print("Failed to update profile details: $e");
+      // Handle error, perhaps notify the user
+    }
+  }
+
+  Future<void> logout() async {
+    final authService = FirebaseAuthService();
+    await authService.signOut();
+  }
+
+  Future<void> deleteAccount() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    try {
+      final user = auth.currentUser;
+
+      if (user != null) {
+        await firestore.collection('users').doc(user.uid).delete();
+        await user.delete();
+      } else {
+        print("No user currently signed in");
+      }
+    } catch (e) {
+      print("Error deleting account: $e");
+      // You might want to throw the error or handle it differently depending on your needs.
+    }
+  }
+
+  Future<void> updateUserAuth() async {
+    final authService = FirebaseAuthService();
+    String updatedEmail = state.emailController.text;
+    String updatedPassword = state.passwordController.text;
+
+    try {
+      await authService.updateUserAuths(
+        email: updatedEmail,
+        password: updatedPassword,
+      );
+    } catch (e) {
+      print("Failed to update email: $e");
+      // Handle error, perhaps notify the user
+    }
   }
 }
 

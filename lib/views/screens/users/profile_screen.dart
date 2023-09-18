@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
-import 'package:restaurant_talks/view_model/users/user_authentication_view_model.dart';
 import 'package:restaurant_talks/view_model/users/profile_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
@@ -37,6 +36,11 @@ class ProfileScreen extends ConsumerWidget {
                     controller: profileState.emailController,
                   ),
                   const SizedBox(height: 30),
+                  const Text('password'),
+                  TextField(
+                    controller: profileState.passwordController,
+                  ),
+                  const SizedBox(height: 30),
                   const Text(managerNameHintText),
                   TextField(
                     controller: profileState.managerNameController,
@@ -53,7 +57,8 @@ class ProfileScreen extends ConsumerWidget {
               Button(
                 text: saveButton,
                 func: () {
-                  goRouter.go(itemIndexScreenPath);
+                  ref.read(profileStateManager.notifier).updateUserAuth();
+                  ref.read(profileStateManager.notifier).updateProfile();
                 },
               ),
               const SizedBox(height: 10),
@@ -61,9 +66,7 @@ class ProfileScreen extends ConsumerWidget {
                 text: logoutButton,
                 screenPath: loginScreenPath,
                 func: () {
-                  final _ = ref.refresh(userAuthenticationStateManager);
-                  // ignore: non_constant_identifier_names
-                  final __ = ref.refresh(profileStateManager);
+                  ref.read(profileStateManager.notifier).logout();
                 },
                 color: darkBlue,
               ),
@@ -72,11 +75,9 @@ class ProfileScreen extends ConsumerWidget {
                 screenPath: loginScreenPath,
                 func: () {
                   ref
-                      .read(userAuthenticationStateManager.notifier)
+                      .read(profileStateManager.notifier)
                       .deleteAccount();
-                  final _ = ref.refresh(userAuthenticationStateManager);
-                  // ignore: non_constant_identifier_names
-                  final __ = ref.refresh(profileStateManager);
+                  goRouter.go(signupScreenPath);
                 },
                 color: darkBlue,
               )

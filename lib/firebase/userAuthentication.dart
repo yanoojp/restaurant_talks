@@ -6,6 +6,7 @@ import 'package:restaurant_talks/models/users/profile_model.dart';
 class FirebaseAuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final usersRef = FirebaseFirestore.instance.collection('users');
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<UserCredential?> register(Profile profile) async {
     try {
@@ -42,5 +43,40 @@ class FirebaseAuthService {
 
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+  }
+
+  Future<void> updateUserAuths({
+    required String email,
+    required String password
+  }) async {
+    User? user = _firebaseAuth.currentUser;
+
+    if (user != null) {
+      // Update email
+      await user.updateEmail(email);
+      // Update password
+      await user.updatePassword(password);
+    } else {
+      // Handle user not logged in error
+      throw Exception('User not logged in');
+    }
+  }
+
+  Future<void> updateUserProfiles({
+    required String managerName,
+    required String restaurantName
+  }) async {
+    User? user = _firebaseAuth.currentUser;
+
+    if (user != null) {
+      // Update user's Firestore document
+      await _firestore.collection('users').doc(user.uid).update({
+        'managerName': managerName,
+        'restaurantName': restaurantName,
+      });
+    } else {
+      // Handle user not logged in error
+      throw Exception('User not logged in');
+    }
   }
 }

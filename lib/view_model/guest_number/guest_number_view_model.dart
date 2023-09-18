@@ -25,9 +25,9 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
     if (snapshot.docs.isNotEmpty) {
       int latestGuestNumber = snapshot.docs.first.get('guestNumber');
       state.guestNumberController.text = latestGuestNumber.toString();
-    }
-    state = state.copyWith(
+      state = state.copyWith(
         guestNumber: int.parse(state.guestNumberController.text));
+    }
   }
 
   Future<void> saveGuestNumber(BuildContext context) async {
@@ -38,10 +38,8 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
     }
 
     if (_isValidNumber(state.guestNumberController.text)) {
-      await guestNumbersCollection.add({
-        'guestNumber': state.guestNumber,
-        'userId': user.uid
-      });
+      await guestNumbersCollection
+          .add({'guestNumber': state.guestNumber, 'userId': user.uid});
     } else {
       showErrorDialog(context, "Invalid guest number entered.");
     }

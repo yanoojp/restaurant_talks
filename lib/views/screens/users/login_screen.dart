@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/view_model/users/user_authentication_view_model.dart';
+import 'package:restaurant_talks/view_model/users/signup_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
 import 'package:restaurant_talks/views/widgets/base/logo.dart';
@@ -11,7 +11,7 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginState = ref.watch(userAuthenticationStateManager);
+    final loginState = ref.watch(authStateManager);
 
     return Scaffold(
       body: Container(
@@ -59,15 +59,13 @@ class LoginScreen extends ConsumerWidget {
               text: loginButton,
               func: () {
                 final validationResult = ref
-                    .read(userAuthenticationStateManager.notifier)
-                    .validateLoginForm(loginState);
+                    .read(authStateManager.notifier)
+                    .validateAuthForm(loginState);
                 if (validationResult == null) {
-                  ref
-                      .read(userAuthenticationStateManager.notifier)
-                      .login(context);
+                  ref.read(authStateManager.notifier).login(context);
                 } else {
                   ref
-                      .read(userAuthenticationStateManager.notifier)
+                      .read(authStateManager.notifier)
                       .showErrorDialog(context, validationResult);
                 }
               },
