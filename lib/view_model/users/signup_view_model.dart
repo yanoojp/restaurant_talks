@@ -69,9 +69,9 @@ class SignupStateManager extends StateNotifier<SignupState> {
 
   Future<void> login(BuildContext context) async {
     final authService = FirebaseAuthService();
-    final user =
-        CustomisedUser(email: state.user.email, password: state.user.password);
-
+    final user = CustomisedUser(
+        email: state.emailController.text,
+        password: state.passwordController.text);
     final userCredential = await authService.login(user);
 
     if (userCredential != null) {
