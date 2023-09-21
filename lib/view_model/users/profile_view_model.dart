@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/firebase/userAuthentication.dart';
+import 'package:restaurant_talks/firebase/user_authentication.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
-import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/views/widgets/base/error_dialog.dart';
 
 part 'profile_view_model.freezed.dart';
@@ -38,7 +39,45 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
           managerNameController: TextEditingController(),
           restaurantNameController: TextEditingController(),
           // prefectureController: TextEditingController(),
-        ));
+        )) {
+    setUserInfo();
+  }
+
+  Future<void> setUserInfo() async {
+    try {
+      state = state.copyWith(isProcessing: true);
+
+      final auth = FirebaseAuth.instance;
+      final firestore = FirebaseFirestore.instance;
+
+      final user = auth.currentUser;
+      if (user != null) {
+        state.emailController.text = user.email ?? '';
+        state.passwordController.text = '';
+
+        DocumentSnapshot userDoc =
+            await firestore.collection('users').doc(user.uid).get();
+
+        if (userDoc.exists) {
+          Map<String, dynamic> userData =
+              userDoc.data() as Map<String, dynamic>;
+
+          state.managerNameController.text = userData['managerName'] ?? '';
+          state.restaurantNameController.text =
+              userData['restaurantName'] ?? '';
+          // state.prefectureController.text = userData['prefecture'] ?? '';
+        } else {
+          print("User data not found in Firestore");
+        }
+      } else {
+        print("No user currently signed in");
+      }
+    } catch (e) {
+      print("Error setting user info: $e");
+    } finally {
+      state = state.copyWith(isProcessing: false);
+    }
+  }
 
   String? validateProfileForm(state) {
     String email = state.emailController.text;
@@ -53,7 +92,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
       return invalidEmailMessage;
     }
 
-    if (password.isEmpty || password.length < 8) {
+    if (password.length < 8) {
       return invalidPasswordMessage;
     }
 
@@ -83,22 +122,61 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     );
   }
 
-  Future<void> signup(
-      BuildContext context) async {
+  Future<void> updateProfile() async {
     final authService = FirebaseAuthService();
-    final profile = Profile(
-        email: state.emailController.text,
-        password: state.passwordController.text,
-        managerName: state.managerNameController.text,
-        restaurantName: state.restaurantNameController.text);
+    String updateEmail = state.emailController.text;
+    String updatedManagerName = state.managerNameController.text;
+    String updatedRestaurantName = state.restaurantNameController.text;
 
-    final userCredential = await authService.register(profile);
+    try {
+      await authService.updateUserProfiles(
+        email: updateEmail,
+        managerName: updatedManagerName,
+        restaurantName: updatedRestaurantName,
+      );
+    } catch (e) {
+      print("Failed to update profile details: $e");
+      // Handle error, perhaps notify the user
+    }
+  }
 
-    if (userCredential != null) {
-      goRouter.go(itemIndexScreenPath);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Signup failed! Please check your input.")));
+  Future<void> logout() async {
+    final authService = FirebaseAuthService();
+    await authService.signOut();
+  }
+
+  Future<void> deleteAccount() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    try {
+      final user = auth.currentUser;
+
+      if (user != null) {
+        await firestore.collection('users').doc(user.uid).delete();
+        await user.delete();
+      } else {
+        print("No user currently signed in");
+      }
+    } catch (e) {
+      print("Error deleting account: $e");
+      // You might want to throw the error or handle it differently depending on your needs.
+    }
+  }
+
+  Future<void> updateUserAuth() async {
+    final authService = FirebaseAuthService();
+    String updatedEmail = state.emailController.text;
+    String? updatedPassword = state.passwordController.text != '' ? state.passwordController.text : null;
+
+    try {
+      await authService.updateUserAuths(
+        email: updatedEmail,
+        password: updatedPassword,
+      );
+    } catch (e) {
+      print("Failed to update email: $e");
+      // Handle error, perhaps notify the user
     }
   }
 }

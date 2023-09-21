@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/guest_number/guest_number_view_model.dart';

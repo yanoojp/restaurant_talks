@@ -10,7 +10,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final guestViewModel = ref.watch(guestNumberProvider);
+    final guestNumberState = ref.watch(guestNumberProvider);
 
     return AppBar(
       automaticallyImplyLeading: false,
@@ -28,7 +28,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
                   children: [
                     const Text(guestNumberAppBarHintText,
                         style: TextStyle(fontSize: normalFontSize)),
-                    Text(guestViewModel.guestNumber.toString(),
+                    Text(guestNumberState.guestNumber.toString(),
                         style: const TextStyle(fontSize: normalFontSize)),
                   ],
                 ),

@@ -4,8 +4,8 @@ import 'package:restaurant_talks/constants/simulation_datas.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/models/Iitems/category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
+import 'package:restaurant_talks/view_model/items/item_edit_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
-import '../../../view_model/items/item_edit_view_model.dart';
 
 bool _isInitialized = false;
 
