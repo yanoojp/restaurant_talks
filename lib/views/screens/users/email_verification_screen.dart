@@ -20,14 +20,13 @@ class EmailVerificationScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              "Please verify your email to proceed. We've sent you a verification link. Check your email and click on the link provided.",
+              "Please verify your email to proceed.\nWe've sent you a verification link.\nCheck your email and click on the link provided.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: normalFontSize),
+              style: TextStyle(fontSize: normalFontSize, height: 1.5),
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 80.0),
             Button(
               text: "Resend Verification Email",
               func: () async {
@@ -37,6 +36,7 @@ class EmailVerificationScreen extends ConsumerWidget {
               },
               backgroundColor: darkBlue,
               textColor: whiteColor,
+              width: MediaQuery.of(context).size.width * 0.8,
             ),
             const SizedBox(height: 20.0),
             Button(
@@ -48,6 +48,7 @@ class EmailVerificationScreen extends ConsumerWidget {
               },
               backgroundColor: darkBlue,
               textColor: whiteColor,
+              width: MediaQuery.of(context).size.width * 0.8,
             ),
             if (emailVerificationState.isLoading) ...[
               const SizedBox(height: 20.0),
