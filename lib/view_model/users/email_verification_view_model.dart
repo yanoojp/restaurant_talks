@@ -28,13 +28,15 @@ class EmailVerificationStateManager
     state = state.copyWith(isLoading: false);
   }
 
-  Future<void> checkEmailVerified() async {
+  Future<bool> checkEmailVerified() async {
     state = state.copyWith(isLoading: true);
     await _auth.currentUser?.reload();
-    if (_auth.currentUser?.emailVerified == true) {
+    bool isVerified = _auth.currentUser?.emailVerified ?? false;
+    if (isVerified) {
       goRouter.go(itemIndexScreenPath);
     }
     state = state.copyWith(isLoading: false);
+    return isVerified;
   }
 }
 

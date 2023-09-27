@@ -33,26 +33,39 @@ class EmailVerificationScreen extends ConsumerWidget {
                 await ref
                     .read(emailVerificationStateManager.notifier)
                     .resendVerificationEmail();
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                        "Verification email sent again! Please check your inbox.")));
               },
               backgroundColor: darkBlue,
               textColor: whiteColor,
               width: MediaQuery.of(context).size.width * 0.8,
+              // enabled: !emailVerificationState.isLoading,
             ),
             const SizedBox(height: 20.0),
             Button(
               text: "I've Verified. Continue!",
               func: () async {
-                await ref
+                bool isVerified = await ref
                     .read(emailVerificationStateManager.notifier)
                     .checkEmailVerified();
+                if (!isVerified) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                          "You haven't verified your email yet. Please check your inbox and click the verification link.")));
+                }
               },
               backgroundColor: darkBlue,
               textColor: whiteColor,
               width: MediaQuery.of(context).size.width * 0.8,
+              // enabled: !emailVerificationState.isLoading,
             ),
             if (emailVerificationState.isLoading) ...[
               const SizedBox(height: 20.0),
-              const Center(child: CircularProgressIndicator()),
+              const Center(
+                  child: CircularProgressIndicator(
+                color: darkBlue,
+              )),
             ]
           ],
         ),

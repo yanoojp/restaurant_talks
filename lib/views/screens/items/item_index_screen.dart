@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/simulation_datas.dart';
@@ -5,6 +6,7 @@ import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/models/Iitems/category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
+import 'package:restaurant_talks/views/screens/users/email_verification_screen.dart';
 import 'package:restaurant_talks/views/widgets/custom_app_bar.dart';
 import 'package:restaurant_talks/views/widgets/custom_bottom_nav_bar.dart';
 import 'package:restaurant_talks/views/widgets/items/item_tile.dart';
@@ -15,6 +17,12 @@ class ItemIndexScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemState = ref.watch(itemIndexViewModelProvider);
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final user = auth.currentUser;
+
+    if (user == null || !user.emailVerified) {
+      return const EmailVerificationScreen();
+    }
 
     return GestureDetector(
       onTap: () {
