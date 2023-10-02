@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/utils/functions.dart';
 import 'package:restaurant_talks/views/screens/guest_number/guest_number_screen.dart';
 import 'package:restaurant_talks/views/screens/items/item_form_screen.dart';
 import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
