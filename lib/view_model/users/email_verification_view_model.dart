@@ -24,7 +24,17 @@ class EmailVerificationStateManager
 
   Future<void> resendVerificationEmail() async {
     state = state.copyWith(isLoading: true);
-    await _auth.currentUser?.sendEmailVerification();
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        // Handle specific Firebase exceptions, or display a generic error message
+      }
+      // including other errors ahndle errors
+      // do as much as tests to find what kind of error handling is needed
+      // implement loading indicator (this is also everywhere)
+      // as well as button disable feature when loading
+    }
     state = state.copyWith(isLoading: false);
   }
 

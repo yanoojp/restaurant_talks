@@ -22,6 +22,7 @@ class EmailVerificationScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
+              // On the email verification screen, provide clear instructions. Let the user know that they might need to check their spam folder or that email delivery might take a few minutes.
               "Please verify your email to proceed.\nWe've sent you a verification link.\nCheck your email and click on the link provided.",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: normalFontSize, height: 1.5),
