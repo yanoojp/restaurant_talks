@@ -70,18 +70,20 @@ class SignupStateManager extends StateNotifier<SignupState> {
 
   Future<void> login(BuildContext context) async {
     final authService = FirebaseAuthService();
-    final FirebaseAuth auth = FirebaseAuth.instance;
 
     final userState = CustomisedUser(
         email: state.emailController.text,
         password: state.passwordController.text);
     final userCredential = await authService.login(userState);
 
-    final cuurentUser = auth.currentUser;
     if (userCredential != null) {
-      if (cuurentUser == null || !cuurentUser.emailVerified) {
+      final currentUser = userCredential.user;
+
+      if (currentUser == null || !currentUser.emailVerified) {
         goRouter.go('/signup/email_varification');
+        return;
       }
+
       goRouter.go(itemIndexScreenPath);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
