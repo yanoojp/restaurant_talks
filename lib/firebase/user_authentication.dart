@@ -16,14 +16,27 @@ class FirebaseAuthService {
         password: profile.password,
       );
 
+      // Save the user data to Firestore
       await usersRef.doc(userCredential.user!.uid).set({
         'email': profile.email,
         'managerName': profile.managerName,
         'restaurantName': profile.restaurantName,
       });
 
+      // Send verification email
+      User? user = userCredential.user;
+      if (user != null && !user.emailVerified) {
+        await user.sendEmailVerification();
+      }
+
+      // Here, you can decide whether you want to log the user in right away or
+      // redirect them to a screen that informs them to check their email for verification.
+      // If you choose to redirect, make sure your main app flow checks the emailVerified
+      // property before letting the user proceed.
+
       return userCredential;
     } catch (e) {
+      print(e); // You might want to log the error for debugging purposes
       return null;
     }
   }

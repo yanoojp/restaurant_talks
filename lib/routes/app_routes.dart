@@ -4,6 +4,7 @@ import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/views/screens/guest_number/guest_number_screen.dart';
 import 'package:restaurant_talks/views/screens/items/item_form_screen.dart';
 import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
+import 'package:restaurant_talks/views/screens/users/email_verification_screen.dart';
 import 'package:restaurant_talks/views/screens/users/login_screen.dart';
 import 'package:restaurant_talks/views/screens/users/profile_screen.dart';
 import 'package:restaurant_talks/views/screens/users/signup_screen.dart';
@@ -16,11 +17,21 @@ final goRouter = GoRouter(
     ),
     GoRoute(
       path: signupScreenPath,
-      pageBuilder: (context, state) => const MaterialPage(child: SignupScreen()),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: SignupScreen()),
+      routes: [
+        GoRoute(
+          path: 'email_varification',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: EmailVerificationScreen());
+          },
+        ),
+      ],
     ),
     GoRoute(
       path: itemIndexScreenPath,
-      pageBuilder: (context, state) => const MaterialPage(child: ItemIndexScreen()),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: ItemIndexScreen()),
       routes: [
         GoRoute(
           path: '$itemEditScreenPath/:id',
@@ -33,11 +44,13 @@ final goRouter = GoRouter(
     ),
     GoRoute(
       path: profileScreenPath,
-      pageBuilder: (context, state) => const MaterialPage(child: ProfileScreen()),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: ProfileScreen()),
     ),
     GoRoute(
       path: guestNumberScreenPath,
-      pageBuilder: (context, state) => const MaterialPage(child: GuestNumberScreen()),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: GuestNumberScreen()),
     ),
   ],
 );

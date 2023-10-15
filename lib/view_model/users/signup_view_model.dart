@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -60,7 +61,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
     final userCredential = await authService.register(profile);
 
     if (userCredential != null) {
-      goRouter.go(itemIndexScreenPath);
+      goRouter.go('/signup/email_varification');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Signup failed! Please check your input.")));
@@ -69,12 +70,20 @@ class SignupStateManager extends StateNotifier<SignupState> {
 
   Future<void> login(BuildContext context) async {
     final authService = FirebaseAuthService();
-    final user = CustomisedUser(
+
+    final userState = CustomisedUser(
         email: state.emailController.text,
         password: state.passwordController.text);
-    final userCredential = await authService.login(user);
+    final userCredential = await authService.login(userState);
 
     if (userCredential != null) {
+      final currentUser = userCredential.user;
+
+      if (currentUser == null || !currentUser.emailVerified) {
+        goRouter.go('/signup/email_varification');
+        return;
+      }
+
       goRouter.go(itemIndexScreenPath);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
