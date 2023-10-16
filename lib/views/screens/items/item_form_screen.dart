@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant_talks/constants/simulation_datas.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/models/Iitems/category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';

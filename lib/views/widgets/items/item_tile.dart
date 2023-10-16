@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../constants/variables.dart';
-import '../../../models/Iitems/item_model.dart';
+import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/models/Iitems/item_model.dart';
 
 class ItemTile extends StatelessWidget {
   final Item item;

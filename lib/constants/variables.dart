@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_talks/models/Iitems/category_model.dart';
 
 // Screen Titles
 const String appTitle = 'Restaurant Talks';
 const String editProfileScreen = 'Edit Profile';
 const String guestNumberScreen = 'Guest Number';
+const String emailVerificationScreen = "Email Verification";
 
 // Regexes
 const String emailRegexString = r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -14,6 +16,11 @@ const String invalidPasswordMessage = 'Invalid Password!';
 const String invalidManagerNameMessage = 'Manager name cannot be empty!';
 const String invalidRestaurantNameMessage = 'Restaurant name cannot be empty!';
 const String invalidPrefectureMessage = 'Prefecture cannot be empty!';
+const String notVerifiedMessage = "You haven't verified your email yet. Please check your inbox and click the verification link.";
+
+// Messages
+const String pleaseVerifYourEmailMessage = "Please verify your email to proceed.\nWe've sent you a verification link.\nCheck your email and click on the link provided.";
+const String verificationEmailSentAgainMessage = "Verification email sent again! Please check your inbox.";
 
 // Items Label
 const String itemNameLabel = 'Name';
@@ -41,6 +48,9 @@ const String saveButton = 'Save';
 const String addCountButton = '+';
 const String subtractCounbtButton = '-';
 const String logoutButton = 'Logout';
+const String resendVerificationEmailButton = "Resend Verification Email";
+const String confirmVarifiedButton = "I've Verified. Continue!";
+const String deleteAccountButton = 'Delete Account';
 
 // Nav Bar
 const String homeNavBar = 'Home';
@@ -73,3 +83,20 @@ const Color blackColor = Color.fromARGB(243, 52, 52, 52);
 // Integers
 const double appTitleFontSize = 30;
 const double normalFontSize = 15;
+
+// Item Categories
+final List<Category> itemCategories = [
+  const Category(id: 0, value: allCategory),
+  const Category(id: 1, value: appetizerCategory),
+  const Category(id: 2, value: mainDishCategory),
+  const Category(id: 3, value: dessertCategory),
+  const Category(id: 4, value: beverageCategory),
+  const Category(id: 5, value: otherCategory),
+];
+const String notSelected = 'Not Selected';
+const String allCategory = 'All Category';
+const String appetizerCategory = 'Appetizers';
+const String mainDishCategory = 'Main Dishes';
+const String dessertCategory = 'Desserts';
+const String beverageCategory = 'Beverages';
+const String otherCategory = 'Others';

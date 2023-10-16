@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../constants/variables.dart';
+import 'package:restaurant_talks/constants/variables.dart';
 
 class Button extends StatelessWidget {
   final String text;

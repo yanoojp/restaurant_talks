@@ -13,7 +13,7 @@ class EmailVerificationScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Email Verification"),
+        title: const Text(emailVerificationScreen),
         backgroundColor: darkBlue,
       ),
       body: Padding(
@@ -23,20 +23,19 @@ class EmailVerificationScreen extends ConsumerWidget {
           children: [
             const Text(
               // On the email verification screen, provide clear instructions. Let the user know that they might need to check their spam folder or that email delivery might take a few minutes.
-              "Please verify your email to proceed.\nWe've sent you a verification link.\nCheck your email and click on the link provided.",
+              pleaseVerifYourEmailMessage,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: normalFontSize, height: 1.5),
             ),
             const SizedBox(height: 80.0),
             Button(
-              text: "Resend Verification Email",
+              text: resendVerificationEmailButton,
               func: () async {
                 await ref
                     .read(emailVerificationStateManager.notifier)
                     .resendVerificationEmail();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text(
-                        "Verification email sent again! Please check your inbox.")));
+                    content: Text(verificationEmailSentAgainMessage)));
               },
               backgroundColor: darkBlue,
               textColor: whiteColor,
@@ -45,15 +44,14 @@ class EmailVerificationScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 20.0),
             Button(
-              text: "I've Verified. Continue!",
+              text: confirmVarifiedButton,
               func: () async {
                 bool isVerified = await ref
                     .read(emailVerificationStateManager.notifier)
                     .checkEmailVerified();
                 if (!isVerified) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text(
-                          "You haven't verified your email yet. Please check your inbox and click the verification link.")));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text(notVerifiedMessage)));
                 }
               },
               backgroundColor: darkBlue,

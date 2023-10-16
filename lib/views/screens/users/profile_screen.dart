@@ -36,7 +36,7 @@ class ProfileScreen extends ConsumerWidget {
                     controller: profileState.emailController,
                   ),
                   const SizedBox(height: 30),
-                  const Text('password'),
+                  const Text(passwordHintText),
                   TextField(
                     controller: profileState.passwordController,
                   ),
@@ -71,7 +71,7 @@ class ProfileScreen extends ConsumerWidget {
                 color: darkBlue,
               ),
               ButtonWithUnderline(
-                text: 'Delete Account',
+                text: deleteAccountButton,
                 screenPath: loginScreenPath,
                 func: () {
                   ref
