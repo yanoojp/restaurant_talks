@@ -60,7 +60,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
     final userCredential = await authService.register(profile);
 
     if (userCredential != null) {
-      goRouter.go('/signup/email_varification');
+      goRouter.go(emailVarificationScreenPath);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Signup failed! Please check your input.")));
@@ -79,7 +79,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
       final currentUser = userCredential.user;
 
       if (currentUser == null || !currentUser.emailVerified) {
-        goRouter.go('/signup/email_varification');
+        goRouter.go(emailVarificationScreenPath);
         return;
       }
 

@@ -22,7 +22,7 @@ const String notVerifiedMessage = "You haven't verified your email yet. Please c
 const String pleaseVerifYourEmailMessage = "Please verify your email to proceed.\nWe've sent you a verification link.\nCheck your email and click on the link provided.";
 const String verificationEmailSentAgainMessage = "Verification email sent again! Please check your inbox.";
 
-// Items Label
+// Items Labels
 const String itemNameLabel = 'Name';
 const String itemStockCountLabel = 'Stock Count';
 const String itemCategoryLabel = 'Category';
@@ -37,6 +37,7 @@ const String itemFormScreenPath = 'form';
 const String profileScreenPath = '/profile';
 const String guestNumberScreenPath = '/guest_number';
 const String itemEditScreenPath = 'edit';
+const String emailVarificationScreenPath = '/signup/email_varification';
 
 // Buttons
 const String loginButton = 'Login';
@@ -52,7 +53,7 @@ const String resendVerificationEmailButton = "Resend Verification Email";
 const String confirmVarifiedButton = "I've Verified. Continue!";
 const String deleteAccountButton = 'Delete Account';
 
-// Nav Bar
+// Nav Bars
 const String homeNavBar = 'Home';
 const String profileNavBar = 'Profile';
 
