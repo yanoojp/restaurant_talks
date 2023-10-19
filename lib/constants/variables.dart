@@ -128,6 +128,13 @@ const String restaurantNameField = 'restaurantName';
 const String languageField = 'language';
 const String guestNumberField = 'guestNumber';
 const String userIdField = 'userId';
+const String nameField = 'name';
+const String idField = 'id';
+const String stockCountField = 'stockCount';
+const String categoryIdField = 'categoryId';
+const String descriptionField = 'description';
+const String createdAtField = 'createdAt';
+const String updatedAtField = 'updatedAt';
 
 const String usersCollection = 'users';
 const String guestNumbersCollection = 'guestNumbers';

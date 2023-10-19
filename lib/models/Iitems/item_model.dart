@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:restaurant_talks/constants/variables.dart';
 
 part 'item_model.freezed.dart';
 
@@ -21,12 +22,12 @@ class Item with _$Item {
     return Item(
       id: doc.id,
       userId: data[userIdField] as String,
-      name: data['name'] as String,
-      stockCount: data['stockCount'] as int,
-      categoryId: data['categoryId'] as int,
-      description: data['description'] as String,
-      createdAt: (data['createdAt'] as Timestamp).toDate(),
-      updatedAt: (data['updatedAt'] as Timestamp).toDate(),
+      name: data[nameField] as String,
+      stockCount: data[stockCountField] as int,
+      categoryId: data[categoryIdField] as int,
+      description: data[descriptionField] as String,
+      createdAt: (data[createdAtField] as Timestamp).toDate(),
+      updatedAt: (data[updatedAtField] as Timestamp).toDate(),
     );
   }
 }
@@ -34,14 +35,14 @@ class Item with _$Item {
 extension ItemX on Item {
   Map<String, dynamic> toDocument(String userId) {
     return {
-      'id': id,
+      idField: id,
       userIdField: userId,
-      'name': name,
-      'stockCount': stockCount,
-      'categoryId': categoryId,
-      'description': description,
-      'createdAt': Timestamp.fromDate(createdAt),
-      'updatedAt': Timestamp.fromDate(updatedAt),
+      nameField: name,
+      stockCountField: stockCount,
+      categoryIdField: categoryId,
+      descriptionField: description,
+      createdAtField: Timestamp.fromDate(createdAt),
+      updatedAtField: Timestamp.fromDate(updatedAt),
     };
   }
 }
