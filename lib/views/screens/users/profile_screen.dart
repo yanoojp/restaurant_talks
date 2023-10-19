@@ -25,33 +25,33 @@ class ProfileScreen extends ConsumerWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Text(editProfileScreen),
+              Text(editProfileScreen),
               const SizedBox(height: 30),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30),
-                  const Text(emailHintText),
+                  Text(emailHintText),
                   TextField(
                     controller: profileState.emailController,
                   ),
                   const SizedBox(height: 30),
-                  const Text(passwordHintText),
+                  Text(passwordHintText),
                   TextField(
                     controller: profileState.passwordController,
                   ),
                   const SizedBox(height: 30),
-                  const Text(managerNameHintText),
+                  Text(managerNameHintText),
                   TextField(
                     controller: profileState.managerNameController,
                   ),
                   const SizedBox(height: 30),
-                  const Text(restaurantNameHintText),
+                  Text(restaurantNameHintText),
                   TextField(
                     controller: profileState.restaurantNameController,
                   ),
                   const SizedBox(height: 30),
-                  const Text(languageHintText),
+                  Text(languageHintText),
                   DropdownButton<String>(
                     value: ref
                         .watch(profileStateManager.notifier)

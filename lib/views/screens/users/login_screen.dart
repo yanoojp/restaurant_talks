@@ -32,9 +32,9 @@ class LoginScreen extends ConsumerWidget {
                 cursorColor: whiteColor,
                 style: const TextStyle(color: whiteColor),
                 controller: loginState.emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: emailHintText,
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: whiteColor,
                   ),
                 ),
@@ -46,9 +46,9 @@ class LoginScreen extends ConsumerWidget {
                 cursorColor: whiteColor,
                 style: const TextStyle(color: whiteColor),
                 controller: loginState.passwordController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: passwordHintText,
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: whiteColor,
                   ),
                 ),
@@ -72,7 +72,7 @@ class LoginScreen extends ConsumerWidget {
                   }
                 },
               ),
-              const ButtonWithUnderline(
+              ButtonWithUnderline(
                 screenPath: signupScreenPath,
                 text: toSignupScreenButton,
               )

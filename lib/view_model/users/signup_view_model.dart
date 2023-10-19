@@ -6,6 +6,7 @@ import 'package:restaurant_talks/firebase/user_authentication.dart';
 import 'package:restaurant_talks/models/users/login_model.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
+import 'package:restaurant_talks/view_model/users/profile_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/error_dialog.dart';
 
 part 'signup_view_model.freezed.dart';
@@ -65,8 +66,8 @@ class SignupStateManager extends StateNotifier<SignupState> {
     if (userCredential != null) {
       goRouter.go(emailVarificationScreenPath);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text(signupFailedMessage)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(signupFailedMessage)));
     }
   }
 
@@ -88,8 +89,8 @@ class SignupStateManager extends StateNotifier<SignupState> {
 
       goRouter.go(itemIndexScreenPath);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(loginFailedMessage)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(loginFailedMessage)));
     }
   }
 
@@ -109,6 +110,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
   void updateLanguage(String? newLanguage) {
     if (newLanguage != null) {
       state = state.copyWith(currentLanguage: newLanguage);
+      currentLanguage = state.currentLanguage;
     }
   }
 }

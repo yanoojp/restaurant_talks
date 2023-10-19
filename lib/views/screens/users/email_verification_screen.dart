@@ -13,7 +13,7 @@ class EmailVerificationScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(emailVerificationScreen),
+        title: Text(emailVerificationScreen),
         backgroundColor: darkBlue,
       ),
       body: Padding(
@@ -21,11 +21,11 @@ class EmailVerificationScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               // On the email verification screen, provide clear instructions. Let the user know that they might need to check their spam folder or that email delivery might take a few minutes.
               pleaseVerifYourEmailMessage,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: normalFontSize, height: 1.5),
+              style: const TextStyle(fontSize: normalFontSize, height: 1.5),
             ),
             const SizedBox(height: 80.0),
             Button(
@@ -34,8 +34,8 @@ class EmailVerificationScreen extends ConsumerWidget {
                 await ref
                     .read(emailVerificationStateManager.notifier)
                     .resendVerificationEmail();
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text(verificationEmailSentAgainMessage)));
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(verificationEmailSentAgainMessage)));
               },
               backgroundColor: darkBlue,
               textColor: whiteColor,
@@ -51,7 +51,7 @@ class EmailVerificationScreen extends ConsumerWidget {
                     .checkEmailVerified();
                 if (!isVerified) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text(notVerifiedMessage)));
+                      SnackBar(content: Text(notVerifiedMessage)));
                 }
               },
               backgroundColor: darkBlue,

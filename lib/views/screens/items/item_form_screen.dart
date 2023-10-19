@@ -37,7 +37,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('$itemNameLabel:'),
+                  Text('$itemNameLabel:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextField(controller: itemEditState.nameController),
@@ -48,7 +48,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('$itemStockCountLabel:'),
+                  Text('$itemStockCountLabel:'),
                   const SizedBox(
                     height: 20,
                   ),
@@ -94,7 +94,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('$itemCategoryLabel:'),
+                  Text('$itemCategoryLabel:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: DropdownButton<Category>(
@@ -123,7 +123,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('$itemdescriptionLabel:'),
+                  Text('$itemdescriptionLabel:'),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(10.0),

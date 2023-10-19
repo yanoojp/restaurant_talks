@@ -56,11 +56,11 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text(enterValidNumberMessage),
+          title: Text(enterValidNumberMessage),
           content: Text(message),
           actions: <Widget>[
             TextButton(
-              child: const Text(okButton),
+              child: Text(okButton),
               onPressed: () {
                 Navigator.of(context).pop();
               },

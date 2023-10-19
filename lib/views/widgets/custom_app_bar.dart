@@ -26,8 +26,8 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
                 },
                 child: Column(
                   children: [
-                    const Text(guestNumberAppBarHintText,
-                        style: TextStyle(fontSize: normalFontSize)),
+                    Text(guestNumberAppBarHintText,
+                        style: const TextStyle(fontSize: normalFontSize)),
                     Text(guestNumberState.guestNumber.toString(),
                         style: const TextStyle(fontSize: normalFontSize)),
                   ],

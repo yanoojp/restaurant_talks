@@ -22,13 +22,13 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         selectedItemColor: lightBlue,
         unselectedItemColor: whiteColor,
         currentIndex: widget.currentIndex,
-        items: const [
+        items:  [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: homeNavBar,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             label: profileNavBar,
           ),
         ],

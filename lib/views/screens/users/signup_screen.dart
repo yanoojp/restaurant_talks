@@ -32,9 +32,9 @@ class SignupScreen extends ConsumerWidget {
                 cursorColor: whiteColor,
                 style: const TextStyle(color: whiteColor),
                 controller: signupState.emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: emailHintText,
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: const TextStyle(color: Colors.white),
                 ),
               ),
               const SizedBox(
@@ -44,9 +44,9 @@ class SignupScreen extends ConsumerWidget {
                 cursorColor: whiteColor,
                 style: const TextStyle(color: whiteColor),
                 controller: signupState.passwordController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: passwordHintText,
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: const TextStyle(color: Colors.white),
                 ),
                 obscureText: true,
               ),
@@ -57,9 +57,9 @@ class SignupScreen extends ConsumerWidget {
                 cursorColor: whiteColor,
                 style: const TextStyle(color: whiteColor),
                 controller: signupState.managerNameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: managerNameHintText,
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: const TextStyle(color: Colors.white),
                 ),
               ),
               const SizedBox(
@@ -69,9 +69,9 @@ class SignupScreen extends ConsumerWidget {
                 cursorColor: whiteColor,
                 style: const TextStyle(color: whiteColor),
                 controller: signupState.restaurantNameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: restaurantNameHintText,
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: const TextStyle(color: Colors.white),
                 ),
               ),
               const SizedBox(
@@ -118,7 +118,7 @@ class SignupScreen extends ConsumerWidget {
                   }
                 },
               ),
-              const ButtonWithUnderline(
+              ButtonWithUnderline(
                 screenPath: loginScreenPath,
                 text: toLoginScreenButton,
               )

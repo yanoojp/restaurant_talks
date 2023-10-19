@@ -14,7 +14,7 @@ class GuestNumberScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(guestNumberScreen),
+        title: Text(guestNumberScreen),
         backgroundColor: darkBlue,
         leading: IconButton(
           icon: const Icon(
@@ -35,7 +35,7 @@ class GuestNumberScreen extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(guestNumberHintText),
+                Text(guestNumberHintText),
                 const SizedBox(
                   height: 15,
                 ),
