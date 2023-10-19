@@ -20,7 +20,7 @@ class Item with _$Item {
     final data = doc.data() as Map<String, dynamic>;
     return Item(
       id: doc.id,
-      userId: data['userId'] as String,
+      userId: data[userIdField] as String,
       name: data['name'] as String,
       stockCount: data['stockCount'] as int,
       categoryId: data['categoryId'] as int,
@@ -35,7 +35,7 @@ extension ItemX on Item {
   Map<String, dynamic> toDocument(String userId) {
     return {
       'id': id,
-      'userId': userId,
+      userIdField: userId,
       'name': name,
       'stockCount': stockCount,
       'categoryId': categoryId,

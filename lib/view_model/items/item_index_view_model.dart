@@ -28,7 +28,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
 
   Future<List<Item>> getItems() async {
     final QuerySnapshot snapshot =
-        await FirebaseFirestore.instance.collection('items').get();
+        await FirebaseFirestore.instance.collection(itemsCollection).get();
     return snapshot.docs.map((doc) => Item.fromDocument(doc)).toList();
   }
 

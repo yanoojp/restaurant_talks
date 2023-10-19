@@ -19,6 +19,7 @@ class ProfileState with _$ProfileState {
     required TextEditingController passwordController,
     required TextEditingController managerNameController,
     required TextEditingController restaurantNameController,
+    required String currentLanguage,
     // required TextEditingController prefectureController,
   }) = _ProfileState;
 }
@@ -28,16 +29,18 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
       : super(_ProfileState(
           isProcessing: false,
           profileRequest: Profile(
-            email: '',
-            password: '',
-            managerName: '',
-            restaurantName: '',
-            // prefecture: ''
-          ),
+              email: '',
+              password: '',
+              managerName: '',
+              restaurantName: '',
+              language: jaSelectItem
+              // prefecture: ''
+              ),
           emailController: TextEditingController(),
           passwordController: TextEditingController(),
           managerNameController: TextEditingController(),
           restaurantNameController: TextEditingController(),
+          currentLanguage: jaSelectItem,
           // prefectureController: TextEditingController(),
         )) {
     setUserInfo();
@@ -56,24 +59,28 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
         state.passwordController.text = '';
 
         DocumentSnapshot userDoc =
-            await firestore.collection('users').doc(user.uid).get();
+            await firestore.collection(usersCollection).doc(user.uid).get();
 
         if (userDoc.exists) {
           Map<String, dynamic> userData =
               userDoc.data() as Map<String, dynamic>;
 
-          state.managerNameController.text = userData['managerName'] ?? '';
+          state.managerNameController.text = userData[managerNameField] ?? '';
           state.restaurantNameController.text =
-              userData['restaurantName'] ?? '';
+              userData[restaurantNameField] ?? '';
+
+          state = state.copyWith(
+              currentLanguage: userData[languageField] ?? jaSelectItem);
+
           // state.prefectureController.text = userData['prefecture'] ?? '';
         } else {
-          print("User data not found in Firestore");
+          // print("User data not found in Firestore");
         }
       } else {
-        print("No user currently signed in");
+        // print("No user currently signed in");
       }
     } catch (e) {
-      print("Error setting user info: $e");
+      // print("Error setting user info: $e");
     } finally {
       state = state.copyWith(isProcessing: false);
     }
@@ -84,6 +91,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     String password = state.passwordController.text;
     String managerName = state.managerNameController.text;
     String restaurantName = state.restaurantNameController.text;
+    String language = state.currentLanguage;
     // String prefecture = state.prefectureController.text;
 
     final emailRegex = RegExp(emailRegexString);
@@ -102,6 +110,10 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
 
     if (restaurantName.isEmpty) {
       return invalidRestaurantNameMessage;
+    }
+
+    if (language.isEmpty) {
+      return invalidLanguageMessage;
     }
 
     // if (prefecture.isEmpty) {
@@ -127,15 +139,17 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     String updateEmail = state.emailController.text;
     String updatedManagerName = state.managerNameController.text;
     String updatedRestaurantName = state.restaurantNameController.text;
+    String updatedLanguage = state.currentLanguage;
 
     try {
       await authService.updateUserProfiles(
         email: updateEmail,
         managerName: updatedManagerName,
         restaurantName: updatedRestaurantName,
+        language: updatedLanguage,
       );
     } catch (e) {
-      print("Failed to update profile details: $e");
+      // print("Failed to update profile details: $e");
       // Handle error, perhaps notify the user
     }
   }
@@ -153,13 +167,13 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
       final user = auth.currentUser;
 
       if (user != null) {
-        await firestore.collection('users').doc(user.uid).delete();
+        await firestore.collection(usersCollection).doc(user.uid).delete();
         await user.delete();
       } else {
-        print("No user currently signed in");
+        // print("No user currently signed in");
       }
     } catch (e) {
-      print("Error deleting account: $e");
+      // print("Error deleting account: $e");
       // You might want to throw the error or handle it differently depending on your needs.
     }
   }
@@ -167,7 +181,9 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
   Future<void> updateUserAuth() async {
     final authService = FirebaseAuthService();
     String updatedEmail = state.emailController.text;
-    String? updatedPassword = state.passwordController.text != '' ? state.passwordController.text : null;
+    String? updatedPassword = state.passwordController.text != ''
+        ? state.passwordController.text
+        : null;
 
     try {
       await authService.updateUserAuths(
@@ -175,8 +191,16 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
         password: updatedPassword,
       );
     } catch (e) {
-      print("Failed to update email: $e");
+      // print("Failed to update email: $e");
       // Handle error, perhaps notify the user
+    }
+  }
+
+  String get getCurrentLanguage => state.currentLanguage;
+
+  void updateLanguage(String? newLanguage) {
+    if (newLanguage != null) {
+      state = state.copyWith(currentLanguage: newLanguage);
     }
   }
 }

@@ -26,6 +26,7 @@ mixin _$ProfileState {
       throw _privateConstructorUsedError;
   TextEditingController get restaurantNameController =>
       throw _privateConstructorUsedError;
+  String get currentLanguage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -44,7 +45,8 @@ abstract class $ProfileStateCopyWith<$Res> {
       TextEditingController emailController,
       TextEditingController passwordController,
       TextEditingController managerNameController,
-      TextEditingController restaurantNameController});
+      TextEditingController restaurantNameController,
+      String currentLanguage});
 
   $ProfileCopyWith<$Res> get profileRequest;
 }
@@ -68,6 +70,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? passwordController = null,
     Object? managerNameController = null,
     Object? restaurantNameController = null,
+    Object? currentLanguage = null,
   }) {
     return _then(_value.copyWith(
       isProcessing: null == isProcessing
@@ -94,6 +97,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.restaurantNameController
           : restaurantNameController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
+      currentLanguage: null == currentLanguage
+          ? _value.currentLanguage
+          : currentLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -120,7 +127,8 @@ abstract class _$$_ProfileStateCopyWith<$Res>
       TextEditingController emailController,
       TextEditingController passwordController,
       TextEditingController managerNameController,
-      TextEditingController restaurantNameController});
+      TextEditingController restaurantNameController,
+      String currentLanguage});
 
   @override
   $ProfileCopyWith<$Res> get profileRequest;
@@ -143,6 +151,7 @@ class __$$_ProfileStateCopyWithImpl<$Res>
     Object? passwordController = null,
     Object? managerNameController = null,
     Object? restaurantNameController = null,
+    Object? currentLanguage = null,
   }) {
     return _then(_$_ProfileState(
       isProcessing: null == isProcessing
@@ -169,6 +178,10 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           ? _value.restaurantNameController
           : restaurantNameController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
+      currentLanguage: null == currentLanguage
+          ? _value.currentLanguage
+          : currentLanguage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -182,7 +195,8 @@ class _$_ProfileState implements _ProfileState {
       required this.emailController,
       required this.passwordController,
       required this.managerNameController,
-      required this.restaurantNameController});
+      required this.restaurantNameController,
+      required this.currentLanguage});
 
   @override
   final bool isProcessing;
@@ -196,10 +210,12 @@ class _$_ProfileState implements _ProfileState {
   final TextEditingController managerNameController;
   @override
   final TextEditingController restaurantNameController;
+  @override
+  final String currentLanguage;
 
   @override
   String toString() {
-    return 'ProfileState(isProcessing: $isProcessing, profileRequest: $profileRequest, emailController: $emailController, passwordController: $passwordController, managerNameController: $managerNameController, restaurantNameController: $restaurantNameController)';
+    return 'ProfileState(isProcessing: $isProcessing, profileRequest: $profileRequest, emailController: $emailController, passwordController: $passwordController, managerNameController: $managerNameController, restaurantNameController: $restaurantNameController, currentLanguage: $currentLanguage)';
   }
 
   @override
@@ -219,7 +235,9 @@ class _$_ProfileState implements _ProfileState {
                 other.managerNameController == managerNameController) &&
             (identical(
                     other.restaurantNameController, restaurantNameController) ||
-                other.restaurantNameController == restaurantNameController));
+                other.restaurantNameController == restaurantNameController) &&
+            (identical(other.currentLanguage, currentLanguage) ||
+                other.currentLanguage == currentLanguage));
   }
 
   @override
@@ -230,7 +248,8 @@ class _$_ProfileState implements _ProfileState {
       emailController,
       passwordController,
       managerNameController,
-      restaurantNameController);
+      restaurantNameController,
+      currentLanguage);
 
   @JsonKey(ignore: true)
   @override
@@ -241,13 +260,13 @@ class _$_ProfileState implements _ProfileState {
 
 abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
-          {required final bool isProcessing,
-          required final Profile profileRequest,
-          required final TextEditingController emailController,
-          required final TextEditingController passwordController,
-          required final TextEditingController managerNameController,
-          required final TextEditingController restaurantNameController}) =
-      _$_ProfileState;
+      {required final bool isProcessing,
+      required final Profile profileRequest,
+      required final TextEditingController emailController,
+      required final TextEditingController passwordController,
+      required final TextEditingController managerNameController,
+      required final TextEditingController restaurantNameController,
+      required final String currentLanguage}) = _$_ProfileState;
 
   @override
   bool get isProcessing;
@@ -261,6 +280,8 @@ abstract class _ProfileState implements ProfileState {
   TextEditingController get managerNameController;
   @override
   TextEditingController get restaurantNameController;
+  @override
+  String get currentLanguage;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>

@@ -3,13 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:restaurant_talks/constants/variables.dart';
 
 part 'guest_number_view_model.freezed.dart';
 
 class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
   final FirebaseAuth auth = FirebaseAuth.instance;
-  final CollectionReference guestNumbersCollection =
-      FirebaseFirestore.instance.collection('guestNumbers');
+  final CollectionReference guestNumbersCollectionInstance =
+      FirebaseFirestore.instance.collection(guestNumbersCollection);
 
   GuestNumberViewModel()
       : super(GuestNumberState(
@@ -18,12 +19,12 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
   }
 
   Future<void> setGuestNumber() async {
-    QuerySnapshot snapshot = await guestNumbersCollection
-        .orderBy('guestNumber', descending: true)
+    QuerySnapshot snapshot = await guestNumbersCollectionInstance
+        .orderBy(guestNumberField, descending: true)
         .limit(1)
         .get();
     if (snapshot.docs.isNotEmpty) {
-      int latestGuestNumber = snapshot.docs.first.get('guestNumber');
+      int latestGuestNumber = snapshot.docs.first.get(guestNumberField);
       state.guestNumberController.text = latestGuestNumber.toString();
       state = state.copyWith(
         guestNumber: int.parse(state.guestNumberController.text));
@@ -33,15 +34,15 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
   Future<void> saveGuestNumber(BuildContext context) async {
     final user = auth.currentUser;
     if (user == null) {
-      showErrorDialog(context, "User is not authenticated.");
+      showErrorDialog(context, userNotAuthenticatedMessage);
       return;
     }
 
     if (_isValidNumber(state.guestNumberController.text)) {
-      await guestNumbersCollection
-          .add({'guestNumber': state.guestNumber, 'userId': user.uid});
+      await guestNumbersCollectionInstance
+          .add({guestNumberField: state.guestNumber, userIdField: user.uid});
     } else {
-      showErrorDialog(context, "Invalid guest number entered.");
+      showErrorDialog(context, invalidGuestNumberMessage);
     }
   }
 
@@ -55,11 +56,11 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Enter a valid number'),
+          title: const Text(enterValidNumberMessage),
           content: Text(message),
           actions: <Widget>[
             TextButton(
-              child: const Text('OK'),
+              child: const Text(okButton),
               onPressed: () {
                 Navigator.of(context).pop();
               },

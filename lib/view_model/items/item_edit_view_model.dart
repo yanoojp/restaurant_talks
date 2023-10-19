@@ -41,10 +41,10 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
     final item = Item(
         id: id,
         userId: null,
-        name: 'name',
+        name: nameHintText,
         stockCount: 1,
         categoryId: 1,
-        description: 'description',
+        description: descripstionHintText,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now());
     // final item = await getItemById(id);
@@ -81,10 +81,10 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
     final uid = user?.uid;
 
     if (uid == null) {
-      throw Exception("User is not authenticated.");
+      throw Exception(userNotAuthenticatedMessage);
     }
 
-    final collection = FirebaseFirestore.instance.collection('items');
+    final collection = FirebaseFirestore.instance.collection(itemsCollection);
     if (state.item.id == null || state.item.id!.isEmpty) {
       await collection.add(state.item.toDocument(uid));
     } else {

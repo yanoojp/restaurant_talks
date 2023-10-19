@@ -15,12 +15,22 @@ const String invalidEmailMessage = 'Invalid Email!';
 const String invalidPasswordMessage = 'Invalid Password!';
 const String invalidManagerNameMessage = 'Manager name cannot be empty!';
 const String invalidRestaurantNameMessage = 'Restaurant name cannot be empty!';
-const String invalidPrefectureMessage = 'Prefecture cannot be empty!';
-const String notVerifiedMessage = "You haven't verified your email yet. Please check your inbox and click the verification link.";
+const String invalidLanguageMessage = 'Language cannot be empty!';
+// const String invalidPrefectureMessage = 'Prefecture cannot be empty!';
+const String notVerifiedMessage =
+    "You haven't verified your email yet. Please check your inbox and click the verification link.";
+const String userNotLoggedInMessage = 'User not logged in';
+const String enterValidNumberMessage = 'Enter a valid number';
+const String userNotAuthenticatedMessage = "User is not authenticated.";
+const String invalidGuestNumberMessage = "Invalid guest number entered.";
+const String signupFailedMessage = "Signup failed! Please check your input.";
+const String loginFailedMessage = "Login failed! Please check your credentials.";
 
 // Messages
-const String pleaseVerifYourEmailMessage = "Please verify your email to proceed.\nWe've sent you a verification link.\nCheck your email and click on the link provided.";
-const String verificationEmailSentAgainMessage = "Verification email sent again! Please check your inbox.";
+const String pleaseVerifYourEmailMessage =
+    "Please verify your email to proceed.\nWe've sent you a verification link.\nCheck your email and click on the link provided.";
+const String verificationEmailSentAgainMessage =
+    "Verification email sent again! Please check your inbox.";
 
 // Items Labels
 const String itemNameLabel = 'Name';
@@ -67,7 +77,10 @@ const String managerNameHintText = "Manager's Name";
 const String restaurantNameHintText = "Restaurant's Name";
 const String guestNumberHintText = "Guest Number";
 const String guestNumberAppBarHintText = "Guests: ";
+const String languageHintText = "Language";
 // const String prefectureHintText = 'Prefecture';
+const String nameHintText = 'name';
+const String descripstionHintText = 'description';
 
 // Screen Indexes
 const int itemIndexScreenIndex = 0;
@@ -101,3 +114,21 @@ const String mainDishCategory = 'Main Dishes';
 const String dessertCategory = 'Desserts';
 const String beverageCategory = 'Beverages';
 const String otherCategory = 'Others';
+
+// Languages
+const String englishLanguage = 'English';
+const String enSelectItem = 'enSelectItem';
+const String japaneseLanguage = '日本語';
+const String jaSelectItem = 'jaSelectItem';
+
+// Firebase
+const String emailField = 'email';
+const String managerNameField = 'managerName';
+const String restaurantNameField = 'restaurantName';
+const String languageField = 'language';
+const String guestNumberField = 'guestNumber';
+const String userIdField = 'userId';
+
+const String usersCollection = 'users';
+const String guestNumbersCollection = 'guestNumbers';
+const String itemsCollection = 'items';

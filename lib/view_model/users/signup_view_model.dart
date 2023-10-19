@@ -18,6 +18,7 @@ class SignupState with _$SignupState {
     required TextEditingController passwordController,
     required TextEditingController managerNameController,
     required TextEditingController restaurantNameController,
+    required String currentLanguage,
   }) = _SignupState;
 }
 
@@ -29,6 +30,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
           passwordController: TextEditingController(),
           managerNameController: TextEditingController(),
           restaurantNameController: TextEditingController(),
+          currentLanguage: jaSelectItem,
         ));
 
   String? validateAuthForm(state) {
@@ -55,7 +57,8 @@ class SignupStateManager extends StateNotifier<SignupState> {
         email: state.emailController.text,
         password: state.passwordController.text,
         managerName: state.managerNameController.text,
-        restaurantName: state.restaurantNameController.text);
+        restaurantName: state.restaurantNameController.text,
+        language: state.currentLanguage);
 
     final userCredential = await authService.register(profile);
 
@@ -63,7 +66,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
       goRouter.go(emailVarificationScreenPath);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Signup failed! Please check your input.")));
+          const SnackBar(content: Text(signupFailedMessage)));
     }
   }
 
@@ -86,7 +89,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
       goRouter.go(itemIndexScreenPath);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Login failed! Please check your credentials.")));
+          content: Text(loginFailedMessage)));
     }
   }
 
@@ -99,6 +102,14 @@ class SignupStateManager extends StateNotifier<SignupState> {
         );
       },
     );
+  }
+
+  String get getCurrentLanguage => state.currentLanguage;
+
+  void updateLanguage(String? newLanguage) {
+    if (newLanguage != null) {
+      state = state.copyWith(currentLanguage: newLanguage);
+    }
   }
 }
 

@@ -78,6 +78,28 @@ class SignupScreen extends ConsumerWidget {
                 height: 20,
               ),
               // PrefectureDropdown(controller: signupState.prefectureController),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              DropdownButton<String>(
+                value: ref.watch(authStateManager.notifier).getCurrentLanguage,
+                items: <String>[enSelectItem, jaSelectItem].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value == enSelectItem
+                        ? englishLanguage
+                        : japaneseLanguage),
+                  );
+                }).toList(),
+                onChanged: (newValue) {
+                  ref.read(authStateManager.notifier).updateLanguage(newValue);
+                },
+                dropdownColor: darkBlue,
+                style: const TextStyle(color: whiteColor),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               const SizedBox(
                 height: 50,
               ),

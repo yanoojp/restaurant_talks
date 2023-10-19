@@ -51,6 +51,29 @@ class ProfileScreen extends ConsumerWidget {
                     controller: profileState.restaurantNameController,
                   ),
                   const SizedBox(height: 30),
+                  const Text(languageHintText),
+                  DropdownButton<String>(
+                    value: ref
+                        .watch(profileStateManager.notifier)
+                        .getCurrentLanguage,
+                    items: <String>[enSelectItem, jaSelectItem]
+                        .map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value == enSelectItem
+                            ? englishLanguage
+                            : japaneseLanguage),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      ref
+                          .read(profileStateManager.notifier)
+                          .updateLanguage(newValue);
+                    },
+                    dropdownColor: darkBlue,
+                    style: const TextStyle(color: whiteColor),
+                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
               const SizedBox(height: 30),
@@ -74,9 +97,7 @@ class ProfileScreen extends ConsumerWidget {
                 text: deleteAccountButton,
                 screenPath: loginScreenPath,
                 func: () {
-                  ref
-                      .read(profileStateManager.notifier)
-                      .deleteAccount();
+                  ref.read(profileStateManager.notifier).deleteAccount();
                   goRouter.go(signupScreenPath);
                 },
                 color: darkBlue,
