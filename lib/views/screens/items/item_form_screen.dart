@@ -9,7 +9,7 @@ import 'package:restaurant_talks/views/widgets/base/button.dart';
 bool _isInitialized = false;
 
 class ItemFormScreen extends ConsumerWidget {
-  final String id;
+  final String? id;
   const ItemFormScreen({Key? key, required this.id}) : super(key: key);
 
   @override

@@ -34,7 +34,13 @@ final goRouter = GoRouter(
           const MaterialPage(child: ItemIndexScreen()),
       routes: [
         GoRoute(
-          path: '$itemEditScreenPath/:id',
+          path: 'edit',
+          pageBuilder: (context, state) {
+            return const MaterialPage(child: ItemFormScreen(id: null));
+          },
+        ),
+        GoRoute(
+          path: 'edit/:id',
           pageBuilder: (context, state) {
             final id = state.pathParameters['id'];
             return MaterialPage(child: ItemFormScreen(id: id!));

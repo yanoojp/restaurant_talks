@@ -14,11 +14,11 @@ class SignupScreen extends ConsumerWidget {
     final signupState = ref.watch(authStateManager);
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(50.0),
-          height: MediaQuery.of(context).size.height,
-          color: darkBlue,
+      body: Container(
+        padding: const EdgeInsets.all(50.0),
+        height: MediaQuery.of(context).size.height,
+        color: darkBlue,
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -99,9 +99,6 @@ class SignupScreen extends ConsumerWidget {
               ),
               const SizedBox(
                 height: 20,
-              ),
-              const SizedBox(
-                height: 50,
               ),
               Button(
                 text: signupButton,

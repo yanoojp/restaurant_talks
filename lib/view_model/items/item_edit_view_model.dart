@@ -37,14 +37,14 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
           descriptionController: TextEditingController(),
         ));
 
-  void initializeItem(String id) async {
+  void initializeItem(String? id) async {
     final item = Item(
         id: id,
         userId: null,
         name: nameHintText,
         stockCount: 1,
         categoryId: 1,
-        description: descripstionHintText,
+        description: descriptionHintText,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now());
     // final item = await getItemById(id);

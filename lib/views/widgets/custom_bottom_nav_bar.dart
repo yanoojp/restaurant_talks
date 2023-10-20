@@ -19,7 +19,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
         backgroundColor: darkBlue,
-        selectedItemColor: lightBlue,
+        selectedItemColor: darkYellow,
         unselectedItemColor: whiteColor,
         currentIndex: widget.currentIndex,
         items:  [

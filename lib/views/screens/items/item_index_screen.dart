@@ -116,7 +116,7 @@ class ItemIndexScreen extends ConsumerWidget {
                     final item = itemState.items[index];
                     return InkWell(
                       onTap: () {
-                        goRouter.go('$itemEditScreenPath/${item.id}');
+                        goRouter.go('$itemFormScreenPath/${item.id}');
                       },
                       child: ItemTile(item: item),
                     );
