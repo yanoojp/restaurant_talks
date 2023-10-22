@@ -4,9 +4,8 @@ import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/models/Iitems/category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_edit_view_model.dart';
+import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
-
-bool _isInitialized = false;
 
 class ItemFormScreen extends ConsumerWidget {
   final String? id;
@@ -14,14 +13,7 @@ class ItemFormScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemEditState = ref.watch(itemEditStateManager);
-
-    if (!_isInitialized) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(itemEditStateManager.notifier).initializeItem(id);
-      });
-      _isInitialized = true;
-    }
+    final itemEditState = ref.watch(itemEditStateManager(id));
 
     return Scaffold(
       appBar: AppBar(
@@ -58,7 +50,7 @@ class ItemFormScreen extends ConsumerWidget {
                       ElevatedButton(
                         onPressed: () {
                           ref
-                              .read(itemEditStateManager.notifier)
+                              .read(itemEditStateManager(id).notifier)
                               .subtractCount();
                         },
                         style: ElevatedButton.styleFrom(
@@ -76,7 +68,9 @@ class ItemFormScreen extends ConsumerWidget {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          ref.read(itemEditStateManager.notifier).addCount();
+                          ref
+                              .read(itemEditStateManager(id).notifier)
+                              .addCount();
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: darkBlue,
@@ -145,7 +139,8 @@ class ItemFormScreen extends ConsumerWidget {
                 backgroundColor: darkBlue,
                 textColor: whiteColor,
                 func: () {
-                  ref.read(itemEditStateManager.notifier).saveItem();
+                  ref.read(itemEditStateManager(id).notifier).saveItem();
+                  ref.watch(itemIndexViewModelProvider.notifier).loadInitialData;
                   goRouter.go(itemIndexScreenPath);
                 },
               ),

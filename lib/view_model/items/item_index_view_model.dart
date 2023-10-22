@@ -1,10 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/firebase/user_authentication.dart';
 import 'package:restaurant_talks/models/Iitems/category_model.dart';
 import 'package:restaurant_talks/models/Iitems/item_model.dart';
+import 'package:restaurant_talks/models/users/login_model.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
+import 'package:restaurant_talks/view_model/users/signup_view_model.dart';
 
 part 'item_index_view_model.freezed.dart';
 
@@ -85,6 +90,16 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
       );
     }
     _sortItemsByUpdatedAt();
+  }
+
+  Future<bool> checkIfUserLoggedIn() async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null && user.emailVerified) {
+      return true;
+    }
+
+    return false;
   }
 }
 

@@ -159,7 +159,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     }
   }
 
-  Future<void> logout() async {
+Future<void> logout() async {
     final authService = FirebaseAuthService();
     await authService.signOut();
   }

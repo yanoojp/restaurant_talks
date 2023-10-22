@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/users/signup_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 import 'package:restaurant_talks/views/widgets/base/button_with_underline.dart';
@@ -73,9 +74,10 @@ class LoginScreen extends ConsumerWidget {
                 },
               ),
               ButtonWithUnderline(
-                screenPath: signupScreenPath,
-                text: toSignupScreenButton,
-              )
+                  text: toSignupScreenButton,
+                  func: () {
+                    goRouter.go(signupScreenPath);
+                  })
             ],
           ),
         ),

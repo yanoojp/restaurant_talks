@@ -87,18 +87,17 @@ class ProfileScreen extends ConsumerWidget {
               const SizedBox(height: 10),
               ButtonWithUnderline(
                 text: logoutButton,
-                screenPath: loginScreenPath,
-                func: () {
-                  ref.read(profileStateManager.notifier).logout();
+                func: () async {
+                  await ref.read(profileStateManager.notifier).logout();
+                  goRouter.go(loginScreenPath);
                 },
                 color: darkBlue,
               ),
               ButtonWithUnderline(
                 text: deleteAccountButton,
-                screenPath: loginScreenPath,
                 func: () {
                   ref.read(profileStateManager.notifier).deleteAccount();
-                  goRouter.go(signupScreenPath);
+                  goRouter.go(loginScreenPath);
                 },
                 color: darkBlue,
               )

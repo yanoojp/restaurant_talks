@@ -75,11 +75,11 @@ String defaultItemCategoryLabel =
 
 // Paths
 const String signupScreenPath = '/signup';
-const String loginScreenPath = '/';
-const String itemIndexScreenPath = '/items';
+const String loginScreenPath = '/login';
+const String itemIndexScreenPath = '/';
 const String profileScreenPath = '/profile';
 const String guestNumberScreenPath = '/guest_number';
-const String itemFormScreenPath = '/items/edit';
+const String itemFormScreenPath = '/edit';
 const String emailVarificationScreenPath = '/signup/email_varification';
 
 // Buttons
