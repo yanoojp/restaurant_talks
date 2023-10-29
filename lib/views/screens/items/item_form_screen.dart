@@ -4,16 +4,25 @@ import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_edit_view_model.dart';
-import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 
 class ItemFormScreen extends ConsumerWidget {
   final String? id;
-  const ItemFormScreen({Key? key, required this.id}) : super(key: key);
+  ItemFormScreen({Key? key, required this.id}) : super(key: key);
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemEditState = ref.watch(itemEditStateManager(id));
+
+    if (nameController.text != itemEditState.item.name) {
+      nameController.text = itemEditState.item.name;
+    }
+
+    if (descriptionController.text != itemEditState.item.description) {
+      descriptionController.text = itemEditState.item.description;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -32,7 +41,14 @@ class ItemFormScreen extends ConsumerWidget {
                   Text('$itemNameLabel:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: TextField(controller: itemEditState.nameController),
+                    child: TextField(
+                      controller: nameController,
+                      onChanged: (value) {
+                        ref
+                            .read(itemEditStateManager(id).notifier)
+                            .updateItemName(value);
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -118,13 +134,18 @@ class ItemFormScreen extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextField(
-                      controller: itemEditState.descriptionController,
+                      controller: descriptionController,
                       minLines: 5,
                       maxLines: 5,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(),
                       ),
+                      onChanged: (value) {
+                        ref
+                            .read(itemEditStateManager(id).notifier)
+                            .updateDescription(value);
+                      },
                     ),
                   ),
                 ],
@@ -136,9 +157,6 @@ class ItemFormScreen extends ConsumerWidget {
                 textColor: whiteColor,
                 func: () {
                   ref.read(itemEditStateManager(id).notifier).saveItem();
-                  ref
-                      .watch(itemIndexViewModelProvider.notifier)
-                      .loadInitialData;
                   goRouter.go(itemIndexScreenPath);
                 },
               ),

@@ -17,12 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ItemEditState {
   Item get item => throw _privateConstructorUsedError;
-  TextEditingController get nameController =>
-      throw _privateConstructorUsedError;
-  TextEditingController get stockCountController =>
-      throw _privateConstructorUsedError;
-  TextEditingController get descriptionController =>
-      throw _privateConstructorUsedError;
   ItemCategory get currentCategory => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,14 +30,10 @@ abstract class $ItemEditStateCopyWith<$Res> {
           ItemEditState value, $Res Function(ItemEditState) then) =
       _$ItemEditStateCopyWithImpl<$Res, ItemEditState>;
   @useResult
-  $Res call(
-      {Item item,
-      TextEditingController nameController,
-      TextEditingController stockCountController,
-      TextEditingController descriptionController,
-      ItemCategory currentCategory});
+  $Res call({Item item, ItemCategory currentCategory});
 
   $ItemCopyWith<$Res> get item;
+  $ItemCategoryCopyWith<$Res> get currentCategory;
 }
 
 /// @nodoc
@@ -60,29 +50,14 @@ class _$ItemEditStateCopyWithImpl<$Res, $Val extends ItemEditState>
   @override
   $Res call({
     Object? item = null,
-    Object? nameController = null,
-    Object? stockCountController = null,
-    Object? descriptionController = null,
-    Object? currentCategory = freezed,
+    Object? currentCategory = null,
   }) {
     return _then(_value.copyWith(
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as Item,
-      nameController: null == nameController
-          ? _value.nameController
-          : nameController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      stockCountController: null == stockCountController
-          ? _value.stockCountController
-          : stockCountController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      descriptionController: null == descriptionController
-          ? _value.descriptionController
-          : descriptionController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      currentCategory: freezed == currentCategory
+      currentCategory: null == currentCategory
           ? _value.currentCategory
           : currentCategory // ignore: cast_nullable_to_non_nullable
               as ItemCategory,
@@ -96,6 +71,14 @@ class _$ItemEditStateCopyWithImpl<$Res, $Val extends ItemEditState>
       return _then(_value.copyWith(item: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ItemCategoryCopyWith<$Res> get currentCategory {
+    return $ItemCategoryCopyWith<$Res>(_value.currentCategory, (value) {
+      return _then(_value.copyWith(currentCategory: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -106,15 +89,12 @@ abstract class _$$_ItemEditStateCopyWith<$Res>
       __$$_ItemEditStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Item item,
-      TextEditingController nameController,
-      TextEditingController stockCountController,
-      TextEditingController descriptionController,
-      ItemCategory currentCategory});
+  $Res call({Item item, ItemCategory currentCategory});
 
   @override
   $ItemCopyWith<$Res> get item;
+  @override
+  $ItemCategoryCopyWith<$Res> get currentCategory;
 }
 
 /// @nodoc
@@ -129,29 +109,14 @@ class __$$_ItemEditStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? item = null,
-    Object? nameController = null,
-    Object? stockCountController = null,
-    Object? descriptionController = null,
-    Object? currentCategory = freezed,
+    Object? currentCategory = null,
   }) {
     return _then(_$_ItemEditState(
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as Item,
-      nameController: null == nameController
-          ? _value.nameController
-          : nameController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      stockCountController: null == stockCountController
-          ? _value.stockCountController
-          : stockCountController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      descriptionController: null == descriptionController
-          ? _value.descriptionController
-          : descriptionController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      currentCategory: freezed == currentCategory
+      currentCategory: null == currentCategory
           ? _value.currentCategory
           : currentCategory // ignore: cast_nullable_to_non_nullable
               as ItemCategory,
@@ -162,27 +127,16 @@ class __$$_ItemEditStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ItemEditState with DiagnosticableTreeMixin implements _ItemEditState {
-  const _$_ItemEditState(
-      {required this.item,
-      required this.nameController,
-      required this.stockCountController,
-      required this.descriptionController,
-      required this.currentCategory});
+  const _$_ItemEditState({required this.item, required this.currentCategory});
 
   @override
   final Item item;
-  @override
-  final TextEditingController nameController;
-  @override
-  final TextEditingController stockCountController;
-  @override
-  final TextEditingController descriptionController;
   @override
   final ItemCategory currentCategory;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ItemEditState(item: $item, nameController: $nameController, stockCountController: $stockCountController, descriptionController: $descriptionController, currentCategory: $currentCategory)';
+    return 'ItemEditState(item: $item, currentCategory: $currentCategory)';
   }
 
   @override
@@ -191,9 +145,6 @@ class _$_ItemEditState with DiagnosticableTreeMixin implements _ItemEditState {
     properties
       ..add(DiagnosticsProperty('type', 'ItemEditState'))
       ..add(DiagnosticsProperty('item', item))
-      ..add(DiagnosticsProperty('nameController', nameController))
-      ..add(DiagnosticsProperty('stockCountController', stockCountController))
-      ..add(DiagnosticsProperty('descriptionController', descriptionController))
       ..add(DiagnosticsProperty('currentCategory', currentCategory));
   }
 
@@ -203,24 +154,12 @@ class _$_ItemEditState with DiagnosticableTreeMixin implements _ItemEditState {
         (other.runtimeType == runtimeType &&
             other is _$_ItemEditState &&
             (identical(other.item, item) || other.item == item) &&
-            (identical(other.nameController, nameController) ||
-                other.nameController == nameController) &&
-            (identical(other.stockCountController, stockCountController) ||
-                other.stockCountController == stockCountController) &&
-            (identical(other.descriptionController, descriptionController) ||
-                other.descriptionController == descriptionController) &&
-            const DeepCollectionEquality()
-                .equals(other.currentCategory, currentCategory));
+            (identical(other.currentCategory, currentCategory) ||
+                other.currentCategory == currentCategory));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      item,
-      nameController,
-      stockCountController,
-      descriptionController,
-      const DeepCollectionEquality().hash(currentCategory));
+  int get hashCode => Object.hash(runtimeType, item, currentCategory);
 
   @JsonKey(ignore: true)
   @override
@@ -232,19 +171,10 @@ class _$_ItemEditState with DiagnosticableTreeMixin implements _ItemEditState {
 abstract class _ItemEditState implements ItemEditState {
   const factory _ItemEditState(
       {required final Item item,
-      required final TextEditingController nameController,
-      required final TextEditingController stockCountController,
-      required final TextEditingController descriptionController,
       required final ItemCategory currentCategory}) = _$_ItemEditState;
 
   @override
   Item get item;
-  @override
-  TextEditingController get nameController;
-  @override
-  TextEditingController get stockCountController;
-  @override
-  TextEditingController get descriptionController;
   @override
   ItemCategory get currentCategory;
   @override

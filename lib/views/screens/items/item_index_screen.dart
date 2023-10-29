@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
+import 'package:restaurant_talks/models/Iitems/item_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 import 'package:restaurant_talks/views/widgets/custom_app_bar.dart';
@@ -124,23 +125,32 @@ class ItemIndexScreen extends ConsumerWidget {
                     height: 15,
                   ),
                   Expanded(
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 15.0,
-                        mainAxisSpacing: 15.0,
-                      ),
-                      itemBuilder: (context, index) {
-                        final item = itemState.items[index];
-                        return InkWell(
-                          onTap: () {
-                            goRouter.go('$itemFormScreenPath/${item.id}');
+                    child: StreamBuilder<List<Item>>(
+                      stream: itemState.itemStream,
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(child: CircularProgressIndicator());
+                        }
+                        final items = snapshot.data!;
+                        return GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 15.0,
+                            mainAxisSpacing: 15.0,
+                          ),
+                          itemBuilder: (context, index) {
+                            final item = items[index];
+                            return InkWell(
+                              onTap: () {
+                                goRouter.go('$itemFormScreenPath/${item.id}');
+                              },
+                              child: ItemTile(item: item),
+                            );
                           },
-                          child: ItemTile(item: item),
+                          itemCount: items.length,
                         );
                       },
-                      itemCount: itemState.items.length,
                     ),
                   ),
                 ],

@@ -156,7 +156,7 @@ final List<ItemCategory> itemCategories = [
   const ItemCategory(id: 5, value: otherCategory),
 ];
 const String notSelected = 'Not Selected';
-const String allCategory = 'All Item Category';
+const String allCategory = 'All Categories';
 const String appetizerCategory = 'Appetizers';
 const String mainDishCategory = 'Main Dishes';
 const String dessertCategory = 'Desserts';
