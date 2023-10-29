@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_talks/models/Iitems/category_model.dart';
+import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/view_model/users/profile_view_model.dart';
 
 // Screen Titles
@@ -67,7 +67,7 @@ String itemNameLabel = currentLanguage == englishLanguage ? 'Name' : '名前';
 String itemStockCountLabel =
     currentLanguage == englishLanguage ? 'Stock Count' : '在庫数';
 String itemCategoryLabel =
-    currentLanguage == englishLanguage ? 'Category' : 'カテゴリ';
+    currentLanguage == englishLanguage ? 'Item Category' : 'カテゴリ';
 String itemdescriptionLabel =
     currentLanguage == englishLanguage ? 'Description' : '説明';
 String defaultItemCategoryLabel =
@@ -147,16 +147,16 @@ const double appTitleFontSize = 30;
 const double normalFontSize = 15;
 
 // Item Categories
-final List<Category> itemCategories = [
-  const Category(id: 0, value: allCategory),
-  const Category(id: 1, value: appetizerCategory),
-  const Category(id: 2, value: mainDishCategory),
-  const Category(id: 3, value: dessertCategory),
-  const Category(id: 4, value: beverageCategory),
-  const Category(id: 5, value: otherCategory),
+final List<ItemCategory> itemCategories = [
+  const ItemCategory(id: 0, value: allCategory),
+  const ItemCategory(id: 1, value: appetizerCategory),
+  const ItemCategory(id: 2, value: mainDishCategory),
+  const ItemCategory(id: 3, value: dessertCategory),
+  const ItemCategory(id: 4, value: beverageCategory),
+  const ItemCategory(id: 5, value: otherCategory),
 ];
 const String notSelected = 'Not Selected';
-const String allCategory = 'All Category';
+const String allCategory = 'All Item Category';
 const String appetizerCategory = 'Appetizers';
 const String mainDishCategory = 'Main Dishes';
 const String dessertCategory = 'Desserts';

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/firebase/user_authentication.dart';
-import 'package:restaurant_talks/models/Iitems/category_model.dart';
+import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/models/Iitems/item_model.dart';
 import 'package:restaurant_talks/models/users/login_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
@@ -17,7 +17,7 @@ part 'item_index_view_model.freezed.dart';
 class ItemIndexState with _$ItemIndexState {
   const factory ItemIndexState({
     required List<Item> items,
-    required Category selectedCategory,
+    required ItemCategory selectedCategory,
     required TextEditingController searchController,
   }) = _ItemIndexState;
 }
@@ -37,7 +37,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
     return snapshot.docs.map((doc) => Item.fromDocument(doc)).toList();
   }
 
-  List<Category> getItemCategories() {
+  List<ItemCategory> getItemCategories() {
     return itemCategories;
   }
 
@@ -71,7 +71,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
     state = state.copyWith(items: sortedItems);
   }
 
-  void updateSelectedCategory(Category newCategory) {
+  void updateSelectedCategory(ItemCategory newCategory) {
     if (state.selectedCategory != newCategory) {
       state = state.copyWith(selectedCategory: itemCategories[0]);
       _filterItemsByCategory();

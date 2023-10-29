@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/models/Iitems/category_model.dart';
+import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_edit_view_model.dart';
 import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
@@ -91,25 +91,21 @@ class ItemFormScreen extends ConsumerWidget {
                   Text('$itemCategoryLabel:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: DropdownButton<Category>(
-                      value: itemEditState.categoryController.text.isEmpty
-                          ? itemCategories[0]
-                          : itemCategories.firstWhere((element) =>
-                              element.value ==
-                              itemEditState.categoryController.text),
-                      items: itemCategories.map((Category category) {
-                        return DropdownMenuItem<Category>(
-                          value: category,
-                          child: Text(category.value),
-                        );
-                      }).toList(),
-                      onChanged: (Category? category) {
-                        if (category != null) {
-                          itemEditState.categoryController.text =
-                              category.value;
-                        }
-                      },
-                    ),
+                    child: DropdownButton<ItemCategory>(
+                        value: itemEditState.currentCategory,
+                        items: itemCategories.map((ItemCategory category) {
+                          return DropdownMenuItem<ItemCategory>(
+                            value: category,
+                            child: Text(category.value),
+                          );
+                        }).toList(),
+                        onChanged: (ItemCategory? category) {
+                          if (category != null) {
+                            ref
+                                .read(itemEditStateManager(id).notifier)
+                                .updateCategory(category);
+                          }
+                        }),
                   ),
                 ],
               ),
@@ -140,7 +136,9 @@ class ItemFormScreen extends ConsumerWidget {
                 textColor: whiteColor,
                 func: () {
                   ref.read(itemEditStateManager(id).notifier).saveItem();
-                  ref.watch(itemIndexViewModelProvider.notifier).loadInitialData;
+                  ref
+                      .watch(itemIndexViewModelProvider.notifier)
+                      .loadInitialData;
                   goRouter.go(itemIndexScreenPath);
                 },
               ),

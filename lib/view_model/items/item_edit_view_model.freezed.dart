@@ -21,10 +21,9 @@ mixin _$ItemEditState {
       throw _privateConstructorUsedError;
   TextEditingController get stockCountController =>
       throw _privateConstructorUsedError;
-  TextEditingController get categoryController =>
-      throw _privateConstructorUsedError;
   TextEditingController get descriptionController =>
       throw _privateConstructorUsedError;
+  ItemCategory get currentCategory => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ItemEditStateCopyWith<ItemEditState> get copyWith =>
@@ -41,8 +40,8 @@ abstract class $ItemEditStateCopyWith<$Res> {
       {Item item,
       TextEditingController nameController,
       TextEditingController stockCountController,
-      TextEditingController categoryController,
-      TextEditingController descriptionController});
+      TextEditingController descriptionController,
+      ItemCategory currentCategory});
 
   $ItemCopyWith<$Res> get item;
 }
@@ -63,8 +62,8 @@ class _$ItemEditStateCopyWithImpl<$Res, $Val extends ItemEditState>
     Object? item = null,
     Object? nameController = null,
     Object? stockCountController = null,
-    Object? categoryController = null,
     Object? descriptionController = null,
+    Object? currentCategory = freezed,
   }) {
     return _then(_value.copyWith(
       item: null == item
@@ -79,14 +78,14 @@ class _$ItemEditStateCopyWithImpl<$Res, $Val extends ItemEditState>
           ? _value.stockCountController
           : stockCountController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
-      categoryController: null == categoryController
-          ? _value.categoryController
-          : categoryController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
       descriptionController: null == descriptionController
           ? _value.descriptionController
           : descriptionController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
+      currentCategory: freezed == currentCategory
+          ? _value.currentCategory
+          : currentCategory // ignore: cast_nullable_to_non_nullable
+              as ItemCategory,
     ) as $Val);
   }
 
@@ -111,8 +110,8 @@ abstract class _$$_ItemEditStateCopyWith<$Res>
       {Item item,
       TextEditingController nameController,
       TextEditingController stockCountController,
-      TextEditingController categoryController,
-      TextEditingController descriptionController});
+      TextEditingController descriptionController,
+      ItemCategory currentCategory});
 
   @override
   $ItemCopyWith<$Res> get item;
@@ -132,8 +131,8 @@ class __$$_ItemEditStateCopyWithImpl<$Res>
     Object? item = null,
     Object? nameController = null,
     Object? stockCountController = null,
-    Object? categoryController = null,
     Object? descriptionController = null,
+    Object? currentCategory = freezed,
   }) {
     return _then(_$_ItemEditState(
       item: null == item
@@ -148,27 +147,27 @@ class __$$_ItemEditStateCopyWithImpl<$Res>
           ? _value.stockCountController
           : stockCountController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
-      categoryController: null == categoryController
-          ? _value.categoryController
-          : categoryController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
       descriptionController: null == descriptionController
           ? _value.descriptionController
           : descriptionController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
+      currentCategory: freezed == currentCategory
+          ? _value.currentCategory
+          : currentCategory // ignore: cast_nullable_to_non_nullable
+              as ItemCategory,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ItemEditState implements _ItemEditState {
+class _$_ItemEditState with DiagnosticableTreeMixin implements _ItemEditState {
   const _$_ItemEditState(
       {required this.item,
       required this.nameController,
       required this.stockCountController,
-      required this.categoryController,
-      required this.descriptionController});
+      required this.descriptionController,
+      required this.currentCategory});
 
   @override
   final Item item;
@@ -177,13 +176,25 @@ class _$_ItemEditState implements _ItemEditState {
   @override
   final TextEditingController stockCountController;
   @override
-  final TextEditingController categoryController;
-  @override
   final TextEditingController descriptionController;
+  @override
+  final ItemCategory currentCategory;
 
   @override
-  String toString() {
-    return 'ItemEditState(item: $item, nameController: $nameController, stockCountController: $stockCountController, categoryController: $categoryController, descriptionController: $descriptionController)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ItemEditState(item: $item, nameController: $nameController, stockCountController: $stockCountController, descriptionController: $descriptionController, currentCategory: $currentCategory)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ItemEditState'))
+      ..add(DiagnosticsProperty('item', item))
+      ..add(DiagnosticsProperty('nameController', nameController))
+      ..add(DiagnosticsProperty('stockCountController', stockCountController))
+      ..add(DiagnosticsProperty('descriptionController', descriptionController))
+      ..add(DiagnosticsProperty('currentCategory', currentCategory));
   }
 
   @override
@@ -196,15 +207,20 @@ class _$_ItemEditState implements _ItemEditState {
                 other.nameController == nameController) &&
             (identical(other.stockCountController, stockCountController) ||
                 other.stockCountController == stockCountController) &&
-            (identical(other.categoryController, categoryController) ||
-                other.categoryController == categoryController) &&
             (identical(other.descriptionController, descriptionController) ||
-                other.descriptionController == descriptionController));
+                other.descriptionController == descriptionController) &&
+            const DeepCollectionEquality()
+                .equals(other.currentCategory, currentCategory));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, item, nameController,
-      stockCountController, categoryController, descriptionController);
+  int get hashCode => Object.hash(
+      runtimeType,
+      item,
+      nameController,
+      stockCountController,
+      descriptionController,
+      const DeepCollectionEquality().hash(currentCategory));
 
   @JsonKey(ignore: true)
   @override
@@ -215,12 +231,11 @@ class _$_ItemEditState implements _ItemEditState {
 
 abstract class _ItemEditState implements ItemEditState {
   const factory _ItemEditState(
-          {required final Item item,
-          required final TextEditingController nameController,
-          required final TextEditingController stockCountController,
-          required final TextEditingController categoryController,
-          required final TextEditingController descriptionController}) =
-      _$_ItemEditState;
+      {required final Item item,
+      required final TextEditingController nameController,
+      required final TextEditingController stockCountController,
+      required final TextEditingController descriptionController,
+      required final ItemCategory currentCategory}) = _$_ItemEditState;
 
   @override
   Item get item;
@@ -229,9 +244,9 @@ abstract class _ItemEditState implements ItemEditState {
   @override
   TextEditingController get stockCountController;
   @override
-  TextEditingController get categoryController;
-  @override
   TextEditingController get descriptionController;
+  @override
+  ItemCategory get currentCategory;
   @override
   @JsonKey(ignore: true)
   _$$_ItemEditStateCopyWith<_$_ItemEditState> get copyWith =>

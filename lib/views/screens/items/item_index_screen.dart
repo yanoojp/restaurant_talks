@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/models/Iitems/category_model.dart';
+import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 import 'package:restaurant_talks/views/widgets/custom_app_bar.dart';
@@ -16,9 +16,8 @@ class ItemIndexScreen extends ConsumerWidget {
     final itemState = ref.watch(itemIndexViewModelProvider);
 
     return FutureBuilder<bool>(
-      future: ref
-          .watch(itemIndexViewModelProvider.notifier)
-          .checkIfUserLoggedIn(),
+      future:
+          ref.watch(itemIndexViewModelProvider.notifier).checkIfUserLoggedIn(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
@@ -92,10 +91,10 @@ class ItemIndexScreen extends ConsumerWidget {
                       Expanded(
                         child: SizedBox(
                           height: 63,
-                          child: DropdownButton<Category>(
+                          child: DropdownButton<ItemCategory>(
                             value: itemState.selectedCategory,
-                            items: itemCategories.map((Category category) {
-                              return DropdownMenuItem<Category>(
+                            items: itemCategories.map((ItemCategory category) {
+                              return DropdownMenuItem<ItemCategory>(
                                 value: category,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 5.0),
@@ -109,7 +108,7 @@ class ItemIndexScreen extends ConsumerWidget {
                               height: 1.5,
                               color: lightBlue,
                             ),
-                            onChanged: (Category? newCategory) {
+                            onChanged: (ItemCategory? newCategory) {
                               if (newCategory != null) {
                                 ref
                                     .read(itemIndexViewModelProvider.notifier)
