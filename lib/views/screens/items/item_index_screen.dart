@@ -129,7 +129,8 @@ class ItemIndexScreen extends ConsumerWidget {
                       stream: itemState.itemStream,
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
-                          return const Center(child: CircularProgressIndicator());
+                          return const Center(
+                              child: CircularProgressIndicator());
                         }
                         final items = snapshot.data!;
                         return GridView.builder(
