@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ItemIndexState {
-  List<Item> get items => throw _privateConstructorUsedError;
-  Category get selectedCategory => throw _privateConstructorUsedError;
+  Stream<List<Item>>? get itemStream => throw _privateConstructorUsedError;
+  ItemCategory get selectedCategory => throw _privateConstructorUsedError;
   TextEditingController get searchController =>
       throw _privateConstructorUsedError;
 
@@ -33,11 +33,11 @@ abstract class $ItemIndexStateCopyWith<$Res> {
       _$ItemIndexStateCopyWithImpl<$Res, ItemIndexState>;
   @useResult
   $Res call(
-      {List<Item> items,
-      Category selectedCategory,
+      {Stream<List<Item>>? itemStream,
+      ItemCategory selectedCategory,
       TextEditingController searchController});
 
-  $CategoryCopyWith<$Res> get selectedCategory;
+  $ItemCategoryCopyWith<$Res> get selectedCategory;
 }
 
 /// @nodoc
@@ -53,19 +53,19 @@ class _$ItemIndexStateCopyWithImpl<$Res, $Val extends ItemIndexState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
+    Object? itemStream = freezed,
     Object? selectedCategory = null,
     Object? searchController = null,
   }) {
     return _then(_value.copyWith(
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+      itemStream: freezed == itemStream
+          ? _value.itemStream
+          : itemStream // ignore: cast_nullable_to_non_nullable
+              as Stream<List<Item>>?,
       selectedCategory: null == selectedCategory
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
-              as Category,
+              as ItemCategory,
       searchController: null == searchController
           ? _value.searchController
           : searchController // ignore: cast_nullable_to_non_nullable
@@ -75,8 +75,8 @@ class _$ItemIndexStateCopyWithImpl<$Res, $Val extends ItemIndexState>
 
   @override
   @pragma('vm:prefer-inline')
-  $CategoryCopyWith<$Res> get selectedCategory {
-    return $CategoryCopyWith<$Res>(_value.selectedCategory, (value) {
+  $ItemCategoryCopyWith<$Res> get selectedCategory {
+    return $ItemCategoryCopyWith<$Res>(_value.selectedCategory, (value) {
       return _then(_value.copyWith(selectedCategory: value) as $Val);
     });
   }
@@ -91,12 +91,12 @@ abstract class _$$_ItemIndexStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Item> items,
-      Category selectedCategory,
+      {Stream<List<Item>>? itemStream,
+      ItemCategory selectedCategory,
       TextEditingController searchController});
 
   @override
-  $CategoryCopyWith<$Res> get selectedCategory;
+  $ItemCategoryCopyWith<$Res> get selectedCategory;
 }
 
 /// @nodoc
@@ -110,19 +110,19 @@ class __$$_ItemIndexStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
+    Object? itemStream = freezed,
     Object? selectedCategory = null,
     Object? searchController = null,
   }) {
     return _then(_$_ItemIndexState(
-      items: null == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+      itemStream: freezed == itemStream
+          ? _value.itemStream
+          : itemStream // ignore: cast_nullable_to_non_nullable
+              as Stream<List<Item>>?,
       selectedCategory: null == selectedCategory
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
-              as Category,
+              as ItemCategory,
       searchController: null == searchController
           ? _value.searchController
           : searchController // ignore: cast_nullable_to_non_nullable
@@ -135,27 +135,20 @@ class __$$_ItemIndexStateCopyWithImpl<$Res>
 
 class _$_ItemIndexState implements _ItemIndexState {
   const _$_ItemIndexState(
-      {required final List<Item> items,
+      {this.itemStream,
       required this.selectedCategory,
-      required this.searchController})
-      : _items = items;
-
-  final List<Item> _items;
-  @override
-  List<Item> get items {
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
-  }
+      required this.searchController});
 
   @override
-  final Category selectedCategory;
+  final Stream<List<Item>>? itemStream;
+  @override
+  final ItemCategory selectedCategory;
   @override
   final TextEditingController searchController;
 
   @override
   String toString() {
-    return 'ItemIndexState(items: $items, selectedCategory: $selectedCategory, searchController: $searchController)';
+    return 'ItemIndexState(itemStream: $itemStream, selectedCategory: $selectedCategory, searchController: $searchController)';
   }
 
   @override
@@ -163,7 +156,8 @@ class _$_ItemIndexState implements _ItemIndexState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ItemIndexState &&
-            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.itemStream, itemStream) ||
+                other.itemStream == itemStream) &&
             (identical(other.selectedCategory, selectedCategory) ||
                 other.selectedCategory == selectedCategory) &&
             (identical(other.searchController, searchController) ||
@@ -171,11 +165,8 @@ class _$_ItemIndexState implements _ItemIndexState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_items),
-      selectedCategory,
-      searchController);
+  int get hashCode =>
+      Object.hash(runtimeType, itemStream, selectedCategory, searchController);
 
   @JsonKey(ignore: true)
   @override
@@ -186,15 +177,15 @@ class _$_ItemIndexState implements _ItemIndexState {
 
 abstract class _ItemIndexState implements ItemIndexState {
   const factory _ItemIndexState(
-          {required final List<Item> items,
-          required final Category selectedCategory,
+          {final Stream<List<Item>>? itemStream,
+          required final ItemCategory selectedCategory,
           required final TextEditingController searchController}) =
       _$_ItemIndexState;
 
   @override
-  List<Item> get items;
+  Stream<List<Item>>? get itemStream;
   @override
-  Category get selectedCategory;
+  ItemCategory get selectedCategory;
   @override
   TextEditingController get searchController;
   @override

@@ -24,8 +24,6 @@ class ProfileState with _$ProfileState {
   }) = _ProfileState;
 }
 
-String currentLanguage = japaneseLanguage;
-
 class ProfileStateManager extends StateNotifier<ProfileState> {
   ProfileStateManager()
       : super(_ProfileState(
@@ -74,7 +72,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
           state = state.copyWith(
               currentLanguage: userData[languageField] ?? jaSelectItem);
 
-          currentLanguage = state.currentLanguage;
+          // currentLanguage = state.currentLanguage;
 
           // state.prefectureController.text = userData['prefecture'] ?? '';
         } else {
@@ -144,7 +142,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     String updatedManagerName = state.managerNameController.text;
     String updatedRestaurantName = state.restaurantNameController.text;
     String updatedLanguage = state.currentLanguage;
-    currentLanguage = state.currentLanguage;
+    // currentLanguage = state.currentLanguage;
 
     try {
       await authService.updateUserProfiles(
@@ -159,7 +157,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     }
   }
 
-  Future<void> logout() async {
+Future<void> logout() async {
     final authService = FirebaseAuthService();
     await authService.signOut();
   }
@@ -206,7 +204,6 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
   void updateLanguage(String? newLanguage) {
     if (newLanguage != null) {
       state = state.copyWith(currentLanguage: newLanguage);
-      currentLanguage = state.currentLanguage;
     }
   }
 }

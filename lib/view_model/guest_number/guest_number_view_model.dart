@@ -27,7 +27,7 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
       int latestGuestNumber = snapshot.docs.first.get(guestNumberField);
       state.guestNumberController.text = latestGuestNumber.toString();
       state = state.copyWith(
-        guestNumber: int.parse(state.guestNumberController.text));
+          guestNumber: int.parse(state.guestNumberController.text));
     }
   }
 
@@ -38,15 +38,12 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
       return;
     }
 
-    if (_isValidNumber(state.guestNumberController.text)) {
-      await guestNumbersCollectionInstance
-          .add({guestNumberField: state.guestNumber, userIdField: user.uid});
-    } else {
-      showErrorDialog(context, invalidGuestNumberMessage);
-    }
+    await guestNumbersCollectionInstance
+        .add({guestNumberField: state.guestNumber, userIdField: user.uid});
   }
 
   bool _isValidNumber(String value) {
+    if (value == "") return true;
     return int.tryParse(value) != null;
   }
 
@@ -69,6 +66,14 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
         );
       },
     );
+  }
+
+  void updateGuestNumber(val, context) {
+    if (_isValidNumber(state.guestNumberController.text)) {
+      state = state.copyWith(guestNumber: val == '' ? 0 : int.parse(val));
+    } else {
+      showErrorDialog(context, invalidGuestNumberMessage);
+    }
   }
 }
 

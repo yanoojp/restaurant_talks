@@ -60,9 +60,12 @@ class ProfileScreen extends ConsumerWidget {
                         .map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value == enSelectItem
-                            ? englishLanguage
-                            : japaneseLanguage),
+                        child: Text(
+                          value == enSelectItem
+                              ? englishLanguage
+                              : japaneseLanguage,
+                          style: const TextStyle(color: blackColor),
+                        ),
                       );
                     }).toList(),
                     onChanged: (newValue) {
@@ -70,7 +73,7 @@ class ProfileScreen extends ConsumerWidget {
                           .read(profileStateManager.notifier)
                           .updateLanguage(newValue);
                     },
-                    dropdownColor: darkBlue,
+                    dropdownColor: darkYellow,
                     style: const TextStyle(color: whiteColor),
                   ),
                   const SizedBox(height: 30),
@@ -87,18 +90,17 @@ class ProfileScreen extends ConsumerWidget {
               const SizedBox(height: 10),
               ButtonWithUnderline(
                 text: logoutButton,
-                screenPath: loginScreenPath,
-                func: () {
-                  ref.read(profileStateManager.notifier).logout();
+                func: () async {
+                  await ref.read(profileStateManager.notifier).logout();
+                  goRouter.go(loginScreenPath);
                 },
                 color: darkBlue,
               ),
               ButtonWithUnderline(
                 text: deleteAccountButton,
-                screenPath: loginScreenPath,
                 func: () {
                   ref.read(profileStateManager.notifier).deleteAccount();
-                  goRouter.go(signupScreenPath);
+                  goRouter.go(loginScreenPath);
                 },
                 color: darkBlue,
               )

@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/models/Iitems/category_model.dart';
+import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_edit_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 
-bool _isInitialized = false;
-
 class ItemFormScreen extends ConsumerWidget {
   final String? id;
-  const ItemFormScreen({Key? key, required this.id}) : super(key: key);
+  ItemFormScreen({Key? key, required this.id}) : super(key: key);
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemEditState = ref.watch(itemEditStateManager);
+    final itemEditState = ref.watch(itemEditStateManager(id));
 
-    if (!_isInitialized) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(itemEditStateManager.notifier).initializeItem(id);
-      });
-      _isInitialized = true;
+    if (nameController.text != itemEditState.item.name) {
+      nameController.text = itemEditState.item.name;
+    }
+
+    if (descriptionController.text != itemEditState.item.description) {
+      descriptionController.text = itemEditState.item.description;
     }
 
     return Scaffold(
@@ -40,7 +41,14 @@ class ItemFormScreen extends ConsumerWidget {
                   Text('$itemNameLabel:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: TextField(controller: itemEditState.nameController),
+                    child: TextField(
+                      controller: nameController,
+                      onChanged: (value) {
+                        ref
+                            .read(itemEditStateManager(id).notifier)
+                            .updateItemName(value);
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -58,7 +66,7 @@ class ItemFormScreen extends ConsumerWidget {
                       ElevatedButton(
                         onPressed: () {
                           ref
-                              .read(itemEditStateManager.notifier)
+                              .read(itemEditStateManager(id).notifier)
                               .subtractCount();
                         },
                         style: ElevatedButton.styleFrom(
@@ -76,7 +84,9 @@ class ItemFormScreen extends ConsumerWidget {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          ref.read(itemEditStateManager.notifier).addCount();
+                          ref
+                              .read(itemEditStateManager(id).notifier)
+                              .addCount();
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: darkBlue,
@@ -97,25 +107,21 @@ class ItemFormScreen extends ConsumerWidget {
                   Text('$itemCategoryLabel:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: DropdownButton<Category>(
-                      value: itemEditState.categoryController.text.isEmpty
-                          ? itemCategories[0]
-                          : itemCategories.firstWhere((element) =>
-                              element.value ==
-                              itemEditState.categoryController.text),
-                      items: itemCategories.map((Category category) {
-                        return DropdownMenuItem<Category>(
-                          value: category,
-                          child: Text(category.value),
-                        );
-                      }).toList(),
-                      onChanged: (Category? category) {
-                        if (category != null) {
-                          itemEditState.categoryController.text =
-                              category.value;
-                        }
-                      },
-                    ),
+                    child: DropdownButton<ItemCategory>(
+                        value: itemEditState.currentCategory,
+                        items: itemCategories.map((ItemCategory category) {
+                          return DropdownMenuItem<ItemCategory>(
+                            value: category,
+                            child: Text(category.value),
+                          );
+                        }).toList(),
+                        onChanged: (ItemCategory? category) {
+                          if (category != null) {
+                            ref
+                                .read(itemEditStateManager(id).notifier)
+                                .updateCategory(category);
+                          }
+                        }),
                   ),
                 ],
               ),
@@ -128,13 +134,18 @@ class ItemFormScreen extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextField(
-                      controller: itemEditState.descriptionController,
+                      controller: descriptionController,
                       minLines: 5,
                       maxLines: 5,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(),
                       ),
+                      onChanged: (value) {
+                        ref
+                            .read(itemEditStateManager(id).notifier)
+                            .updateDescription(value);
+                      },
                     ),
                   ),
                 ],
@@ -145,7 +156,7 @@ class ItemFormScreen extends ConsumerWidget {
                 backgroundColor: darkBlue,
                 textColor: whiteColor,
                 func: () {
-                  ref.read(itemEditStateManager.notifier).saveItem();
+                  ref.read(itemEditStateManager(id).notifier).saveItem();
                   goRouter.go(itemIndexScreenPath);
                 },
               ),

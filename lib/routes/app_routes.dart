@@ -36,7 +36,7 @@ final goRouter = GoRouter(
         GoRoute(
           path: 'edit',
           pageBuilder: (context, state) {
-            return const MaterialPage(child: ItemFormScreen(id: null));
+            return MaterialPage(child: ItemFormScreen(id: null));
           },
         ),
         GoRoute(
