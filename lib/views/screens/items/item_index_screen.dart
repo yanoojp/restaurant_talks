@@ -99,7 +99,10 @@ class ItemIndexScreen extends ConsumerWidget {
                                 value: category,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 5.0),
-                                  child: Text(category.value),
+                                  child: Text(
+                                    category.value,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
                                 ),
                               );
                             }).toList(),

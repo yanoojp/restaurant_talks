@@ -60,9 +60,12 @@ class ProfileScreen extends ConsumerWidget {
                         .map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value == enSelectItem
-                            ? englishLanguage
-                            : japaneseLanguage),
+                        child: Text(
+                          value == enSelectItem
+                              ? englishLanguage
+                              : japaneseLanguage,
+                          style: const TextStyle(color: blackColor),
+                        ),
                       );
                     }).toList(),
                     onChanged: (newValue) {
@@ -70,7 +73,7 @@ class ProfileScreen extends ConsumerWidget {
                           .read(profileStateManager.notifier)
                           .updateLanguage(newValue);
                     },
-                    dropdownColor: darkBlue,
+                    dropdownColor: darkYellow,
                     style: const TextStyle(color: whiteColor),
                   ),
                   const SizedBox(height: 30),
