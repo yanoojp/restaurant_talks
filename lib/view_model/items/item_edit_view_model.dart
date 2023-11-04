@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/models/Iitems/item_model.dart';
 
@@ -102,13 +104,13 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
     state = state.copyWith(currentCategory: category);
   }
 
-  Future<void> saveItem() async {
+  Future<void> saveItem(BuildContext context) async {
     final auth = FirebaseAuth.instance;
     final user = auth.currentUser;
     final uid = user?.uid;
 
     if (uid == null) {
-      throw Exception(userNotAuthenticatedMessage);
+      throw Exception(S.of(context).userNotAuthenticatedMessage);
     }
 
     final collection = FirebaseFirestore.instance.collection(itemsCollection);

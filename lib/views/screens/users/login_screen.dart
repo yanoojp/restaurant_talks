@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/users/signup_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
@@ -34,7 +35,7 @@ class LoginScreen extends ConsumerWidget {
                 style: const TextStyle(color: whiteColor),
                 controller: loginState.emailController,
                 decoration: InputDecoration(
-                  hintText: emailHintText,
+                  hintText: S.of(context).emailHintText,
                   hintStyle: const TextStyle(
                     color: whiteColor,
                   ),
@@ -48,7 +49,7 @@ class LoginScreen extends ConsumerWidget {
                 style: const TextStyle(color: whiteColor),
                 controller: loginState.passwordController,
                 decoration: InputDecoration(
-                  hintText: passwordHintText,
+                  hintText: S.of(context).passwordHintText,
                   hintStyle: const TextStyle(
                     color: whiteColor,
                   ),
@@ -59,11 +60,11 @@ class LoginScreen extends ConsumerWidget {
                 height: 80,
               ),
               Button(
-                text: loginButton,
+                text: S.of(context).loginButton,
                 func: () {
                   final validationResult = ref
                       .read(authStateManager.notifier)
-                      .validateAuthForm(loginState);
+                      .validateAuthForm(loginState, context);
                   if (validationResult == null) {
                     ref.read(authStateManager.notifier).login(context);
                   } else {
@@ -74,7 +75,7 @@ class LoginScreen extends ConsumerWidget {
                 },
               ),
               ButtonWithUnderline(
-                  text: toSignupScreenButton,
+                  text: S.of(context).toSignupScreenButton,
                   func: () {
                     goRouter.go(signupScreenPath);
                   })

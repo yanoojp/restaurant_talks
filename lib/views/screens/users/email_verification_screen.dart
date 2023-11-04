@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/view_model/users/email_verification_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 
@@ -13,7 +14,7 @@ class EmailVerificationScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(emailVerificationScreen),
+        title: Text(S.of(context).emailVerificationScreen),
         backgroundColor: darkBlue,
       ),
       body: Padding(
@@ -23,19 +24,19 @@ class EmailVerificationScreen extends ConsumerWidget {
           children: [
             Text(
               // On the email verification screen, provide clear instructions. Let the user know that they might need to check their spam folder or that email delivery might take a few minutes.
-              pleaseVerifYourEmailMessage,
+              S.of(context).pleaseVerifYourEmailMessage,
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: normalFontSize, height: 1.5),
             ),
             const SizedBox(height: 80.0),
             Button(
-              text: resendVerificationEmailButton,
+              text: S.of(context).resendVerificationEmailButton,
               func: () async {
                 await ref
                     .read(emailVerificationStateManager.notifier)
                     .resendVerificationEmail();
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(verificationEmailSentAgainMessage)));
+                    SnackBar(content: Text(S.of(context).verificationEmailSentAgainMessage)));
               },
               backgroundColor: darkBlue,
               textColor: whiteColor,
@@ -44,14 +45,14 @@ class EmailVerificationScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 20.0),
             Button(
-              text: confirmVarifiedButton,
+              text: S.of(context).confirmVarifiedButton,
               func: () async {
                 bool isVerified = await ref
                     .read(emailVerificationStateManager.notifier)
                     .checkEmailVerified();
                 if (!isVerified) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(notVerifiedMessage)));
+                      SnackBar(content: Text(S.of(context).notVerifiedMessage)));
                 }
               },
               backgroundColor: darkBlue,

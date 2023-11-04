@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 
 class ErrorDialog extends StatelessWidget {
   final String errorMessage;
@@ -18,7 +19,10 @@ class ErrorDialog extends StatelessWidget {
       // ),
       actions: <Widget>[
         TextButton(
-          child: Text(okButton, style: const TextStyle(color: darkYellow),),
+          child: Text(
+            S.of(context).okButton,
+            style: const TextStyle(color: darkYellow),
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },

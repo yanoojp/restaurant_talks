@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 
 part 'guest_number_view_model.freezed.dart';
 
@@ -34,7 +35,7 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
   Future<void> saveGuestNumber(BuildContext context) async {
     final user = auth.currentUser;
     if (user == null) {
-      showErrorDialog(context, userNotAuthenticatedMessage);
+      showErrorDialog(context, S.of(context).userNotAuthenticatedMessage);
       return;
     }
 
@@ -53,11 +54,11 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(enterValidNumberMessage),
+          title: Text(S.of(context).enterValidNumberMessage),
           content: Text(message),
           actions: <Widget>[
             TextButton(
-              child: Text(okButton),
+              child: Text(S.of(context).okButton),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -72,7 +73,7 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
     if (_isValidNumber(state.guestNumberController.text)) {
       state = state.copyWith(guestNumber: val == '' ? 0 : int.parse(val));
     } else {
-      showErrorDialog(context, invalidGuestNumberMessage);
+      showErrorDialog(context, S.of(context).invalidGuestNumberMessage);
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/firebase/user_authentication.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
 import 'package:restaurant_talks/views/widgets/base/error_dialog.dart';
 
@@ -20,6 +21,7 @@ class ProfileState with _$ProfileState {
     required TextEditingController managerNameController,
     required TextEditingController restaurantNameController,
     required String currentLanguage,
+    required Locale currentLocale,
     // required TextEditingController prefectureController,
   }) = _ProfileState;
 }
@@ -27,22 +29,23 @@ class ProfileState with _$ProfileState {
 class ProfileStateManager extends StateNotifier<ProfileState> {
   ProfileStateManager()
       : super(_ProfileState(
-          isProcessing: false,
-          profileRequest: Profile(
-              email: '',
-              password: '',
-              managerName: '',
-              restaurantName: '',
-              language: jaSelectItem
-              // prefecture: ''
-              ),
-          emailController: TextEditingController(),
-          passwordController: TextEditingController(),
-          managerNameController: TextEditingController(),
-          restaurantNameController: TextEditingController(),
-          currentLanguage: jaSelectItem,
-          // prefectureController: TextEditingController(),
-        )) {
+            isProcessing: false,
+            profileRequest: Profile(
+                email: '',
+                password: '',
+                managerName: '',
+                restaurantName: '',
+                language: jaSelectItem
+                // prefecture: ''
+                ),
+            emailController: TextEditingController(),
+            passwordController: TextEditingController(),
+            managerNameController: TextEditingController(),
+            restaurantNameController: TextEditingController(),
+            currentLanguage: jaSelectItem,
+            currentLocale: const Locale('en', '')
+            // prefectureController: TextEditingController(),
+            )) {
     setUserInfo();
   }
 
@@ -70,9 +73,10 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
               userData[restaurantNameField] ?? '';
 
           state = state.copyWith(
-              currentLanguage: userData[languageField] ?? jaSelectItem);
-
-          // currentLanguage = state.currentLanguage;
+              currentLanguage: userData[languageField] ?? jaSelectItem,
+              currentLocale: userData[languageField] == enSelectItem
+                  ? const Locale('en', '')
+                  : const Locale('ja', ''));
 
           // state.prefectureController.text = userData['prefecture'] ?? '';
         } else {
@@ -88,7 +92,7 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     }
   }
 
-  String? validateProfileForm(state) {
+  String? validateProfileForm(state, context) {
     String email = state.emailController.text;
     String password = state.passwordController.text;
     String managerName = state.managerNameController.text;
@@ -99,23 +103,23 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     final emailRegex = RegExp(emailRegexString);
 
     if (!emailRegex.hasMatch(email)) {
-      return invalidEmailMessage;
+      return S.of(context).invalidEmailMessage;
     }
 
     if (password.length < 8) {
-      return invalidPasswordMessage;
+      return S.of(context).invalidPasswordMessage;
     }
 
     if (managerName.isEmpty) {
-      return invalidManagerNameMessage;
+      return S.of(context).invalidManagerNameMessage;
     }
 
     if (restaurantName.isEmpty) {
-      return invalidRestaurantNameMessage;
+      return S.of(context).invalidRestaurantNameMessage;
     }
 
     if (language.isEmpty) {
-      return invalidLanguageMessage;
+      return S.of(context).invalidLanguageMessage;
     }
 
     // if (prefecture.isEmpty) {
@@ -136,13 +140,12 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
     );
   }
 
-  Future<void> updateProfile() async {
+  Future<void> updateProfile(BuildContext context) async {
     final authService = FirebaseAuthService();
     String updateEmail = state.emailController.text;
     String updatedManagerName = state.managerNameController.text;
     String updatedRestaurantName = state.restaurantNameController.text;
     String updatedLanguage = state.currentLanguage;
-    // currentLanguage = state.currentLanguage;
 
     try {
       await authService.updateUserProfiles(
@@ -150,14 +153,17 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
         managerName: updatedManagerName,
         restaurantName: updatedRestaurantName,
         language: updatedLanguage,
+        context: context,
       );
+
+      setUserInfo();
     } catch (e) {
       // print("Failed to update profile details: $e");
       // Handle error, perhaps notify the user
     }
   }
 
-Future<void> logout() async {
+  Future<void> logout() async {
     final authService = FirebaseAuthService();
     await authService.signOut();
   }
@@ -181,7 +187,7 @@ Future<void> logout() async {
     }
   }
 
-  Future<void> updateUserAuth() async {
+  Future<void> updateUserAuth(BuildContext context) async {
     final authService = FirebaseAuthService();
     String updatedEmail = state.emailController.text;
     String? updatedPassword = state.passwordController.text != ''
@@ -192,6 +198,7 @@ Future<void> logout() async {
       await authService.updateUserAuths(
         email: updatedEmail,
         password: updatedPassword,
+        context: context,
       );
     } catch (e) {
       // print("Failed to update email: $e");
@@ -201,9 +208,14 @@ Future<void> logout() async {
 
   String get getCurrentLanguage => state.currentLanguage;
 
-  void updateLanguage(String? newLanguage) {
+  void updateLanguage(String? newLanguage, BuildContext context) {
     if (newLanguage != null) {
-      state = state.copyWith(currentLanguage: newLanguage);
+      Locale newLocale = (newLanguage == enSelectItem)
+          ? const Locale('en', '')
+          : const Locale('ja', '');
+      state = state.copyWith(
+          currentLanguage: newLanguage, currentLocale: newLocale);
+      updateProfile(context);
     }
   }
 }

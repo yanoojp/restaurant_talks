@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GuestNumberState {
-  int? get guestNumber => throw _privateConstructorUsedError;
+  int get guestNumber => throw _privateConstructorUsedError;
   TextEditingController get guestNumberController =>
       throw _privateConstructorUsedError;
 
@@ -31,7 +31,7 @@ abstract class $GuestNumberStateCopyWith<$Res> {
           GuestNumberState value, $Res Function(GuestNumberState) then) =
       _$GuestNumberStateCopyWithImpl<$Res, GuestNumberState>;
   @useResult
-  $Res call({int? guestNumber, TextEditingController guestNumberController});
+  $Res call({int guestNumber, TextEditingController guestNumberController});
 }
 
 /// @nodoc
@@ -47,14 +47,14 @@ class _$GuestNumberStateCopyWithImpl<$Res, $Val extends GuestNumberState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? guestNumber = freezed,
+    Object? guestNumber = null,
     Object? guestNumberController = null,
   }) {
     return _then(_value.copyWith(
-      guestNumber: freezed == guestNumber
+      guestNumber: null == guestNumber
           ? _value.guestNumber
           : guestNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       guestNumberController: null == guestNumberController
           ? _value.guestNumberController
           : guestNumberController // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,7 @@ abstract class _$$_GuestNumberStateCopyWith<$Res>
       __$$_GuestNumberStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? guestNumber, TextEditingController guestNumberController});
+  $Res call({int guestNumber, TextEditingController guestNumberController});
 }
 
 /// @nodoc
@@ -85,14 +85,14 @@ class __$$_GuestNumberStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? guestNumber = freezed,
+    Object? guestNumber = null,
     Object? guestNumberController = null,
   }) {
     return _then(_$_GuestNumberState(
-      guestNumber: freezed == guestNumber
+      guestNumber: null == guestNumber
           ? _value.guestNumber
           : guestNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       guestNumberController: null == guestNumberController
           ? _value.guestNumberController
           : guestNumberController // ignore: cast_nullable_to_non_nullable
@@ -105,10 +105,10 @@ class __$$_GuestNumberStateCopyWithImpl<$Res>
 
 class _$_GuestNumberState implements _GuestNumberState {
   const _$_GuestNumberState(
-      {this.guestNumber, required this.guestNumberController});
+      {required this.guestNumber, required this.guestNumberController});
 
   @override
-  final int? guestNumber;
+  final int guestNumber;
   @override
   final TextEditingController guestNumberController;
 
@@ -141,12 +141,12 @@ class _$_GuestNumberState implements _GuestNumberState {
 
 abstract class _GuestNumberState implements GuestNumberState {
   const factory _GuestNumberState(
-          {final int? guestNumber,
+          {required final int guestNumber,
           required final TextEditingController guestNumberController}) =
       _$_GuestNumberState;
 
   @override
-  int? get guestNumber;
+  int get guestNumber;
   @override
   TextEditingController get guestNumberController;
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/guest_number/guest_number_view_model.dart';
 import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
@@ -15,7 +16,7 @@ class GuestNumberScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(guestNumberScreen),
+        title: Text(S.of(context).guestNumberScreen),
         backgroundColor: darkBlue,
         leading: IconButton(
           icon: const Icon(
@@ -37,7 +38,7 @@ class GuestNumberScreen extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(guestNumberHintText),
+                Text(S.of(context).guestNumberHintText),
                 const SizedBox(
                   height: 15,
                 ),
@@ -57,7 +58,7 @@ class GuestNumberScreen extends ConsumerWidget {
               height: 60,
             ),
             Button(
-                text: saveButton,
+                text: S.of(context).saveButton,
                 func: () {
                   final currentContext = context;
                   ref

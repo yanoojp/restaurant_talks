@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_edit_view_model.dart';
@@ -38,7 +39,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('$itemNameLabel:'),
+                  Text('${S.of(context).itemNameLabel}:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextField(
@@ -56,7 +57,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('$itemStockCountLabel:'),
+                  Text('${S.of(context).itemStockCountLabel}:'),
                   const SizedBox(
                     height: 20,
                   ),
@@ -93,7 +94,7 @@ class ItemFormScreen extends ConsumerWidget {
                           shape: const CircleBorder(),
                           padding: const EdgeInsets.all(15),
                         ),
-                        child: const Text(addCountButton,
+                        child: Text(S.of(context).addCountButton,
                             style: TextStyle(fontSize: normalFontSize)),
                       ),
                     ],
@@ -104,7 +105,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('$itemCategoryLabel:'),
+                  Text('${S.of(context).itemCategoryLabel}:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: DropdownButton<ItemCategory>(
@@ -129,7 +130,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('$itemdescriptionLabel:'),
+                  Text('${S.of(context).itemdescriptionLabel}:'),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -152,11 +153,11 @@ class ItemFormScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 30),
               Button(
-                text: saveButton,
+                text: S.of(context).saveButton,
                 backgroundColor: darkBlue,
                 textColor: whiteColor,
                 func: () {
-                  ref.read(itemEditStateManager(id).notifier).saveItem();
+                  ref.read(itemEditStateManager(id).notifier).saveItem(context);
                   goRouter.go(itemIndexScreenPath);
                 },
               ),

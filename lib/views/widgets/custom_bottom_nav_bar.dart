@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 
@@ -22,11 +23,11 @@ class CustomBottomNavBar extends ConsumerWidget {
         items: [
           BottomNavigationBarItem(
             icon: const Icon(Icons.home),
-            label: homeNavBar,
+            label: S.of(context).homeNavBar,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.person),
-            label: profileNavBar,
+            label: S.of(context).profileNavBar,
           ),
         ],
         onTap: (index) {

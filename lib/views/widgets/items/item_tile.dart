@@ -20,12 +20,16 @@ class ItemTile extends StatelessWidget {
         children: [
           Text(
             item.name,
-            style: const TextStyle(color: whiteColor), textAlign: TextAlign.center,
+            style: const TextStyle(color: whiteColor),
+            textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Text(
             '${item.stockCount}',
-            style: const TextStyle(color: whiteColor), textAlign: TextAlign.center,
+            style: const TextStyle(color: whiteColor),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

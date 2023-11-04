@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/users/signup_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
@@ -34,7 +35,7 @@ class SignupScreen extends ConsumerWidget {
                 style: const TextStyle(color: whiteColor),
                 controller: signupState.emailController,
                 decoration: InputDecoration(
-                  hintText: emailHintText,
+                  hintText: S.of(context).emailHintText,
                   hintStyle: const TextStyle(color: Colors.white),
                 ),
               ),
@@ -46,7 +47,7 @@ class SignupScreen extends ConsumerWidget {
                 style: const TextStyle(color: whiteColor),
                 controller: signupState.passwordController,
                 decoration: InputDecoration(
-                  hintText: passwordHintText,
+                  hintText: S.of(context).passwordHintText,
                   hintStyle: const TextStyle(color: Colors.white),
                 ),
                 obscureText: true,
@@ -59,7 +60,7 @@ class SignupScreen extends ConsumerWidget {
                 style: const TextStyle(color: whiteColor),
                 controller: signupState.managerNameController,
                 decoration: InputDecoration(
-                  hintText: managerNameHintText,
+                  hintText: S.of(context).managerNameHintText,
                   hintStyle: const TextStyle(color: Colors.white),
                 ),
               ),
@@ -71,7 +72,7 @@ class SignupScreen extends ConsumerWidget {
                 style: const TextStyle(color: whiteColor),
                 controller: signupState.restaurantNameController,
                 decoration: InputDecoration(
-                  hintText: restaurantNameHintText,
+                  hintText: S.of(context).restaurantNameHintText,
                   hintStyle: const TextStyle(color: Colors.white),
                 ),
               ),
@@ -102,11 +103,11 @@ class SignupScreen extends ConsumerWidget {
                 height: 20,
               ),
               Button(
-                text: signupButton,
+                text: S.of(context).signupButton,
                 func: () {
                   final validationResult = ref
                       .read(authStateManager.notifier)
-                      .validateAuthForm(signupState);
+                      .validateAuthForm(signupState, context);
                   if (validationResult == null) {
                     ref.read(authStateManager.notifier).signup(context);
                   } else {
@@ -117,7 +118,7 @@ class SignupScreen extends ConsumerWidget {
                 },
               ),
               ButtonWithUnderline(
-                  text: toLoginScreenButton,
+                  text: S.of(context).toLoginScreenButton,
                   func: () {
                     goRouter.go(loginScreenPath);
                   })

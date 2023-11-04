@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/models/users/login_model.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
 
@@ -58,14 +60,16 @@ class FirebaseAuthService {
   }
 
   Future<void> updateUserAuths(
-      {required String email, String? password}) async {
+      {required String email,
+      String? password,
+      required BuildContext context}) async {
     User? user = _firebaseAuth.currentUser;
 
     if (user != null) {
       await user.updateEmail(email);
       if (password != null) await user.updatePassword(password);
     } else {
-      throw Exception(userNotLoggedInMessage);
+      throw Exception(S.of(context).userNotLoggedInMessage);
     }
   }
 
@@ -73,7 +77,8 @@ class FirebaseAuthService {
       {required String email,
       required String managerName,
       required String restaurantName,
-      required String language}) async {
+      required String language,
+      required BuildContext context}) async {
     User? user = _firebaseAuth.currentUser;
 
     if (user != null) {
@@ -84,7 +89,7 @@ class FirebaseAuthService {
         languageField: language
       });
     } else {
-      throw Exception(userNotLoggedInMessage);
+      throw Exception(S.of(context).userNotLoggedInMessage);
     }
   }
 }

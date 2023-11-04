@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/models/Iitems/item_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
@@ -66,7 +67,7 @@ class ItemIndexScreen extends ConsumerWidget {
                           child: TextField(
                             controller: itemState.searchController,
                             decoration: InputDecoration(
-                              hintText: searchItemHintText,
+                              hintText: S.of(context).searchItemHintText,
                               hintStyle: const TextStyle(fontSize: 17),
                               suffixIcon: IconButton(
                                 icon: const Icon(Icons.clear, color: lightBlue),

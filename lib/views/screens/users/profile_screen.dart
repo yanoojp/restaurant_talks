@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/users/profile_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
@@ -25,33 +26,33 @@ class ProfileScreen extends ConsumerWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(editProfileScreen),
+              Text(S.of(context).editProfileScreen),
               const SizedBox(height: 30),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30),
-                  Text(emailHintText),
+                  Text(S.of(context).emailHintText),
                   TextField(
                     controller: profileState.emailController,
                   ),
                   const SizedBox(height: 30),
-                  Text(passwordHintText),
+                  Text(S.of(context).passwordHintText),
                   TextField(
                     controller: profileState.passwordController,
                   ),
                   const SizedBox(height: 30),
-                  Text(managerNameHintText),
+                  Text(S.of(context).managerNameHintText),
                   TextField(
                     controller: profileState.managerNameController,
                   ),
                   const SizedBox(height: 30),
-                  Text(restaurantNameHintText),
+                  Text(S.of(context).restaurantNameHintText),
                   TextField(
                     controller: profileState.restaurantNameController,
                   ),
                   const SizedBox(height: 30),
-                  Text(languageHintText),
+                  Text(S.of(context).languageHintText),
                   DropdownButton<String>(
                     value: ref
                         .watch(profileStateManager.notifier)
@@ -71,7 +72,7 @@ class ProfileScreen extends ConsumerWidget {
                     onChanged: (newValue) {
                       ref
                           .read(profileStateManager.notifier)
-                          .updateLanguage(newValue);
+                          .updateLanguage(newValue, context);
                     },
                     dropdownColor: darkYellow,
                     style: const TextStyle(color: whiteColor),
@@ -81,15 +82,20 @@ class ProfileScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 30),
               Button(
-                text: saveButton,
+                text: S.of(context).saveButton,
                 func: () {
-                  ref.read(profileStateManager.notifier).updateUserAuth();
-                  ref.read(profileStateManager.notifier).updateProfile();
+                  ref
+                      .read(profileStateManager.notifier)
+                      .validateProfileForm(profileState, context);
+                  ref
+                      .read(profileStateManager.notifier)
+                      .updateUserAuth(context);
+                  ref.read(profileStateManager.notifier).updateProfile(context);
                 },
               ),
               const SizedBox(height: 10),
               ButtonWithUnderline(
-                text: logoutButton,
+                text: S.of(context).logoutButton,
                 func: () async {
                   await ref.read(profileStateManager.notifier).logout();
                   goRouter.go(loginScreenPath);
@@ -97,7 +103,7 @@ class ProfileScreen extends ConsumerWidget {
                 color: darkBlue,
               ),
               ButtonWithUnderline(
-                text: deleteAccountButton,
+                text: S.of(context).deleteAccountButton,
                 func: () {
                   ref.read(profileStateManager.notifier).deleteAccount();
                   goRouter.go(loginScreenPath);
