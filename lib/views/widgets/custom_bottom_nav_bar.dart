@@ -30,9 +30,9 @@ class CustomBottomNavBar extends ConsumerWidget {
             label: S.of(context).profileNavBar,
           ),
         ],
-        onTap: (index) {
+        onTap: (index) async {
           if (index == 0) {
-            ref.read(itemIndexViewModelProvider.notifier).loadInitialData();
+            await ref.read(itemIndexViewModelProvider.notifier).loadInitialData();
             goRouter.go(itemIndexScreenPath);
           } else if (index == 1) {
             goRouter.go(profileScreenPath);
