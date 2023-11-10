@@ -24,8 +24,10 @@ class ItemIndexScreen extends ConsumerWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
               appBar: CustomAppBar(),
-              body: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(darkBlue),
+              body: Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(darkBlue),
+                ),
               ));
         }
 

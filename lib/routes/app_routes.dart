@@ -34,13 +34,13 @@ final goRouter = GoRouter(
           const MaterialPage(child: ItemIndexScreen()),
       routes: [
         GoRoute(
-          path: 'edit',
+          path: 'form',
           pageBuilder: (context, state) {
             return MaterialPage(child: ItemFormScreen(id: null));
           },
         ),
         GoRoute(
-          path: 'edit/:id',
+          path: 'form/:id',
           pageBuilder: (context, state) {
             final id = state.pathParameters['id'];
             return MaterialPage(child: ItemFormScreen(id: id!));
