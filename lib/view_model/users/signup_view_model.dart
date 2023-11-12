@@ -20,6 +20,7 @@ class SignupState with _$SignupState {
     required TextEditingController managerNameController,
     required TextEditingController restaurantNameController,
     required String currentLanguage,
+    required bool isObscure,
   }) = _SignupState;
 }
 
@@ -32,6 +33,7 @@ class SignupStateManager extends StateNotifier<SignupState> {
           managerNameController: TextEditingController(),
           restaurantNameController: TextEditingController(),
           currentLanguage: jaSelectItem,
+          isObscure: true,
         ));
 
   String? validateAuthForm(state, context) {
@@ -112,6 +114,10 @@ class SignupStateManager extends StateNotifier<SignupState> {
       state = state.copyWith(currentLanguage: newLanguage);
       // currentLanguage = state.currentLanguage;
     }
+  }
+
+  void updateIsObscure(bool isObscure) {
+      state = state.copyWith(isObscure: !isObscure);
   }
 }
 

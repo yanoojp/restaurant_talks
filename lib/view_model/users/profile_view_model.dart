@@ -23,29 +23,31 @@ class ProfileState with _$ProfileState {
     required String currentLanguage,
     required Locale currentLocale,
     // required TextEditingController prefectureController,
+    required bool isObscure,
   }) = _ProfileState;
 }
 
 class ProfileStateManager extends StateNotifier<ProfileState> {
   ProfileStateManager()
       : super(_ProfileState(
-            isProcessing: false,
-            profileRequest: Profile(
-                email: '',
-                password: '',
-                managerName: '',
-                restaurantName: '',
-                language: jaSelectItem
-                // prefecture: ''
-                ),
-            emailController: TextEditingController(),
-            passwordController: TextEditingController(),
-            managerNameController: TextEditingController(),
-            restaurantNameController: TextEditingController(),
-            currentLanguage: jaSelectItem,
-            currentLocale: const Locale('en', '')
-            // prefectureController: TextEditingController(),
-            )) {
+          isProcessing: false,
+          profileRequest: Profile(
+              email: '',
+              password: '',
+              managerName: '',
+              restaurantName: '',
+              language: jaSelectItem
+              // prefecture: ''
+              ),
+          emailController: TextEditingController(),
+          passwordController: TextEditingController(),
+          managerNameController: TextEditingController(),
+          restaurantNameController: TextEditingController(),
+          currentLanguage: jaSelectItem,
+          currentLocale: const Locale('en', ''),
+          // prefectureController: TextEditingController(),
+          isObscure: true,
+        )) {
     setUserInfo();
   }
 
@@ -217,6 +219,10 @@ class ProfileStateManager extends StateNotifier<ProfileState> {
           currentLanguage: newLanguage, currentLocale: newLocale);
       updateProfile(context);
     }
+  }
+
+  void updateIsObscure(bool isObscure) {
+    state = state.copyWith(isObscure: !isObscure);
   }
 }
 

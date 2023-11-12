@@ -40,6 +40,22 @@ class ProfileScreen extends ConsumerWidget {
                   Text(S.of(context).passwordHintText),
                   TextField(
                     controller: profileState.passwordController,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          profileState.isObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: blackColor,
+                        ),
+                        onPressed: () {
+                          ref
+                              .read(profileStateManager.notifier)
+                              .updateIsObscure(profileState.isObscure);
+                        },
+                      ),
+                    ),
+                    obscureText: profileState.isObscure,
                   ),
                   const SizedBox(height: 30),
                   Text(S.of(context).managerNameHintText),
