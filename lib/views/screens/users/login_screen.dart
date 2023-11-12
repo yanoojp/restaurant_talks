@@ -55,8 +55,21 @@ class LoginScreen extends ConsumerWidget {
                     hintStyle: const TextStyle(
                       color: whiteColor,
                     ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        loginState.isObscure
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: whiteColor,
+                      ),
+                      onPressed: () {
+                        ref
+                            .read(authStateManager.notifier)
+                            .updateIsObscure(loginState.isObscure);
+                      },
+                    ),
                   ),
-                  obscureText: true,
+                  obscureText: loginState.isObscure,
                 ),
                 const SizedBox(
                   height: 80,

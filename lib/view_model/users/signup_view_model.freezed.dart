@@ -26,6 +26,7 @@ mixin _$SignupState {
   TextEditingController get restaurantNameController =>
       throw _privateConstructorUsedError;
   String get currentLanguage => throw _privateConstructorUsedError;
+  bool get isObscure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignupStateCopyWith<SignupState> get copyWith =>
@@ -44,7 +45,8 @@ abstract class $SignupStateCopyWith<$Res> {
       TextEditingController passwordController,
       TextEditingController managerNameController,
       TextEditingController restaurantNameController,
-      String currentLanguage});
+      String currentLanguage,
+      bool isObscure});
 
   $CustomisedUserCopyWith<$Res> get user;
 }
@@ -68,6 +70,7 @@ class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
     Object? managerNameController = null,
     Object? restaurantNameController = null,
     Object? currentLanguage = null,
+    Object? isObscure = null,
   }) {
     return _then(_value.copyWith(
       user: null == user
@@ -94,6 +97,10 @@ class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
           ? _value.currentLanguage
           : currentLanguage // ignore: cast_nullable_to_non_nullable
               as String,
+      isObscure: null == isObscure
+          ? _value.isObscure
+          : isObscure // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -120,7 +127,8 @@ abstract class _$$_SignupStateCopyWith<$Res>
       TextEditingController passwordController,
       TextEditingController managerNameController,
       TextEditingController restaurantNameController,
-      String currentLanguage});
+      String currentLanguage,
+      bool isObscure});
 
   @override
   $CustomisedUserCopyWith<$Res> get user;
@@ -143,6 +151,7 @@ class __$$_SignupStateCopyWithImpl<$Res>
     Object? managerNameController = null,
     Object? restaurantNameController = null,
     Object? currentLanguage = null,
+    Object? isObscure = null,
   }) {
     return _then(_$_SignupState(
       user: null == user
@@ -169,6 +178,10 @@ class __$$_SignupStateCopyWithImpl<$Res>
           ? _value.currentLanguage
           : currentLanguage // ignore: cast_nullable_to_non_nullable
               as String,
+      isObscure: null == isObscure
+          ? _value.isObscure
+          : isObscure // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -182,7 +195,8 @@ class _$_SignupState implements _SignupState {
       required this.passwordController,
       required this.managerNameController,
       required this.restaurantNameController,
-      required this.currentLanguage});
+      required this.currentLanguage,
+      required this.isObscure});
 
   @override
   final CustomisedUser user;
@@ -196,10 +210,12 @@ class _$_SignupState implements _SignupState {
   final TextEditingController restaurantNameController;
   @override
   final String currentLanguage;
+  @override
+  final bool isObscure;
 
   @override
   String toString() {
-    return 'SignupState(user: $user, emailController: $emailController, passwordController: $passwordController, managerNameController: $managerNameController, restaurantNameController: $restaurantNameController, currentLanguage: $currentLanguage)';
+    return 'SignupState(user: $user, emailController: $emailController, passwordController: $passwordController, managerNameController: $managerNameController, restaurantNameController: $restaurantNameController, currentLanguage: $currentLanguage, isObscure: $isObscure)';
   }
 
   @override
@@ -218,7 +234,9 @@ class _$_SignupState implements _SignupState {
                     other.restaurantNameController, restaurantNameController) ||
                 other.restaurantNameController == restaurantNameController) &&
             (identical(other.currentLanguage, currentLanguage) ||
-                other.currentLanguage == currentLanguage));
+                other.currentLanguage == currentLanguage) &&
+            (identical(other.isObscure, isObscure) ||
+                other.isObscure == isObscure));
   }
 
   @override
@@ -229,7 +247,8 @@ class _$_SignupState implements _SignupState {
       passwordController,
       managerNameController,
       restaurantNameController,
-      currentLanguage);
+      currentLanguage,
+      isObscure);
 
   @JsonKey(ignore: true)
   @override
@@ -245,7 +264,8 @@ abstract class _SignupState implements SignupState {
       required final TextEditingController passwordController,
       required final TextEditingController managerNameController,
       required final TextEditingController restaurantNameController,
-      required final String currentLanguage}) = _$_SignupState;
+      required final String currentLanguage,
+      required final bool isObscure}) = _$_SignupState;
 
   @override
   CustomisedUser get user;
@@ -259,6 +279,8 @@ abstract class _SignupState implements SignupState {
   TextEditingController get restaurantNameController;
   @override
   String get currentLanguage;
+  @override
+  bool get isObscure;
   @override
   @JsonKey(ignore: true)
   _$$_SignupStateCopyWith<_$_SignupState> get copyWith =>

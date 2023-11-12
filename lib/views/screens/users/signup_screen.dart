@@ -51,8 +51,21 @@ class SignupScreen extends ConsumerWidget {
                   decoration: InputDecoration(
                     hintText: S.of(context).passwordHintText,
                     hintStyle: const TextStyle(color: Colors.white),
+                  suffixIcon: IconButton(
+                      icon: Icon(
+                        signupState.isObscure
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: whiteColor,
+                      ),
+                      onPressed: () {
+                        ref
+                            .read(authStateManager.notifier)
+                            .updateIsObscure(signupState.isObscure);
+                      },
+                    ),
                   ),
-                  obscureText: true,
+                  obscureText: signupState.isObscure,
                 ),
                 const SizedBox(
                   height: 20,
