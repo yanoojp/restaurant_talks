@@ -61,7 +61,7 @@ class ItemIndexViewModel extends StateNotifier<ItemIndexState> {
   }
 
   StreamSubscription? _itemSubscription;
-  void loadInitialData() {
+  Future<void> loadInitialData() async {
     _itemSubscription?.cancel();
     _itemSubscription = getItems().listen((newItems) {
       state = state.copyWith(itemStream: Stream.value(newItems));

@@ -23,9 +23,9 @@ class GuestNumberScreen extends ConsumerWidget {
             Icons.arrow_back,
             color: whiteColor,
           ),
-          onPressed: () {
+          onPressed: () async {
             // Navigator.of(context).pop();
-            ref.read(itemIndexViewModelProvider.notifier).loadInitialData();
+            await ref.read(itemIndexViewModelProvider.notifier).loadInitialData();
             goRouter.go(itemIndexScreenPath);
           },
         ),
