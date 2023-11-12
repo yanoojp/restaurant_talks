@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/models/users/login_model.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
 
@@ -16,14 +19,13 @@ class FirebaseAuthService {
         password: profile.password,
       );
 
-      // Save the user data to Firestore
       await usersRef.doc(userCredential.user!.uid).set({
-        'email': profile.email,
-        'managerName': profile.managerName,
-        'restaurantName': profile.restaurantName,
+        emailField: profile.email,
+        managerNameField: profile.managerName,
+        restaurantNameField: profile.restaurantName,
+        languageField: profile.language
       });
 
-      // Send verification email
       User? user = userCredential.user;
       if (user != null && !user.emailVerified) {
         await user.sendEmailVerification();
@@ -36,7 +38,6 @@ class FirebaseAuthService {
 
       return userCredential;
     } catch (e) {
-      print(e); // You might want to log the error for debugging purposes
       return null;
     }
   }
@@ -59,31 +60,36 @@ class FirebaseAuthService {
   }
 
   Future<void> updateUserAuths(
-      {required String email, String? password}) async {
+      {required String email,
+      String? password,
+      required BuildContext context}) async {
     User? user = _firebaseAuth.currentUser;
 
     if (user != null) {
       await user.updateEmail(email);
       if (password != null) await user.updatePassword(password);
     } else {
-      throw Exception('User not logged in');
+      throw Exception(S.of(context).userNotLoggedInMessage);
     }
   }
 
   Future<void> updateUserProfiles(
       {required String email,
       required String managerName,
-      required String restaurantName}) async {
+      required String restaurantName,
+      required String language,
+      required BuildContext context}) async {
     User? user = _firebaseAuth.currentUser;
 
     if (user != null) {
-      await _firestore.collection('users').doc(user.uid).update({
-        'email': email,
-        'managerName': managerName,
-        'restaurantName': restaurantName,
+      await _firestore.collection(usersCollection).doc(user.uid).update({
+        emailField: email,
+        managerNameField: managerName,
+        restaurantNameField: restaurantName,
+        languageField: language
       });
     } else {
-      throw Exception('User not logged in');
+      throw Exception(S.of(context).userNotLoggedInMessage);
     }
   }
 }

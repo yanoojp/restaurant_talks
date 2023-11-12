@@ -3,13 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 
 part 'guest_number_view_model.freezed.dart';
 
 class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
   final FirebaseAuth auth = FirebaseAuth.instance;
-  final CollectionReference guestNumbersCollection =
-      FirebaseFirestore.instance.collection('guestNumbers');
+  final CollectionReference guestNumbersCollectionInstance =
+      FirebaseFirestore.instance.collection(guestNumbersCollection);
 
   GuestNumberViewModel()
       : super(GuestNumberState(
@@ -18,34 +20,31 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
   }
 
   Future<void> setGuestNumber() async {
-    QuerySnapshot snapshot = await guestNumbersCollection
-        .orderBy('guestNumber', descending: true)
+    QuerySnapshot snapshot = await guestNumbersCollectionInstance
+        .orderBy(guestNumberField, descending: true)
         .limit(1)
         .get();
     if (snapshot.docs.isNotEmpty) {
-      int latestGuestNumber = snapshot.docs.first.get('guestNumber');
+      int latestGuestNumber = snapshot.docs.first.get(guestNumberField);
       state.guestNumberController.text = latestGuestNumber.toString();
       state = state.copyWith(
-        guestNumber: int.parse(state.guestNumberController.text));
+          guestNumber: int.parse(state.guestNumberController.text));
     }
   }
 
   Future<void> saveGuestNumber(BuildContext context) async {
     final user = auth.currentUser;
     if (user == null) {
-      showErrorDialog(context, "User is not authenticated.");
+      showErrorDialog(context, S.of(context).userNotAuthenticatedMessage);
       return;
     }
 
-    if (_isValidNumber(state.guestNumberController.text)) {
-      await guestNumbersCollection
-          .add({'guestNumber': state.guestNumber, 'userId': user.uid});
-    } else {
-      showErrorDialog(context, "Invalid guest number entered.");
-    }
+    await guestNumbersCollectionInstance
+        .add({guestNumberField: state.guestNumber, userIdField: user.uid});
   }
 
   bool _isValidNumber(String value) {
+    if (value == "") return true;
     return int.tryParse(value) != null;
   }
 
@@ -55,11 +54,11 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Enter a valid number'),
+          title: Text(S.of(context).enterValidNumberMessage),
           content: Text(message),
           actions: <Widget>[
             TextButton(
-              child: const Text('OK'),
+              child: Text(S.of(context).okButton),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -68,6 +67,14 @@ class GuestNumberViewModel extends StateNotifier<GuestNumberState> {
         );
       },
     );
+  }
+
+  void updateGuestNumber(val, context) {
+    if (_isValidNumber(state.guestNumberController.text)) {
+      state = state.copyWith(guestNumber: val == '' ? 0 : int.parse(val));
+    } else {
+      showErrorDialog(context, S.of(context).invalidGuestNumberMessage);
+    }
   }
 }
 

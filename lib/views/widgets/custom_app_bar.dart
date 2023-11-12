@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/guest_number/guest_number_view_model.dart';
 import 'base/logo.dart';
@@ -26,8 +27,8 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
                 },
                 child: Column(
                   children: [
-                    const Text(guestNumberAppBarHintText,
-                        style: TextStyle(fontSize: normalFontSize)),
+                    Text(S.of(context).guestNumberAppBarHintText,
+                        style: const TextStyle(fontSize: normalFontSize)),
                     Text(guestNumberState.guestNumber.toString(),
                         style: const TextStyle(fontSize: normalFontSize)),
                   ],

@@ -21,6 +21,7 @@ mixin _$Profile {
   String get password => throw _privateConstructorUsedError;
   String get managerName => throw _privateConstructorUsedError;
   String get restaurantName => throw _privateConstructorUsedError;
+  String get language => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ abstract class $ProfileCopyWith<$Res> {
       String email,
       String password,
       String managerName,
-      String restaurantName});
+      String restaurantName,
+      String language});
 }
 
 /// @nodoc
@@ -57,6 +59,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? password = null,
     Object? managerName = null,
     Object? restaurantName = null,
+    Object? language = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -79,6 +82,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.restaurantName
           : restaurantName // ignore: cast_nullable_to_non_nullable
               as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -95,7 +102,8 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String email,
       String password,
       String managerName,
-      String restaurantName});
+      String restaurantName,
+      String language});
 }
 
 /// @nodoc
@@ -113,6 +121,7 @@ class __$$_ProfileCopyWithImpl<$Res>
     Object? password = null,
     Object? managerName = null,
     Object? restaurantName = null,
+    Object? language = null,
   }) {
     return _then(_$_Profile(
       id: freezed == id
@@ -135,6 +144,10 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.restaurantName
           : restaurantName // ignore: cast_nullable_to_non_nullable
               as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -147,7 +160,8 @@ class _$_Profile implements _Profile {
       required this.email,
       required this.password,
       required this.managerName,
-      required this.restaurantName});
+      required this.restaurantName,
+      required this.language});
 
   @override
   final int? id;
@@ -159,10 +173,12 @@ class _$_Profile implements _Profile {
   final String managerName;
   @override
   final String restaurantName;
+  @override
+  final String language;
 
   @override
   String toString() {
-    return 'Profile(id: $id, email: $email, password: $password, managerName: $managerName, restaurantName: $restaurantName)';
+    return 'Profile(id: $id, email: $email, password: $password, managerName: $managerName, restaurantName: $restaurantName, language: $language)';
   }
 
   @override
@@ -177,12 +193,14 @@ class _$_Profile implements _Profile {
             (identical(other.managerName, managerName) ||
                 other.managerName == managerName) &&
             (identical(other.restaurantName, restaurantName) ||
-                other.restaurantName == restaurantName));
+                other.restaurantName == restaurantName) &&
+            (identical(other.language, language) ||
+                other.language == language));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, email, password, managerName, restaurantName);
+      runtimeType, id, email, password, managerName, restaurantName, language);
 
   @JsonKey(ignore: true)
   @override
@@ -197,7 +215,8 @@ abstract class _Profile implements Profile {
       required final String email,
       required final String password,
       required final String managerName,
-      required final String restaurantName}) = _$_Profile;
+      required final String restaurantName,
+      required final String language}) = _$_Profile;
 
   @override
   int? get id;
@@ -209,6 +228,8 @@ abstract class _Profile implements Profile {
   String get managerName;
   @override
   String get restaurantName;
+  @override
+  String get language;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileCopyWith<_$_Profile> get copyWith =>

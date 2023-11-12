@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
+import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 
-class CustomBottomNavBar extends StatefulWidget {
+class CustomBottomNavBar extends ConsumerWidget {
   final int currentIndex;
 
   const CustomBottomNavBar({
@@ -11,29 +14,25 @@ class CustomBottomNavBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomBottomNavBarState createState() => _CustomBottomNavBarState();
-}
-
-class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return BottomNavigationBar(
         backgroundColor: darkBlue,
-        selectedItemColor: lightBlue,
+        selectedItemColor: darkYellow,
         unselectedItemColor: whiteColor,
-        currentIndex: widget.currentIndex,
-        items: const [
+        currentIndex: currentIndex,
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: homeNavBar,
+            icon: const Icon(Icons.home),
+            label: S.of(context).homeNavBar,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: profileNavBar,
+            icon: const Icon(Icons.person),
+            label: S.of(context).profileNavBar,
           ),
         ],
-        onTap: (index) {
+        onTap: (index) async {
           if (index == 0) {
+            await ref.read(itemIndexViewModelProvider.notifier).loadInitialData();
             goRouter.go(itemIndexScreenPath);
           } else if (index == 1) {
             goRouter.go(profileScreenPath);

@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:restaurant_talks/constants/variables.dart';
 import 'package:restaurant_talks/firebase/user_authentication.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/models/users/login_model.dart';
 import 'package:restaurant_talks/models/users/profile_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
@@ -19,6 +19,7 @@ class SignupState with _$SignupState {
     required TextEditingController passwordController,
     required TextEditingController managerNameController,
     required TextEditingController restaurantNameController,
+    required String currentLanguage,
   }) = _SignupState;
 }
 
@@ -30,20 +31,21 @@ class SignupStateManager extends StateNotifier<SignupState> {
           passwordController: TextEditingController(),
           managerNameController: TextEditingController(),
           restaurantNameController: TextEditingController(),
+          currentLanguage: jaSelectItem,
         ));
 
-  String? validateAuthForm(state) {
+  String? validateAuthForm(state, context) {
     String email = state.emailController.text;
     String password = state.passwordController.text;
 
     final emailRegex = RegExp(emailRegexString);
 
     if (!emailRegex.hasMatch(email)) {
-      return invalidEmailMessage;
+      return S.of(context).invalidEmailMessage;
     }
 
     if (password.isEmpty || password.length < 8) {
-      return invalidPasswordMessage;
+      return S.of(context).invalidPasswordMessage;
     }
 
     return null;
@@ -56,15 +58,16 @@ class SignupStateManager extends StateNotifier<SignupState> {
         email: state.emailController.text,
         password: state.passwordController.text,
         managerName: state.managerNameController.text,
-        restaurantName: state.restaurantNameController.text);
+        restaurantName: state.restaurantNameController.text,
+        language: state.currentLanguage);
 
     final userCredential = await authService.register(profile);
 
     if (userCredential != null) {
-      goRouter.go('/signup/email_varification');
+      goRouter.go(emailVarificationScreenPath);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Signup failed! Please check your input.")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(S.of(context).signupFailedMessage)));
     }
   }
 
@@ -80,14 +83,14 @@ class SignupStateManager extends StateNotifier<SignupState> {
       final currentUser = userCredential.user;
 
       if (currentUser == null || !currentUser.emailVerified) {
-        goRouter.go('/signup/email_varification');
+        goRouter.go(emailVarificationScreenPath);
         return;
       }
 
       goRouter.go(itemIndexScreenPath);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Login failed! Please check your credentials.")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(S.of(context).loginFailedMessage)));
     }
   }
 
@@ -100,6 +103,15 @@ class SignupStateManager extends StateNotifier<SignupState> {
         );
       },
     );
+  }
+
+  String get getCurrentLanguage => state.currentLanguage;
+
+  void updateLanguage(String? newLanguage) {
+    if (newLanguage != null) {
+      state = state.copyWith(currentLanguage: newLanguage);
+      // currentLanguage = state.currentLanguage;
+    }
   }
 }
 

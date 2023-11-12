@@ -10,6 +10,7 @@ class Profile with _$Profile {
     required String password,
     required String managerName,
     required String restaurantName,
+    required String language
     // required String prefecture,
   }) = _Profile;
 }

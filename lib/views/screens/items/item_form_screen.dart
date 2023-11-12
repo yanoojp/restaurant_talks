@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant_talks/constants/simulation_datas.dart';
 import 'package:restaurant_talks/constants/variables.dart';
-import 'package:restaurant_talks/models/Iitems/category_model.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
+import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/items/item_edit_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 
-bool _isInitialized = false;
-
 class ItemFormScreen extends ConsumerWidget {
-  final String id;
-  const ItemFormScreen({Key? key, required this.id}) : super(key: key);
+  final String? id;
+  ItemFormScreen({Key? key, required this.id}) : super(key: key);
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemEditState = ref.watch(itemEditStateManager);
+    final itemEditState = ref.watch(itemEditStateManager(id));
 
-    if (!_isInitialized) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(itemEditStateManager.notifier).initializeItem(id);
-      });
-      _isInitialized = true;
+    if (nameController.text != itemEditState.item.name) {
+      nameController.text = itemEditState.item.name;
+    }
+
+    if (descriptionController.text != itemEditState.item.description) {
+      descriptionController.text = itemEditState.item.description;
     }
 
     return Scaffold(
@@ -38,10 +39,17 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('$itemNameLabel:'),
+                  Text('${S.of(context).itemNameLabel}:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: TextField(controller: itemEditState.nameController),
+                    child: TextField(
+                      controller: nameController,
+                      onChanged: (value) {
+                        ref
+                            .read(itemEditStateManager(id).notifier)
+                            .updateItemName(value);
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -49,7 +57,7 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('$itemStockCountLabel:'),
+                  Text('${S.of(context).itemStockCountLabel}:'),
                   const SizedBox(
                     height: 20,
                   ),
@@ -59,7 +67,7 @@ class ItemFormScreen extends ConsumerWidget {
                       ElevatedButton(
                         onPressed: () {
                           ref
-                              .read(itemEditStateManager.notifier)
+                              .read(itemEditStateManager(id).notifier)
                               .subtractCount();
                         },
                         style: ElevatedButton.styleFrom(
@@ -77,14 +85,16 @@ class ItemFormScreen extends ConsumerWidget {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          ref.read(itemEditStateManager.notifier).addCount();
+                          ref
+                              .read(itemEditStateManager(id).notifier)
+                              .addCount();
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: darkBlue,
                           shape: const CircleBorder(),
                           padding: const EdgeInsets.all(15),
                         ),
-                        child: const Text(addCountButton,
+                        child: Text(S.of(context).addCountButton,
                             style: TextStyle(fontSize: normalFontSize)),
                       ),
                     ],
@@ -95,28 +105,24 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('$itemCategoryLabel:'),
+                  Text('${S.of(context).itemCategoryLabel}:'),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: DropdownButton<Category>(
-                      value: itemEditState.categoryController.text.isEmpty
-                          ? itemCategories[0]
-                          : itemCategories.firstWhere((element) =>
-                              element.value ==
-                              itemEditState.categoryController.text),
-                      items: itemCategories.map((Category category) {
-                        return DropdownMenuItem<Category>(
-                          value: category,
-                          child: Text(category.value),
-                        );
-                      }).toList(),
-                      onChanged: (Category? category) {
-                        if (category != null) {
-                          itemEditState.categoryController.text =
-                              category.value;
-                        }
-                      },
-                    ),
+                    child: DropdownButton<ItemCategory>(
+                        value: itemEditState.currentCategory,
+                        items: itemCategories.map((ItemCategory category) {
+                          return DropdownMenuItem<ItemCategory>(
+                            value: category,
+                            child: Text(category.value),
+                          );
+                        }).toList(),
+                        onChanged: (ItemCategory? category) {
+                          if (category != null) {
+                            ref
+                                .read(itemEditStateManager(id).notifier)
+                                .updateCategory(category);
+                          }
+                        }),
                   ),
                 ],
               ),
@@ -124,29 +130,34 @@ class ItemFormScreen extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('$itemdescriptionLabel:'),
+                  Text('${S.of(context).itemdescriptionLabel}:'),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextField(
-                      controller: itemEditState.descriptionController,
+                      controller: descriptionController,
                       minLines: 5,
                       maxLines: 5,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(),
                       ),
+                      onChanged: (value) {
+                        ref
+                            .read(itemEditStateManager(id).notifier)
+                            .updateDescription(value);
+                      },
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 30),
               Button(
-                text: saveButton,
+                text: S.of(context).saveButton,
                 backgroundColor: darkBlue,
                 textColor: whiteColor,
                 func: () {
-                  ref.read(itemEditStateManager.notifier).saveItem();
+                  ref.read(itemEditStateManager(id).notifier).saveItem(context);
                   goRouter.go(itemIndexScreenPath);
                 },
               ),

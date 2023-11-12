@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:restaurant_talks/constants/simulation_datas.dart';
-import '../../models/Iitems/item_model.dart';
+import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
+import 'package:restaurant_talks/models/Iitems/item_category_model.dart';
+import 'package:restaurant_talks/models/Iitems/item_model.dart';
 
 part 'item_edit_view_model.freezed.dart';
 
@@ -12,53 +15,63 @@ part 'item_edit_view_model.freezed.dart';
 class ItemEditState with _$ItemEditState {
   const factory ItemEditState({
     required Item item,
-    required TextEditingController nameController,
-    required TextEditingController stockCountController,
-    required TextEditingController categoryController,
-    required TextEditingController descriptionController,
+    required ItemCategory currentCategory,
   }) = _ItemEditState;
 }
 
 class ItemEditStateManager extends StateNotifier<ItemEditState> {
-  ItemEditStateManager()
-      : super(_ItemEditState(
-          item: Item(
-              userId: null,
-              name: '',
-              stockCount: 0,
-              categoryId: 0,
-              description: '',
-              createdAt: DateTime.now(),
-              updatedAt: DateTime.now(),
-              id: null),
-          nameController: TextEditingController(),
-          stockCountController: TextEditingController(),
-          categoryController: TextEditingController(),
-          descriptionController: TextEditingController(),
-        ));
+  final String? itemId;
 
-  void initializeItem(String id) async {
-    final item = Item(
+  ItemEditStateManager({this.itemId})
+      : super(_ItemEditState(
+            item: Item(
+                userId: null,
+                name: '',
+                stockCount: 0,
+                categoryId: 0,
+                description: '',
+                createdAt: DateTime.now(),
+                updatedAt: DateTime.now(),
+                id: null),
+            currentCategory: itemCategories[1])) {
+    initializeItem(itemId);
+  }
+
+  void initializeItem(String? id) async {
+    Item item = Item(
         id: id,
         userId: null,
-        name: 'name',
+        name: '',
         stockCount: 1,
         categoryId: 1,
-        description: 'description',
+        description: '',
         createdAt: DateTime.now(),
         updatedAt: DateTime.now());
-    // final item = await getItemById(id);
+
+    final editedItem = await getItemById(id);
+    if (editedItem != null) item = editedItem;
 
     final matchingCategory = itemCategories.firstWhere(
       (category) => category.id == item.categoryId,
       orElse: () => itemCategories[0],
     );
 
-    state.nameController.text = item.name;
-    state.descriptionController.text = item.description;
-    state.categoryController.text = matchingCategory.value;
-    state.stockCountController.text = item.stockCount.toString();
-    state = state.copyWith(item: item);
+    state = state.copyWith(item: item, currentCategory: matchingCategory);
+  }
+
+  Future<Item?> getItemById(String? id) async {
+    if (id == null) return null;
+
+    DocumentSnapshot docSnapshot = await FirebaseFirestore.instance
+        .collection(itemsCollection)
+        .doc(id)
+        .get();
+
+    if (docSnapshot.exists) {
+      return Item.fromDocument(docSnapshot);
+    } else {
+      return null;
+    }
   }
 
   void addCount() {
@@ -75,16 +88,32 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
     }
   }
 
-  Future<void> saveItem() async {
+  void updateItemName(String newName) {
+    Item updatedItem = state.item.copyWith(name: newName);
+    state = state.copyWith(item: updatedItem);
+  }
+
+  void updateDescription(String newDescription) {
+    Item updatedItem = state.item.copyWith(description: newDescription);
+    state = state.copyWith(item: updatedItem);
+  }
+
+  void updateCategory(ItemCategory category) {
+    Item updatedItem = state.item.copyWith(categoryId: category.id);
+    state = state.copyWith(item: updatedItem);
+    state = state.copyWith(currentCategory: category);
+  }
+
+  Future<void> saveItem(BuildContext context) async {
     final auth = FirebaseAuth.instance;
     final user = auth.currentUser;
     final uid = user?.uid;
 
     if (uid == null) {
-      throw Exception("User is not authenticated.");
+      throw Exception(S.of(context).userNotAuthenticatedMessage);
     }
 
-    final collection = FirebaseFirestore.instance.collection('items');
+    final collection = FirebaseFirestore.instance.collection(itemsCollection);
     if (state.item.id == null || state.item.id!.isEmpty) {
       await collection.add(state.item.toDocument(uid));
     } else {
@@ -94,5 +123,5 @@ class ItemEditStateManager extends StateNotifier<ItemEditState> {
 }
 
 final itemEditStateManager =
-    StateNotifierProvider<ItemEditStateManager, ItemEditState>(
-        (ref) => ItemEditStateManager());
+    StateNotifierProvider.family<ItemEditStateManager, ItemEditState, String?>(
+        (ref, id) => ItemEditStateManager(itemId: id));

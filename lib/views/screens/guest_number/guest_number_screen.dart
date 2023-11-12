@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/generated/l10n.dart';
 import 'package:restaurant_talks/routes/app_routes.dart';
 import 'package:restaurant_talks/view_model/guest_number/guest_number_view_model.dart';
+import 'package:restaurant_talks/view_model/items/item_index_view_model.dart';
 import 'package:restaurant_talks/views/widgets/base/button.dart';
 
 class GuestNumberScreen extends ConsumerWidget {
@@ -10,19 +12,20 @@ class GuestNumberScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final guestViewModel = ref.read(guestNumberProvider);
+    final guestNumberState = ref.read(guestNumberProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(guestNumberScreen),
+        title: Text(S.of(context).guestNumberScreen),
         backgroundColor: darkBlue,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
             color: whiteColor,
           ),
-          onPressed: () {
+          onPressed: () async {
             // Navigator.of(context).pop();
+            await ref.read(itemIndexViewModelProvider.notifier).loadInitialData();
             goRouter.go(itemIndexScreenPath);
           },
         ),
@@ -35,14 +38,19 @@ class GuestNumberScreen extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(guestNumberHintText),
+                Text(S.of(context).guestNumberHintText),
                 const SizedBox(
                   height: 15,
                 ),
                 TextField(
-                  controller: guestViewModel.guestNumberController,
+                  controller: guestNumberState.guestNumberController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(),
+                  onChanged: (val) {
+                    ref
+                        .read(guestNumberProvider.notifier)
+                        .updateGuestNumber(val, context);
+                  },
                 ),
               ],
             ),
@@ -50,17 +58,18 @@ class GuestNumberScreen extends ConsumerWidget {
               height: 60,
             ),
             Button(
-                text: saveButton,
+                text: S.of(context).saveButton,
                 func: () {
                   final currentContext = context;
                   ref
                       .read(guestNumberProvider.notifier)
-                      .setGuestNumber()
-                      .then((_) {
-                    ref
-                        .read(guestNumberProvider.notifier)
-                        .saveGuestNumber(currentContext);
-                  }).then((_) {
+                      .saveGuestNumber(currentContext)
+                      .then((_) async {
+                    await Future.delayed(const Duration(milliseconds: 100), () {
+                      ref
+                          .read(itemIndexViewModelProvider.notifier)
+                          .loadInitialData();
+                    });
                     goRouter.go(itemIndexScreenPath);
                   });
                 })

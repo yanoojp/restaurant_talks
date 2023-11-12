@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../constants/variables.dart';
-import '../../../models/Iitems/item_model.dart';
+import 'package:restaurant_talks/constants/variables.dart';
+import 'package:restaurant_talks/models/Iitems/item_model.dart';
 
 class ItemTile extends StatelessWidget {
   final Item item;
@@ -20,12 +20,16 @@ class ItemTile extends StatelessWidget {
         children: [
           Text(
             item.name,
-            style: const TextStyle(color: whiteColor), textAlign: TextAlign.center,
+            style: const TextStyle(color: whiteColor),
+            textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Text(
             '${item.stockCount}',
-            style: const TextStyle(color: whiteColor), textAlign: TextAlign.center,
+            style: const TextStyle(color: whiteColor),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
