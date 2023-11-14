@@ -1,16 +1,15 @@
 # Restaurant Talks
 
-This is an app aimed at improving operations in the food and beverage department of hotels (mainly the dining hall).<br>
+This is an app aimed at improving operations in restaurants.<br>
 Its primary goal is to enhance communication between the hall and the kitchen.<br>
 Designed for use in the field, it focuses on a design that can be used quickly and easily with just a tap.
 
 ## URL
 + App Store: <a href='https://apps.apple.com/jp/app/restaurant-talks/id1670850651?l=en'>Restaurant Talks</a><br>
-+ Test Account (email: testtest@test.com, password: testtest)
 <img alt="Login Screen" src="https://user-images.githubusercontent.com/120234755/219822371-315ab187-31aa-4edc-8a17-96b479a891e3.jpg">
 
 
-## Technology Stack
+<!-- ## Technology Stack
 + Flutter 3.3.8
 + Android toolchain - develop for Android devices (Android SDK version 33.0.1)
 + Xcode - develop for iOS and macOS (Xcode 14.2)
@@ -18,9 +17,9 @@ Designed for use in the field, it focuses on a design that can be used quickly a
 + VS Code (version 1.67.2)
 + Framework • revision 52b3dc25f6 (3 months ago) • 2022-11-09 12:09:26 +0800
 + Engine • revision 857bd6b74c
-+ Tools • Dart 2.18.4 • DevTools 2.15.0
++ Tools • Dart 2.18.4 • DevTools 2.15.0 -->
 
-<Packages>
+<!-- <Packages>
 + image_picker: ^0.8.4+4
 + flutter_chat_ui: ^1.6.6
 + weather: ^2.0.1
@@ -30,14 +29,9 @@ Designed for use in the field, it focuses on a design that can be used quickly a
 + pedantic_mono: any
 + firebase_storage: ^11.0.10
 + google_fonts: ^3.0.1
-+ flutter_launcher_icons: ^0.11.0
++ flutter_launcher_icons: ^0.11.0 -->
 
-
-[//]: # (## ER Diagram)
-
-[//]: # (<img width="674" alt="ER Diagram" src="https://user-images.githubusercontent.com/66105826/118458949-33328d00-b736-11eb-8a2f-6bc3f9c464a8.png">)
-
-## Development Background
+<!-- ## Development Background
 1. There was stress due to lack of communication between the hall and the kitchen.
     + For example, the hall staff did not know how many appetizers or salads were prepared. Therefore, they had to confirm by speaking during busy times, causing stress for both sides.
     + To solve this problem, we thought a system to manage inventory would be helpful.
@@ -57,21 +51,21 @@ Designed for use in the field, it focuses on a design that can be used quickly a
 + Making it usable not only in my previous job but also in other places → Making it scalable
     + We omitted features that were too specific and initially planned, focusing on simplicity.
 + Aiming to develop an app that can be used quickly and efficiently with smartphones or tablets in real-world scenarios
-    + Since editing numbers is a main feature, we aimed to enhance the UX by allowing direct access from the list screen to the edit screen, and by placing multiple registration buttons.
+    + Since editing numbers is a main feature, we aimed to enhance the UX by allowing direct access from the list screen to the edit screen, and by placing multiple registration buttons. -->
 
 ## Feature List (Detailed usage instructions are described below.)
 
 + Function to manage the count of dishes and beverages
-+ Image upload feature
+<!-- + Image upload feature -->
 + Category sorting feature
-+ Chat feature between kitchen and hall
-+ Asynchronous communication feature for chat
-+ Pagination feature
+<!-- + Chat feature between kitchen and hall -->
+<!-- + Asynchronous communication feature for chat -->
+<!-- + Pagination feature -->
 + Feature to share the remaining number of guests
 + User management feature
-+ Feature to display weather
+<!-- + Feature to display weather -->
 
-## Detailed App Functions, Usage Instructions
+<!-- ## Detailed App Functions, Usage Instructions
 ### Inventory Management Feature
 
 <img alt="Food" src="https://user-images.githubusercontent.com/120234755/219822370-43e3f34d-4d12-4633-8907-653ef3a98530.jpg">
@@ -102,4 +96,4 @@ Designed for use in the field, it focuses on a design that can be used quickly a
 + Payment feature
 + Search feature
 + Introducing river_pod for state management
-+ Improving weather display to show more detailed areas rather than just by prefecture
++ Improving weather display to show more detailed areas rather than just by prefecture -->
