@@ -1,4 +1,4 @@
-# restaurant_talks
+# restauratn_talks
 
 A new Flutter project.
 

@@ -1,6 +1,6 @@
 {
-    "name": "restaurant_talks",
-    "short_name": "restaurant_talks",
+    "name": "restauratn_talks",
+    "short_name": "restauratn_talks",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
