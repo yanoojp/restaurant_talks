@@ -5,7 +5,7 @@ import 'package:restauratn_talks/views/screens/sign_up_screen.dart';
 final router = GoRouter(
     routes: [
       GoRoute(
-        path: '/login',
+        path: '/',
         builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
