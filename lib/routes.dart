@@ -1,10 +1,10 @@
 import 'package:go_router/go_router.dart';
-import 'package:restauratn_talks/views/screens/guest_numbers/guest_number_screen.dart';
-import 'package:restauratn_talks/views/screens/items/item_form_screen.dart';
-import 'package:restauratn_talks/views/screens/items/item_index_screen.dart';
-import 'package:restauratn_talks/views/screens/users/login_screen.dart';
-import 'package:restauratn_talks/views/screens/users/sign_up_screen.dart';
-import 'package:restauratn_talks/views/screens/users/user_info_screen.dart';
+import 'package:restaurant_talks/views/screens/guest_numbers/guest_number_screen.dart';
+import 'package:restaurant_talks/views/screens/items/item_form_screen.dart';
+import 'package:restaurant_talks/views/screens/items/item_index_screen.dart';
+import 'package:restaurant_talks/views/screens/users/login_screen.dart';
+import 'package:restaurant_talks/views/screens/users/sign_up_screen.dart';
+import 'package:restaurant_talks/views/screens/users/user_info_screen.dart';
 
 final router = GoRouter(
   routes: [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restauratn_talks/routes.dart';
+import 'package:restaurant_talks/routes.dart';
 
 void main() {
   runApp(const MyApp());
